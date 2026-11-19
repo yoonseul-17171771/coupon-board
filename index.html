@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F0FF">
+<title>우리 가족 쿠폰 🎟️</title>
+<style>
+  :root{
+    --lilac:#B9A6F0;
+    --lilac-2:#8E74DE;
+    --lilac-3:#6C51C0;
+    --lilac-soft:#F1EBFF;
+    --cream:#FFFBF2;
+    --peach:#FFD9C4;
+    --mint:#CDEFE1;
+    --butter:#FFEDBE;
+    --ink:#3B3355;
+    --ink-2:#6F6790;
+    --ink-3:#9A93B0;
+    --line:#EDE6FA;
+    --white:#fff;
+    --shadow:0 10px 26px rgba(111,83,196,.12);
+    --r:24px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{
+    font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 560px at 8% -8%, #F2EBFF 0%, rgba(242,235,255,0) 62%),
+      radial-gradient(900px 480px at 102% -2%, #FFF2DA 0%, rgba(255,242,218,0) 58%),
+      linear-gradient(180deg,#FFFDF8 0%,#FBF6FF 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    padding-bottom:calc(28px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing:antialiased;
+    line-height:1.45;
+  }
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;-webkit-user-select:none;user-select:none}
+  input,select{font-family:inherit;color:var(--ink)}
+  b{font-weight:800}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    max-width:1080px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 18px 6px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+  .logo{font-size:30px;line-height:1;filter:drop-shadow(0 4px 8px rgba(142,116,222,.3))}
+  .brand h1{font-size:19px;margin:0;letter-spacing:-.02em}
+  .brand p{margin:1px 0 0;font-size:12.5px;color:var(--ink-3);font-weight:600}
+  .icon-btn{
+    width:44px;height:44px;border-radius:16px;background:#fff;border:2px solid var(--line);
+    display:grid;place-items:center;font-size:19px;box-shadow:0 4px 12px rgba(111,83,196,.08);
+    transition:transform .15s ease;
+  }
+  .icon-btn:active{transform:scale(.94)}
+  .icon-btn.off{opacity:.55}
+
+  /* ---------- kid tabs ---------- */
+  .tabs{
+    position:sticky;top:0;z-index:20;
+    max-width:1080px;margin:0 auto;padding:8px 18px 10px;
+    display:flex;gap:10px;
+    background:linear-gradient(180deg,rgba(255,253,248,.97) 0%,rgba(255,253,248,.9) 72%,rgba(255,253,248,0) 100%);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  .tab{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:12px 8px;border-radius:18px;border:2px solid var(--line);background:#fff;
+    font-size:16px;font-weight:800;color:var(--ink-2);
+    transition:transform .16s ease,box-shadow .16s ease;
+    min-height:52px;
+  }
+  .tab:active{transform:scale(.97)}
+  .tab .tab-emoji{font-size:20px;line-height:1}
+  .tab .tab-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  @media (max-width:400px){
+    .tab{font-size:15px;padding:12px 6px;gap:6px}
+  }
+  .tab.active{
+    background:linear-gradient(135deg,var(--lilac) 0%,var(--lilac-2) 100%);
+    border-color:transparent;color:#fff;
+    box-shadow:0 10px 22px rgba(142,116,222,.34);
+  }
+  .tab .mini{font-size:11.5px;font-weight:800;padding:2px 6px;border-radius:999px;background:var(--lilac-soft);color:var(--lilac-3)}
+  .tab.active .mini{background:rgba(255,255,255,.24);color:#fff}
+
+  /* ---------- layout ---------- */
+  .layout{max-width:1080px;margin:0 auto;padding:0 18px;display:grid;gap:16px;grid-template-columns:1fr}
+  .col{display:flex;flex-direction:column;gap:16px;min-width:0}
+  @media (min-width:820px){
+    .layout{grid-template-columns:1fr 1fr;align-items:start}
+  }
+  .card{
+    background:#fff;border-radius:var(--r);padding:18px;
+    border:2px solid #F2ECFF;box-shadow:var(--shadow);
+  }
+  .card-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+  .card-head h2{font-size:16.5px;margin:0;letter-spacing:-.02em;flex:1}
+  .card-head .badge{
+    font-size:12px;font-weight:800;color:var(--lilac-3);background:var(--lilac-soft);
+    padding:4px 9px;border-radius:999px;
+  }
+  .muted{color:var(--ink-3);font-size:13px;font-weight:600}
+
+  /* ---------- streak ---------- */
+  .streak-hero{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .flame{
+    width:62px;height:62px;flex:0 0 62px;border-radius:22px;
+    display:grid;place-items:center;font-size:32px;
+    background:linear-gradient(140deg,#FFF0D8,#FFE0C7);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.7),0 8px 18px rgba(255,166,110,.28);
+    animation:breathe 3.2s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.04)}}
+  .streak-num{font-size:14px;font-weight:700;color:var(--ink-2)}
+  .streak-num b{font-size:30px;color:var(--ink);line-height:1;margin-right:3px;letter-spacing:-.03em}
+  .streak-sub{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-top:3px}
+
+  .stamps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 12px}
+  .stamp-cell{
+    aspect-ratio:1/1;border-radius:14px;border:2px dashed #E4DAF9;background:#FCFAFF;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+    font-size:11px;font-weight:800;color:#C6BEDC;position:relative;
+  }
+  .stamp-cell.milestone{border-style:solid;border-color:#EADFF8;background:#FFFDF6}
+  .stamp-cell.milestone .m-emoji{font-size:15px;filter:grayscale(1);opacity:.42}
+  .stamp-cell.filled{
+    border:2px solid transparent;
+    background:linear-gradient(140deg,#CBB8F8,#9C82E6);
+    color:#fff;box-shadow:0 6px 14px rgba(142,116,222,.3);
+    transform:rotate(-2deg);
+  }
+  .stamp-cell.filled .m-emoji{filter:none;opacity:1}
+  .stamp-cell.filled::after{content:"✔";position:absolute;font-size:12px;bottom:2px;right:4px;opacity:.85}
+
+  .gauge{height:12px;border-radius:999px;background:#F3EEFF;overflow:hidden;margin-bottom:10px}
+  .gauge i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#C7B5F7,#8E74DE);transition:width .5s cubic-bezier(.2,.8,.3,1)}
+  .next-hint{
+    display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--ink-2);
+    background:#FBF8FF;border:2px solid #F1EBFF;border-radius:16px;padding:10px 12px;
+  }
+  .next-hint .gift{font-size:18px}
+  .next-hint b{color:var(--lilac-3)}
+
+  /* ---------- tasks ---------- */
+  .task-list{display:flex;flex-direction:column;gap:9px}
+  .task{
+    position:relative;display:flex;align-items:center;gap:11px;
+    padding:9px 10px 9px 9px;border-radius:18px;background:#FCFAFF;border:2px solid #F2ECFF;
+    transition:background .18s ease,border-color .18s ease,transform .1s ease;
+  }
+  .task:active{transform:scale(.99)}
+  .task .t-emoji{
+    width:40px;height:40px;flex:0 0 40px;border-radius:14px;background:#fff;
+    display:grid;place-items:center;font-size:20px;
+    box-shadow:0 3px 9px rgba(111,83,196,.10);
+  }
+  .task .t-label{flex:1;font-size:15.5px;font-weight:700;letter-spacing:-.01em}
+  .task.done{background:#F4EEFF;border-color:#DFD3FF}
+  .task.done .t-label{color:#8B80A6;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#C8BAEB}
+  .check{
+    width:46px;height:46px;flex:0 0 46px;border-radius:50%;
+    border:3px solid #DED2FF;background:#fff;color:transparent;
+    display:grid;place-items:center;font-size:20px;font-weight:900;
+    transition:transform .12s ease,background .18s ease;
+  }
+  .check:active{transform:scale(.9)}
+  .task.done .check{background:linear-gradient(135deg,var(--lilac),var(--lilac-2));border-color:transparent;color:#fff}
+  .stamp{
+    position:absolute;right:64px;top:50%;transform:translateY(-50%) rotate(-9deg);
+    font-size:13px;font-weight:900;color:#E4708A;border:3px solid #E4708A;border-radius:11px;
+    padding:1px 8px;background:rgba(255,255,255,.75);pointer-events:none;
+    letter-spacing:.02em;
+  }
+  .stamp.pop{animation:stampPop .46s cubic-bezier(.18,.9,.24,1.5) both}
+  @keyframes stampPop{
+    0%{transform:translateY(-50%) rotate(-30deg) scale(2.6);opacity:0}
+    55%{transform:translateY(-50%) rotate(-6deg) scale(.9);opacity:1}
+    75%{transform:translateY(-50%) rotate(-10deg) scale(1.08)}
+    100%{transform:translateY(-50%) rotate(-9deg) scale(1);opacity:1}
+  }
+  .task-foot{margin-top:11px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-3)}
+  .task-foot .dots{display:flex;gap:4px}
+  .task-foot .dot{width:9px;height:9px;border-radius:99px;background:#E7DEFA}
+  .task-foot .dot.on{background:linear-gradient(135deg,#B9A6F0,#8E74DE)}
+
+  /* ---------- coupons ---------- */
+  .coupon-list{display:flex;flex-direction:column;gap:11px}
+  .coupon{
+    position:relative;display:flex;align-items:center;gap:12px;
+    padding:13px 13px;border-radius:18px;
+    background:linear-gradient(135deg,#FFFDFB 0%,#F8F2FF 100%);
+    border:2px dashed rgba(142,116,222,.45);
+  }
+  .coupon.free{background:linear-gradient(135deg,#FFFDF7,#FFF0DC);border-color:rgba(240,175,90,.5)}
+  .coupon.store{background:linear-gradient(135deg,#FBFEFF,#E8F7F1);border-color:rgba(90,190,160,.45)}
+  .coupon.artbox{background:linear-gradient(135deg,#FFFCFF,#FFEAF4);border-color:rgba(230,120,170,.45)}
+  .coupon.used{background:linear-gradient(135deg,#FBF8F3,#F4F0EA);border-color:#E2DBD1;opacity:.92;padding-bottom:24px}
+  .c-emoji{
+    width:46px;height:46px;flex:0 0 46px;border-radius:16px;background:#fff;
+    display:grid;place-items:center;font-size:23px;
+    box-shadow:0 4px 11px rgba(111,83,196,.12);
+  }
+  .c-body{flex:1;min-width:0}
+  .c-title{font-size:15px;font-weight:800;letter-spacing:-.01em}
+  .coupon.used .c-title{text-decoration:line-through;color:#A69EB4}
+  .c-meta{font-size:11.5px;color:var(--ink-3);font-weight:600;margin-top:2px}
+  .use-btn{
+    flex:0 0 auto;padding:10px 14px;border-radius:14px;font-size:13.5px;font-weight:800;
+    background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;
+    box-shadow:0 6px 14px rgba(142,116,222,.3);min-height:42px;
+  }
+  .use-btn:active{transform:scale(.95)}
+  .use-btn.ghost{background:#fff;color:var(--ink-2);border:2px solid var(--line);box-shadow:none}
+  .used-stamp{
+    position:absolute;right:12px;top:6px;transform:rotate(-12deg);
+    border:2px solid #E27C7C;color:#E27C7C;border-radius:8px;padding:1px 7px;
+    font-size:11px;font-weight:900;letter-spacing:.08em;background:rgba(255,255,255,.6);
+  }
+  .undo{
+    position:absolute;right:11px;bottom:4px;font-size:11px;font-weight:800;color:var(--ink-3);
+    text-decoration:underline;padding:2px 4px;
+  }
+  .pop > *:not(.confetti){position:relative;z-index:2}
+  .empty{
+    text-align:center;padding:20px 10px;border-radius:18px;border:2px dashed #EFE8FB;background:#FDFBFF;
+    color:var(--ink-3);font-size:13.5px;font-weight:700;line-height:1.6;
+  }
+  .empty .big{font-size:26px;display:block;margin-bottom:6px;opacity:.75}
+
+  /* ---------- mission ---------- */
+  .mission-box{
+    border-radius:20px;padding:18px 16px;text-align:center;
+    background:linear-gradient(140deg,#FFF7E6 0%,#FBEFFF 55%,#EFF7FF 100%);
+    border:2px solid #F6EBFF;
+  }
+  .mission-text{font-size:16px;font-weight:800;line-height:1.5;letter-spacing:-.01em;min-height:26px}
+  .mission-text.done{color:#8B80A6}
+  .mission-actions{display:flex;gap:9px;margin-top:13px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    padding:12px 18px;border-radius:16px;font-size:14.5px;font-weight:800;min-height:46px;
+    background:#fff;border:2px solid var(--line);color:var(--ink-2);
+    box-shadow:0 4px 12px rgba(111,83,196,.08);transition:transform .12s ease;
+  }
+  .btn:active{transform:scale(.96)}
+  .btn.primary{background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(142,116,222,.32)}
+  .btn.warm{background:linear-gradient(135deg,#FFC98B,#FF9E7A);color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(255,150,110,.32)}
+  .btn.tiny{padding:8px 12px;font-size:12.5px;min-height:38px;border-radius:12px}
+  .add-row{display:flex;gap:8px;margin-top:11px}
+  .add-row input{
+    flex:1;min-width:0;padding:11px 13px;border-radius:14px;border:2px solid var(--line);
+    background:#FCFAFF;font-size:14px;font-weight:600;outline:none;
+  }
+  .add-row input:focus{border-color:var(--lilac);background:#fff}
+
+  /* ---------- timer ---------- */
+  .timer-top{display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:6px}
+  .ring{width:210px;height:210px;transform:rotate(-90deg)}
+  .ring-bg{fill:none;stroke:#F2ECFF;stroke-width:16}
+  .ring-fg{
+    fill:none;stroke:url(#timerGrad);stroke-width:16;stroke-linecap:round;
+    stroke-dasharray:603.19;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear;
+  }
+  .ring-fg.idle{stroke:#F1EBFC}
+  .timer-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .timer-time{font-size:38px;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+  .timer-label{font-size:12.5px;font-weight:700;color:var(--ink-3);max-width:150px;text-align:center}
+  .presets{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0 11px}
+  .preset{
+    padding:12px 10px;border-radius:16px;background:#FBF8FF;border:2px solid #F1EBFF;
+    font-size:13.5px;font-weight:800;color:var(--ink-2);min-height:50px;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .preset:active{transform:scale(.97)}
+  .preset.on{background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;border-color:transparent}
+  .custom-row{display:flex;gap:8px;align-items:center}
+  .custom-row input{
+    width:78px;padding:11px 10px;border-radius:14px;border:2px solid var(--line);
+    background:#FCFAFF;font-size:15px;font-weight:800;text-align:center;outline:none;
+  }
+  .custom-row input:focus{border-color:var(--lilac);background:#fff}
+  .custom-row .unit{font-size:13.5px;font-weight:800;color:var(--ink-3);margin-right:2px}
+  .timer-actions{display:flex;gap:8px;margin-top:10px}
+  .timer-actions .btn{flex:1;padding:11px 8px;font-size:13.5px;min-height:44px}
+  .timer-note{margin-top:10px;font-size:12px;color:var(--ink-3);font-weight:600;text-align:center}
+
+  /* ---------- settings ---------- */
+  .settings{max-width:1080px;margin:16px auto 0}
+  .settings details{
+    background:#fff;border-radius:var(--r);border:2px solid #F2ECFF;box-shadow:var(--shadow);
+    padding:0 18px;overflow:hidden;
+  }
+  .settings summary{
+    list-style:none;cursor:pointer;padding:17px 0;font-size:15px;font-weight:800;
+    display:flex;align-items:center;gap:8px;
+  }
+  .settings summary::-webkit-details-marker{display:none}
+  .settings summary .arrow{margin-left:auto;font-size:12px;color:var(--ink-3);transition:transform .2s ease}
+  .settings details[open] summary .arrow{transform:rotate(180deg)}
+  .set-group{border-top:2px solid #F6F1FF;padding:14px 0}
+  .set-group h3{font-size:13.5px;margin:0 0 10px;color:var(--lilac-3);letter-spacing:-.01em}
+  .set-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+  .set-line .lab{font-size:13px;font-weight:700;color:var(--ink-2);min-width:74px}
+  .set-line input[type=number]{
+    width:70px;padding:8px 9px;border-radius:11px;border:2px solid var(--line);
+    background:#FCFAFF;font-size:14px;font-weight:800;text-align:center;outline:none;
+  }
+  .set-line select{
+    padding:9px 10px;border-radius:11px;border:2px solid var(--line);background:#FCFAFF;
+    font-size:13px;font-weight:700;outline:none;
+  }
+  .set-help{font-size:11.5px;color:var(--ink-3);font-weight:600;line-height:1.6;margin:2px 0 0}
+  .custom-mission-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+  .chip{
+    display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+    background:#FBF8FF;border:2px solid #F1EBFF;border-radius:999px;padding:6px 10px;color:var(--ink-2);
+  }
+  .chip button{font-size:13px;color:#D98A8A;font-weight:900;line-height:1}
+  .danger{color:#C96A6A;border-color:#FBDCDC;background:#FFF7F7}
+
+  /* ---------- overlays ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:22px;
+    background:rgba(52,42,80,.42);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  }
+  .overlay[hidden]{display:none}
+  .pop{
+    width:100%;max-width:360px;background:#fff;border-radius:30px;padding:26px 22px 22px;
+    text-align:center;box-shadow:0 26px 64px rgba(52,42,80,.32);
+    animation:popIn .42s cubic-bezier(.18,.9,.28,1.4) both;position:relative;overflow:hidden;
+  }
+  @keyframes popIn{0%{transform:scale(.8) translateY(14px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+  .pop .hero{font-size:64px;line-height:1;display:block;margin-bottom:8px;animation:highfive 1.1s ease-in-out 2}
+  @keyframes highfive{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-7px)}}
+  .pop h2{font-size:20px;margin:0 0 6px;letter-spacing:-.02em}
+  .pop p{margin:0;font-size:14px;font-weight:700;color:var(--ink-2);line-height:1.6}
+  .reward{
+    margin:14px 0 4px;padding:12px;border-radius:16px;
+    background:linear-gradient(135deg,#FFF6E5,#F6EEFF);border:2px dashed rgba(142,116,222,.4);
+    font-size:14px;font-weight:800;color:var(--lilac-3);
+  }
+  .pop .btn{width:100%;margin-top:14px}
+  .confetti{position:absolute;top:-16px;font-size:19px;pointer-events:none;animation:fall 1.9s ease-in forwards}
+  @keyframes fall{
+    0%{transform:translateY(-10px) rotate(0);opacity:0}
+    15%{opacity:1}
+    100%{transform:translateY(330px) rotate(220deg);opacity:0}
+  }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(16px);
+    background:rgba(59,51,85,.94);color:#fff;padding:12px 18px;border-radius:999px;
+    font-size:13.5px;font-weight:800;z-index:80;opacity:0;transition:opacity .22s ease,transform .22s ease;
+    max-width:88vw;text-align:center;box-shadow:0 12px 30px rgba(52,42,80,.3);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  footer{max-width:1080px;margin:22px auto 0;padding:0 20px;text-align:center;color:var(--ink-3);font-size:11.5px;font-weight:600;line-height:1.7}
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🎟️</span>
+    <div>
+      <h1>우리 가족 쿠폰</h1>
+      <p id="todayLabel"></p>
+    </div>
+  </div>
+  <button class="icon-btn" id="soundBtn" data-action="sound" aria-label="알림음 켜기/끄기">🔔</button>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="아이 선택"></nav>
+
+<div class="layout">
+  <div class="col">
+    <section class="card" id="streakCard" aria-label="연속 성공"></section>
+    <section class="card" id="taskCard" aria-label="오늘의 할 일"></section>
+  </div>
+  <div class="col">
+    <section class="card" id="couponCard" aria-label="내 쿠폰함"></section>
+    <section class="card" id="missionCard" aria-label="가족 미션"></section>
+    <section class="card" id="timerCard" aria-label="공부 타이머"></section>
+  </div>
+</div>
+
+<section class="settings" id="settingsWrap" aria-label="부모 설정"></section>
+
+<footer>
+  외부 연결 없이 이 파일만으로 열려요 · 기록은 이 기기 브라우저에만 저장됩니다 🔒<br>
+  <span id="storageNote"></span>
+</footer>
+
+<div class="overlay" id="highfiveOverlay" hidden>
+  <div class="pop" id="highfiveContent"></div>
+</div>
+<div class="overlay" id="breakOverlay" hidden>
+  <div class="pop" id="breakContent"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript><p style="text-align:center;padding:20px;font-weight:700">자바스크립트를 켜야 대시보드가 움직여요!</p></noscript>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===================== 기본 데이터 ===================== */
+  const KIDS = [
+    { id:'kid1', name:'안이 💜',   emoji:'🐥' },
+    { id:'kid2', name:'쭌쭈니 💜', emoji:'🐶' }
+  ];
+
+  const TASKS = [
+    { id:'focus',   emoji:'🎧', label:'집중듣기' },
+    { id:'listen',  emoji:'🌊', label:'흘려듣기' },
+    { id:'engbook', emoji:'📕', label:'영어책 1시간' },
+    { id:'kobook',  emoji:'📗', label:'한글책 1시간' },
+    { id:'math',    emoji:'➗', label:'수학' },
+    { id:'engwb',   emoji:'✏️', label:'영어문제집' },
+    { id:'ppajak',  emoji:'📝', label:'빠작' }
+  ];
+
+  const MILESTONES = [
+    { day:7,  type:'free',   emoji:'⏱️', title:'30분 자유시간',   desc:'좋아하는 걸로 30분!' },
+    { day:10, type:'store',  emoji:'🏪', title:'편의점 이용권',    desc:'편의점에서 한 가지!' },
+    { day:15, type:'artbox', emoji:'🎀', title:'아트박스 이용권',  desc:'아트박스에서 한 가지!' }
+  ];
+
+  const BASE_MISSIONS = [
+    '가족에게 안아 주기 3번 🤗',
+    '오늘 고마웠던 일 한 가지 말하기 💬',
+    '가족에게 칭찬 한마디 🌟',
+    '물 한 잔 떠다 드리기 💧',
+    '가족이랑 사진 한 장 같이 찍기 📸',
+    '10분 동안 같이 책 읽기 📚',
+    '오늘 제일 웃겼던 일 이야기하기 😂',
+    '엄마·아빠 어깨 30초 안마 💆',
+    '식탁 정리 도와주기 🍽️',
+    '좋아하는 노래 같이 부르기 🎵',
+    '가족에게 손편지 한 줄 쓰기 ✉️',
+    '산책하면서 하늘 사진 찍기 🌤️'
+  ];
+
+  const PRESETS = [
+    { label:'영어책 60분', min:60, emoji:'📕' },
+    { label:'한글책 60분', min:60, emoji:'📗' },
+    { label:'집중 30분',   min:30, emoji:'🎯' },
+    { label:'자유시간 30분', min:30, emoji:'🎈' }
+  ];
+
+  const STORE_KEY  = 'family-coupon-dashboard.v1';
+  const TIMER_KEY  = 'family-coupon-dashboard.timer.v1';
+  const DAY_MS = 86400000;
+
+  /* ===================== 도우미 ===================== */
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const el = {
+    tabs: $('#tabs'), todayLabel: $('#todayLabel'), soundBtn: $('#soundBtn'),
+    streakCard: $('#streakCard'), taskCard: $('#taskCard'), couponCard: $('#couponCard'),
+    missionCard: $('#missionCard'), timerCard: $('#timerCard'), settingsWrap: $('#settingsWrap'),
+    highfive: $('#highfiveOverlay'), highfiveContent: $('#highfiveContent'),
+    breakOverlay: $('#breakOverlay'), breakContent: $('#breakContent'),
+    toast: $('#toast'), storageNote: $('#storageNote')
+  };
+
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  function dateStr(d){ return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate()); }
+  function todayStr(){ return dateStr(new Date()); }
+  function yesterdayStr(){ return dateStr(new Date(Date.now() - DAY_MS)); }
+
+  function koreanDate(d){
+    const days = ['일','월','화','수','목','금','토'];
+    return d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일 ' + days[d.getDay()] + '요일';
+  }
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  function shortDate(iso){
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return (d.getMonth()+1) + '/' + d.getDate();
+  }
+
+  let toastTimer = null;
+  function toast(msg){
+    el.toast.textContent = msg;
+    el.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.toast.classList.remove('show'); }, 2200);
+  }
+
+  /* ===================== 저장 ===================== */
+  let storageOK = true;
+
+  function defaultKid(day){
+    return { streak:0, best:0, totalDone:0, lastDone:null, date:day, tasks:{}, coupons:[] };
+  }
+
+  function defaultState(){
+    const t = todayStr();
+    const kids = {};
+    KIDS.forEach(function(k){ kids[k.id] = defaultKid(t); });
+    return {
+      v: 1,
+      active: 'kid1',
+      kids: kids,
+      missions: BASE_MISSIONS.map(function(text, i){ return { id:'base' + i, text:text, custom:false }; }),
+      mission: { date:null, text:'', done:false },
+      settings: { sound:true },
+      preset: null
+    };
+  }
+
+  function loadState(){
+    const base = defaultState();
+    let saved = null;
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) saved = JSON.parse(raw);
+    } catch (e) { storageOK = false; }
+
+    if (!saved || typeof saved !== 'object') return base;
+
+    const s = Object.assign(base, saved);
+    s.settings = Object.assign({ sound:true }, saved.settings || {});
+    s.mission  = Object.assign({ date:null, text:'', done:false }, saved.mission || {});
+    s.kids     = s.kids && typeof s.kids === 'object' ? s.kids : {};
+    s.missions = Array.isArray(saved.missions) && saved.missions.length ? saved.missions : base.missions;
+
+    KIDS.forEach(function(k){
+      const from = s.kids[k.id] || {};
+      const kid = Object.assign(defaultKid(base.kids[k.id].date), from);
+      kid.tasks   = (from.tasks && typeof from.tasks === 'object') ? from.tasks : {};
+      kid.coupons = Array.isArray(from.coupons) ? from.coupons : [];
+      kid.streak  = Number(kid.streak) || 0;
+      kid.best    = Number(kid.best) || 0;
+      kid.totalDone = Number(kid.totalDone) || 0;
+      s.kids[k.id] = kid;
+    });
+
+    if (!s.kids[s.active]) s.active = 'kid1';
+    return s;
+  }
+
+  let state = loadState();
+
+  function save(){
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    } catch (e) {
+      if (storageOK) { storageOK = false; toast('이 브라우저에 저장이 안 돼요. 탭을 닫으면 사라져요!'); }
+    }
+  }
+
+  /* ===================== 날짜 넘어감 / 스트릭 정리 ===================== */
+  function normalizeDay(){
+    const t = todayStr();
+    let changed = false;
+
+    KIDS.forEach(function(k){
+      const kid = state.kids[k.id];
+      if (kid.date !== t) {
+        kid.date = t;
+        kid.tasks = {};
+        changed = true;
+      }
+      if (kid.streak > 0 && kid.lastDone && kid.lastDone !== t && kid.lastDone !== yesterdayStr()) {
+        kid.streak = 0;
+        changed = true;
+      }
+    });
+
+    if (state.mission.date && state.mission.date !== t) {
+      state.mission = { date:null, text:'', done:false };
+      changed = true;
+    }
+
+    if (changed) { save(); renderAll(); }
+    return changed;
+  }
+
+  /* ===================== 계산 ===================== */
+  function curKid(){ return KIDS.filter(function(k){ return k.id === state.active; })[0] || KIDS[0]; }
+  function kidState(id){ return state.kids[id || state.active]; }
+  function doneCount(kid){ return TASKS.filter(function(t){ return !!kid.tasks[t.id]; }).length; }
+  function allDone(kid){ return doneCount(kid) === TASKS.length; }
+  function cycleDayOf(streak){ return streak > 0 ? ((streak - 1) % 15) + 1 : 0; }
+  function cycleOf(streak){ return streak > 0 ? Math.floor((streak - 1) / 15) + 1 : 1; }
+
+  function nextMilestone(streak){
+    const day = cycleDayOf(streak);
+    for (let i = 0; i < MILESTONES.length; i++) {
+      if (MILESTONES[i].day > day) return { m: MILESTONES[i], need: MILESTONES[i].day - day };
+    }
+    return { m: MILESTONES[0], need: (15 - day) + MILESTONES[0].day };
+  }
+
+  function awardCoupons(kid, streak){
+    const issued = [];
+    const cycle = Math.floor((streak - 1) / 15);
+    const day = cycleDayOf(streak);
+
+    MILESTONES.forEach(function(m){
+      if (m.day !== day) return;
+      const key = 'c' + cycle + '-d' + m.day;
+      if (kid.coupons.some(function(c){ return c.key === key; })) return;
+      kid.coupons.unshift({
+        id: uid(), key: key, emoji: m.emoji, title: m.title, desc: m.desc, type: m.type,
+        issuedAt: new Date().toISOString(), used: false, usedAt: null, streakAt: streak
+      });
+      issued.push(m);
+    });
+    return issued;
+  }
+
+  /* ===================== 소리 ===================== */
+  let audioCtx = null;
+
+  function ensureAudio(){
+    if (!state.settings.sound) return false;
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return false;
+      if (!audioCtx) audioCtx = new Ctx();
+      if (audioCtx.state === 'suspended' && audioCtx.resume) audioCtx.resume();
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function tone(freq, start, dur, vol){
+    if (!audioCtx) return;
+    const t0 = audioCtx.currentTime + start;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(vol, t0 + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.05);
+  }
+
+  function playChime(){
+    if (!ensureAudio()) return;
+    [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ tone(f, i * 0.16, 0.5, 0.16); });
+  }
+
+  function playTick(){
+    if (!ensureAudio()) return;
+    tone(880, 0, 0.14, 0.07);
+  }
+
+  function playStamp(){
+    if (!ensureAudio()) return;
+    tone(392, 0, 0.16, 0.13);
+    tone(587.33, 0.06, 0.18, 0.1);
+  }
+
+  function buzz(pattern){
+    if (!state.settings.sound) return;
+    try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+  }
+
+  /* ===================== 렌더: 탭 ===================== */
+  function renderTabs(){
+    el.tabs.innerHTML = KIDS.map(function(k){
+      const kid = state.kids[k.id];
+      const active = state.active === k.id;
+      const badges = [];
+      if (kid.streak > 0) badges.push('<span class="mini">🔥' + kid.streak + '</span>');
+      if (allDone(kid)) badges.push('<span class="mini">✅</span>');
+      return '<button class="tab' + (active ? ' active' : '') + '" data-action="tab" data-kid="' + k.id + '" aria-pressed="' + active + '">' +
+        '<span class="tab-emoji">' + k.emoji + '</span><span class="tab-name">' + k.name + '</span>' + badges.join('') +
+      '</button>';
+    }).join('');
+  }
+
+  /* ===================== 렌더: 스트릭 ===================== */
+  function renderStreak(){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const streak = kid.streak;
+    const day = cycleDayOf(streak);
+    const cycle = cycleOf(streak);
+    const nm = nextMilestone(streak);
+
+    let cells = '';
+    for (let d = 1; d <= 15; d++) {
+      const ms = MILESTONES.filter(function(m){ return m.day === d; })[0];
+      const filled = d <= day;
+      const cls = 'stamp-cell' + (filled ? ' filled' : '') + (ms ? ' milestone' : '');
+      const inner = ms
+        ? '<span class="m-emoji">' + ms.emoji + '</span><span>' + d + '</span>'
+        : '<span>' + d + '</span>';
+      cells += '<div class="' + cls + '" title="' + (ms ? ms.title : d + '일째') + '">' + inner + '</div>';
+    }
+
+    const pct = Math.round((day / 15) * 100);
+    const streakLine = streak > 0
+      ? '<div class="streak-num"><b>' + streak + '</b>일 연속 성공</div>'
+      : '<div class="streak-num"><b>0</b>일 · 오늘부터 시작!</div>';
+
+    const subLine = (kid.best > 0 || kid.totalDone > 0)
+      ? '최고 기록 ' + kid.best + '일 · 지금까지 ' + kid.totalDone + '일 성공'
+      : '오늘 7개를 다 하면 1일째 시작이에요';
+
+    const cycleNote = streak > 15 ? '<span class="badge">' + cycle + '번째 사이클</span>' : '';
+
+    el.streakCard.innerHTML =
+      '<div class="card-head"><h2>🔥 연속 성공</h2>' + cycleNote + '<span class="badge">' + k.emoji + ' ' + k.name + '</span></div>' +
+      '<div class="streak-hero">' +
+        '<div class="flame">' + (streak > 0 ? '🔥' : '🌱') + '</div>' +
+        '<div>' + streakLine + '<div class="streak-sub">' + subLine + '</div></div>' +
+      '</div>' +
+      '<div class="stamps">' + cells + '</div>' +
+      '<div class="gauge" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="next-hint"><span class="gift">🎁</span><span>다음 쿠폰까지 <b>' + nm.need + '일</b> — ' +
+        nm.m.emoji + ' ' + nm.m.title + '</span></div>';
+  }
+
+  /* ===================== 렌더: 오늘의 할 일 ===================== */
+  let justChecked = null;
+
+  function renderTasks(){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const n = doneCount(kid);
+    const complete = n === TASKS.length;
+
+    const rows = TASKS.map(function(t){
+      const on = !!kid.tasks[t.id];
+      const stamp = on ? '<span class="stamp' + (justChecked === t.id ? ' pop' : '') + '">' +
+        (justChecked === t.id ? '쾅!' : '완료') + '</span>' : '';
+      return '<div class="task' + (on ? ' done' : '') + '">' +
+        '<div class="t-emoji">' + t.emoji + '</div>' +
+        '<div class="t-label">' + t.label + '</div>' + stamp +
+        '<button class="check" data-action="toggle-task" data-task="' + t.id + '" ' +
+          'aria-label="' + esc(t.label) + (on ? ' 완료 취소' : ' 완료') + '" aria-pressed="' + on + '">✔</button>' +
+      '</div>';
+    }).join('');
+
+    const dots = TASKS.map(function(t){
+      return '<span class="dot' + (kid.tasks[t.id] ? ' on' : '') + '"></span>';
+    }).join('');
+
+    el.taskCard.innerHTML =
+      '<div class="card-head"><h2>📋 오늘의 할 일</h2><span class="badge">' + n + ' / ' + TASKS.length + '</span></div>' +
+      '<div class="task-list">' + rows + '</div>' +
+      '<div class="task-foot"><span class="dots">' + dots + '</span>' +
+        '<span>' + (complete ? '오늘 7개 완료! 정말 대단해요 🎉' : (TASKS.length - n) + '개 남았어요') + '</span></div>';
+  }
+
+  /* ===================== 렌더: 쿠폰함 ===================== */
+  let pendingUse = null;
+
+  function renderCoupons(){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const list = kid.coupons;
+    const usable = list.filter(function(c){ return !c.used; });
+
+    let body = '';
+    if (!list.length) {
+      body = '<div class="empty"><span class="big">🎫</span>아직 쿠폰이 없어요.<br>7일·10일·15일 연속 성공하면 쿠폰이 짠!</div>';
+    } else {
+      body = '<div class="coupon-list">' + list.map(function(c){
+        const confirming = pendingUse === c.id;
+        const type = c.type || 'free';
+        let action;
+        if (c.used) {
+          action = '';
+        } else if (confirming) {
+          action = '<button class="use-btn" data-action="confirm-use" data-id="' + c.id + '">쓸래요!</button>' +
+                   '<button class="use-btn ghost" data-action="cancel-use" data-id="' + c.id + '">취소</button>';
+        } else {
+          action = '<button class="use-btn" data-action="use-coupon" data-id="' + c.id + '">사용하기</button>';
+        }
+        return '<div class="coupon ' + type + (c.used ? ' used' : '') + '">' +
+          (c.used ? '<span class="used-stamp">사용완료</span>' +
+            '<button class="undo" data-action="undo-coupon" data-id="' + c.id + '">되돌리기</button>' : '') +
+          '<div class="c-emoji">' + c.emoji + '</div>' +
+          '<div class="c-body">' +
+            '<div class="c-title">' + esc(c.title) + '</div>' +
+            '<div class="c-meta">' + (c.used ? '사용일 ' + shortDate(c.usedAt) : '받은 날 ' + shortDate(c.issuedAt) + ' · 연속 ' + (c.streakAt || '') + '일') + '</div>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:50%">' + action + '</div>' +
+        '</div>';
+      }).join('') + '</div>';
+    }
+
+    el.couponCard.innerHTML =
+      '<div class="card-head"><h2>🎟️ ' + k.name + ' 쿠폰함</h2><span class="badge">쓸 수 있는 쿠폰 ' + usable.length + '장</span></div>' + body;
+  }
+
+  /* ===================== 렌더: 가족 미션 ===================== */
+  function renderMission(){
+    const m = state.mission;
+    const has = !!m.text;
+    let box;
+    if (!has) {
+      box = '<div class="mission-box"><div class="mission-text">오늘의 가족 미션을 뽑아 볼까요?</div>' +
+            '<div class="mission-actions"><button class="btn warm" data-action="draw-mission">🎲 미션 뽑기</button></div></div>';
+    } else {
+      box = '<div class="mission-box"><div class="mission-text' + (m.done ? ' done' : '') + '">' +
+        (m.done ? '✅ ' : '') + esc(m.text) + '</div>' +
+        '<div class="mission-actions">' +
+          (m.done
+            ? '<button class="btn" data-action="draw-mission">🔁 다른 미션 뽑기</button>'
+            : '<button class="btn primary" data-action="complete-mission">✅ 미션 완료!</button>' +
+              '<button class="btn" data-action="draw-mission">🔁 다시 뽑기</button>') +
+        '</div></div>';
+    }
+
+    const customCount = state.missions.filter(function(x){ return x.custom; }).length;
+
+    el.missionCard.innerHTML =
+      '<div class="card-head"><h2>💌 가족 랜덤 미션</h2><span class="badge">' + state.missions.length + '개 중 1개</span></div>' +
+      box +
+      '<div class="add-row"><input type="text" id="missionInput" maxlength="40" placeholder="우리 가족만의 미션을 추가해요" aria-label="새 미션">' +
+        '<button class="btn tiny" data-action="add-mission">추가</button></div>' +
+      (customCount ? '<p class="set-help" style="margin-top:8px">직접 추가한 미션 ' + customCount + '개는 아래 부모 설정에서 지울 수 있어요.</p>' : '');
+  }
+
+  /* ===================== 타이머 ===================== */
+  const RING_C = 2 * Math.PI * 96;
+
+  let timer = loadTimer();
+  let timerInterval = null;
+
+  function loadTimer(){
+    try {
+      const raw = localStorage.getItem(TIMER_KEY);
+      if (!raw) return { status:'idle', totalMs:0, endAt:0, remainingMs:0, label:'' };
+      const t = JSON.parse(raw);
+      if (!t || typeof t !== 'object') throw new Error('bad');
+      return {
+        status: t.status === 'running' || t.status === 'paused' ? t.status : 'idle',
+        totalMs: Number(t.totalMs) || 0,
+        endAt: Number(t.endAt) || 0,
+        remainingMs: Number(t.remainingMs) || 0,
+        label: String(t.label || '')
+      };
+    } catch (e) {
+      return { status:'idle', totalMs:0, endAt:0, remainingMs:0, label:'' };
+    }
+  }
+
+  function saveTimer(){
+    try { localStorage.setItem(TIMER_KEY, JSON.stringify(timer)); } catch (e) {}
+  }
+
+  function timerLeft(){
+    if (timer.status === 'running') return Math.max(0, timer.endAt - Date.now());
+    if (timer.status === 'paused') return Math.max(0, timer.remainingMs);
+    return 0;
+  }
+
+  function fmtClock(ms){
+    const total = Math.ceil(ms / 1000);
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+    return pad2(m) + ':' + pad2(s);
+  }
+
+  function renderTimer(){
+    const status = timer.status;
+    const totalMs = timer.totalMs || 0;
+    const left = timerLeft();
+    const frac = totalMs > 0 ? Math.max(0, Math.min(1, left / totalMs)) : 0;
+    const active = status === 'running' || status === 'paused';
+
+    const presets = PRESETS.map(function(p){
+      const on = active && state.preset === p.label;
+      return '<button class="preset' + (on ? ' on' : '') + '" data-action="timer-preset" data-min="' + p.min + '" data-label="' + esc(p.label) + '">' +
+        '<span>' + p.emoji + '</span>' + p.label + '</button>';
+    }).join('');
+
+    const controls = active
+      ? '<div class="timer-actions">' +
+          '<button class="btn primary" data-action="timer-pause">' + (status === 'paused' ? '▶ 계속하기' : '⏸ 잠깐 멈춤') + '</button>' +
+          '<button class="btn" data-action="timer-reset">그만두기</button>' +
+        '</div>'
+      : '<div class="timer-actions">' +
+          '<button class="btn primary" data-action="timer-start-custom">▶ 위 시간으로 시작</button>' +
+        '</div>';
+
+    el.timerCard.innerHTML =
+      '<div class="card-head"><h2>⏳ 공부 타이머</h2><span class="badge">' + (state.settings.sound ? '🔔 소리 켜짐' : '🔕 무음') + '</span></div>' +
+      '<div class="timer-top">' +
+        '<svg class="ring" viewBox="0 0 220 220" aria-hidden="true">' +
+          '<defs><linearGradient id="timerGrad" x1="0" y1="0" x2="1" y2="1">' +
+            '<stop offset="0%" stop-color="#C9B8F8"/><stop offset="100%" stop-color="#8E74DE"/>' +
+          '</linearGradient></defs>' +
+          '<circle class="ring-bg" cx="110" cy="110" r="96"/>' +
+          '<circle class="ring-fg" id="ringFg" cx="110" cy="110" r="96"/>' +
+        '</svg>' +
+        '<div class="timer-face">' +
+          '<div class="timer-time" id="timerTime">' + fmtClock(left) + '</div>' +
+          '<div class="timer-label" id="timerLabel">' + esc(timer.label || '타이머를 골라 주세요') + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="presets">' + presets + '</div>' +
+      '<div class="custom-row">' +
+        '<input type="number" id="timerMinutes" min="1" max="180" step="1" inputmode="numeric" value="20" aria-label="직접 입력 분">' +
+        '<span class="unit">분</span>' +
+        '<button class="btn tiny" data-action="timer-start-custom" style="flex:1">▶ 시작</button>' +
+      '</div>' +
+      controls +
+      '<p class="timer-note">끝나면 알림음과 함께 태블릿 쉬는 시간 알림이 떠요</p>';
+
+    paintTimer();
+  }
+
+  function paintTimer(){
+    const ring = $('#ringFg');
+    const timeEl = $('#timerTime');
+    const labelEl = $('#timerLabel');
+    if (!ring) return;
+    const totalMs = timer.totalMs || 0;
+    const left = timerLeft();
+    const frac = totalMs > 0 ? Math.max(0, Math.min(1, left / totalMs)) : 1;
+    ring.style.strokeDasharray = RING_C;
+    ring.style.strokeDashoffset = (RING_C * (1 - frac)).toFixed(1);
+    ring.classList.toggle('idle', timer.status === 'idle');
+    if (timeEl) timeEl.textContent = fmtClock(left);
+    if (labelEl) labelEl.textContent = timer.label || '타이머를 골라 주세요';
+  }
+
+  function startTimer(minutes, label){
+    const mins = Math.max(1, Math.min(180, Math.round(Number(minutes) || 0)));
+    timer = { status:'running', totalMs: mins * 60000, endAt: Date.now() + mins * 60000, remainingMs: 0, label: label };
+    state.preset = label;
+    saveTimer(); save();
+    renderTimer();
+    ensureAudio();
+    playTick();
+    toast('⏳ ' + mins + '분 시작! 끝나면 알려 줄게요');
+  }
+
+  function pauseTimer(){
+    if (timer.status !== 'running') return;
+    timer.remainingMs = timerLeft();
+    timer.status = 'paused';
+    saveTimer(); renderTimer();
+  }
+
+  function resumeTimer(){
+    if (timer.status !== 'paused') return;
+    timer.endAt = Date.now() + timer.remainingMs;
+    timer.status = 'running';
+    saveTimer(); renderTimer();
+  }
+
+  function resetTimer(silent){
+    timer = { status:'idle', totalMs:0, endAt:0, remainingMs:0, label:'' };
+    state.preset = null;
+    saveTimer(); save();
+    renderTimer();
+    if (!silent) toast('타이머를 그만뒀어요');
+  }
+
+  function finishTimer(){
+    const label = timer.label || '공부';
+    timer = { status:'idle', totalMs:0, endAt:0, remainingMs:0, label: label };
+    state.preset = null;
+    saveTimer(); save();
+    renderTimer();
+    playChime();
+    buzz([200, 90, 200, 90, 320]);
+    showBreak(label);
+  }
+
+  function tick(){
+    if (timer.status === 'running') {
+      if (timerLeft() <= 0) { finishTimer(); return; }
+      paintTimer();
+    }
+    normalizeDay();
+  }
+
+  /* ===================== 알림 팝업 ===================== */
+  function confetti(host){
+    const chars = ['🎉','✨','🎊','💜','⭐','🌟','💫','🎈'];
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement('span');
+      s.className = 'confetti';
+      s.textContent = chars[i % chars.length];
+      s.style.left = (6 + Math.random() * 88) + '%';
+      s.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+      s.style.fontSize = (14 + Math.random() * 12).toFixed(0) + 'px';
+      host.appendChild(s);
+      setTimeout(function(){ if (s.parentNode) s.parentNode.removeChild(s); }, 2600);
+    }
+  }
+
+  function showHighFive(kidId, streak, rewards){
+    const k = KIDS.filter(function(x){ return x.id === kidId; })[0] || curKid();
+    const kid = state.kids[kidId];
+
+    let rewardHtml = '';
+    if (rewards && rewards.length) {
+      rewardHtml = rewards.map(function(r){
+        return '<div class="reward">🎁 새 쿠폰! ' + r.emoji + ' ' + r.title + '</div>';
+      }).join('');
+    }
+
+    el.highfiveContent.innerHTML =
+      '<span class="hero">🙌</span>' +
+      '<h2>' + k.emoji + ' ' + k.name + ', 7개 다 했어요!</h2>' +
+      '<p>🔥 <b>' + streak + '일 연속 성공</b>' + (kid && kid.best >= streak ? ' · 최고 기록이에요!' : '') + '<br>' +
+      (rewards && rewards.length ? '쿠폰함에 새 쿠폰이 들어왔어요 💜' : '오늘도 정말 잘했어요!') + '</p>' +
+      rewardHtml +
+      '<button class="btn primary" data-action="close-highfive">좋아!</button>';
+
+    el.highfive.hidden = false;
+    confetti(el.highfiveContent);
+    playChime();
+    buzz([120, 70, 120, 70, 260]);
+  }
+
+  function closeHighFive(){
+    el.highfive.hidden = true;
+    el.highfiveContent.innerHTML = '';
+  }
+
+  function showBreak(label){
+    el.breakContent.innerHTML =
+      '<span class="hero">⏰</span>' +
+      '<h2>시간 끝!</h2>' +
+      '<p><b>' + esc(label || '공부') + '</b> 끝났어요.<br>태블릿은 이제 <b>쉬는 시간</b>이에요 🌿<br>눈도 좀 쉬게 해 주세요!</p>' +
+      '<button class="btn warm" data-action="close-break">쉬는 시간 시작!</button>' +
+      '<button class="btn tiny" data-action="extra-ten" style="width:100%;margin-top:8px">10분 더 하고 싶어요</button>';
+    el.breakOverlay.hidden = false;
+    try { document.title = '⏰ 시간 끝! · 우리 가족 쿠폰'; } catch (e) {}
+  }
+
+  function closeBreak(){
+    el.breakOverlay.hidden = true;
+    el.breakContent.innerHTML = '';
+    try { document.title = '우리 가족 쿠폰 🎟️'; } catch (e) {}
+  }
+
+  /* ===================== 렌더: 부모 설정 ===================== */
+  let settingsOpen = false;
+
+  function renderSettings(){
+    const kidBlocks = KIDS.map(function(k){
+      const kid = state.kids[k.id];
+      const options = MILESTONES.map(function(m){
+        return '<option value="' + m.type + '">' + m.emoji + ' ' + m.title + '</option>';
+      }).join('');
+      return '<div class="set-group">' +
+        '<h3>' + k.emoji + ' ' + k.name + ' 설정</h3>' +
+        '<div class="set-line">' +
+          '<span class="lab">연속 일수</span>' +
+          '<input type="number" id="set-streak-' + k.id + '" min="0" max="999" value="' + kid.streak + '" aria-label="' + k.name + ' 연속 일수">' +
+          '<button class="btn tiny" data-action="set-streak" data-kid="' + k.id + '">저장</button>' +
+        '</div>' +
+        '<div class="set-line">' +
+          '<button class="btn tiny" data-action="test-day" data-kid="' + k.id + '">🧪 테스트: 하루 완료 (+1일)</button>' +
+          '<button class="btn tiny" data-action="reset-today" data-kid="' + k.id + '">오늘 할 일 초기화</button>' +
+        '</div>' +
+        '<div class="set-line">' +
+          '<span class="lab">쿠폰 지급</span>' +
+          '<select id="grant-' + k.id + '" aria-label="' + k.name + ' 쿠폰 종류">' + options + '</select>' +
+          '<button class="btn tiny" data-action="grant-coupon" data-kid="' + k.id + '">지급</button>' +
+        '</div>' +
+        '<p class="set-help">연속 일수를 직접 바꾸면 그 값부터 이어서 계산돼요. (예: 6으로 바꾸고 오늘 7개를 다 하면 7일째 쿠폰이 나옵니다)</p>' +
+      '</div>';
+    }).join('');
+
+    const customs = state.missions.filter(function(m){ return m.custom; });
+    const customHtml = customs.length
+      ? '<div class="custom-mission-list">' + customs.map(function(m){
+          return '<span class="chip">' + esc(m.text) +
+            '<button data-action="del-mission" data-id="' + m.id + '" aria-label="미션 삭제">×</button></span>';
+        }).join('') + '</div>'
+      : '<p class="set-help">직접 추가한 미션이 아직 없어요.</p>';
+
+    el.settingsWrap.innerHTML =
+      '<details' + (settingsOpen ? ' open' : '') + '>' +
+        '<summary>🔧 부모 설정 <span class="muted" style="font-weight:700">(날짜·스트릭 보정, 테스트)</span><span class="arrow">▼</span></summary>' +
+        '<div class="set-group">' +
+          '<h3>알림음</h3>' +
+          '<div class="set-line">' +
+            '<button class="btn tiny" data-action="sound">' + (state.settings.sound ? '🔔 켜짐' : '🔕 꺼짐') + '</button>' +
+            '<button class="btn tiny" data-action="test-sound">소리 미리 듣기</button>' +
+          '</div>' +
+          '<p class="set-help">아이 태블릿이 무음 모드면 알림음이 안 들릴 수 있어요.</p>' +
+        '</div>' +
+        kidBlocks +
+        '<div class="set-group">' +
+          '<h3>내가 추가한 가족 미션</h3>' + customHtml +
+        '</div>' +
+        '<div class="set-group">' +
+          '<h3>데이터</h3>' +
+          '<div class="set-line">' +
+            '<button class="btn tiny danger" data-action="reset-all">모든 기록 초기화</button>' +
+            '<button class="btn tiny" data-action="reset-timer">타이머 끄기</button>' +
+          '</div>' +
+          '<p class="set-help">기록은 이 기기의 브라우저에만 저장돼요. 다른 기기와 자동으로 맞춰지지 않아요.</p>' +
+        '</div>' +
+      '</details>';
+  }
+
+  /* ===================== 전체 렌더 ===================== */
+  function renderAll(){
+    el.todayLabel.textContent = koreanDate(new Date());
+    el.soundBtn.textContent = state.settings.sound ? '🔔' : '🔕';
+    el.soundBtn.classList.toggle('off', !state.settings.sound);
+    el.soundBtn.setAttribute('aria-pressed', String(state.settings.sound));
+    el.storageNote.textContent = storageOK ? '' : '(이 브라우저는 저장이 제한돼 있어요)';
+    renderTabs();
+    renderStreak();
+    renderTasks();
+    renderCoupons();
+    renderMission();
+    renderTimer();
+    renderSettings();
+  }
+
+  /* ===================== 동작 ===================== */
+  function toggleTask(taskId){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const was = !!kid.tasks[taskId];
+
+    if (was) delete kid.tasks[taskId];
+    else kid.tasks[taskId] = true;
+
+    if (was) {
+      justChecked = null;
+      save(); renderAll();
+      return;
+    }
+
+    const nowComplete = allDone(kid);
+    if (nowComplete && kid.lastDone !== todayStr()) {
+      kid.streak += 1;
+      kid.lastDone = todayStr();
+      kid.totalDone += 1;
+      if (kid.streak > kid.best) kid.best = kid.streak;
+      const rewards = awardCoupons(kid, kid.streak);
+      justChecked = taskId;
+      save();
+      renderAll();
+      playStamp();
+      setTimeout(function(){ showHighFive(k.id, kid.streak, rewards); }, 260);
+      return;
+    }
+
+    justChecked = taskId;
+    save(); renderAll();
+    playTick();
+    setTimeout(function(){ justChecked = null; }, 900);
+  }
+
+  function useCouponConfirm(id){
+    pendingUse = id;
+    renderCoupons();
+  }
+
+  function confirmUse(id){
+    const kid = kidState();
+    const c = kid.coupons.filter(function(x){ return x.id === id; })[0];
+    if (!c || c.used) { pendingUse = null; renderCoupons(); return; }
+    c.used = true;
+    c.usedAt = new Date().toISOString();
+    pendingUse = null;
+    save(); renderAll();
+    playChime();
+    toast('🎉 ' + c.emoji + ' ' + c.title + ' 사용 완료!');
+  }
+
+  function undoUse(id){
+    const kid = kidState();
+    const c = kid.coupons.filter(function(x){ return x.id === id; })[0];
+    if (!c) return;
+    c.used = false;
+    c.usedAt = null;
+    save(); renderAll();
+    toast('쿠폰을 다시 쓸 수 있게 되돌렸어요');
+  }
+
+  function drawMission(){
+    const list = state.missions;
+    if (!list.length) { toast('미션이 없어요. 하나 추가해 주세요!'); return; }
+    let pick = list[Math.floor(Math.random() * list.length)];
+    let guard = 0;
+    while (list.length > 1 && pick.text === state.mission.text && guard < 12) {
+      pick = list[Math.floor(Math.random() * list.length)];
+      guard++;
+    }
+    state.mission = { date: todayStr(), text: pick.text, done: false };
+    save(); renderMission();
+    playTick();
+  }
+
+  function completeMission(){
+    if (!state.mission.text) return;
+    state.mission.done = true;
+    save(); renderMission();
+    confetti(document.body);
+    playChime();
+    toast('💜 미션 완료! 가족이 더 가까워졌어요');
+  }
+
+  function addMission(){
+    const input = $('#missionInput');
+    if (!input) return;
+    const val = input.value.trim();
+    if (!val) { toast('미션 내용을 적어 주세요'); return; }
+    if (state.missions.some(function(m){ return m.text === val; })) { toast('이미 있는 미션이에요'); return; }
+    state.missions.push({ id: uid(), text: val, custom: true });
+    input.value = '';
+    save(); renderSettings(); renderMission();
+    toast('가족 미션을 추가했어요');
+  }
+
+  function setStreak(kidId){
+    const input = $('#set-streak-' + kidId);
+    if (!input) return;
+    const v = Math.max(0, Math.min(999, Math.round(Number(input.value) || 0)));
+    const kid = state.kids[kidId];
+    kid.streak = v;
+    if (v > kid.best) kid.best = v;
+    if (v === 0) kid.lastDone = null;
+    save(); renderAll();
+    toast(KIDS.filter(function(k){ return k.id === kidId; })[0].name + ' 연속 성공 ' + v + '일로 맞췄어요');
+  }
+
+  function testDay(kidId){
+    const kid = state.kids[kidId];
+    kid.streak += 1;
+    if (kid.streak > kid.best) kid.best = kid.streak;
+    kid.totalDone += 1;
+    kid.lastDone = yesterdayStr();
+    kid.date = todayStr();
+    kid.tasks = {};
+    const rewards = awardCoupons(kid, kid.streak);
+    save(); renderAll();
+    const k = KIDS.filter(function(x){ return x.id === kidId; })[0];
+    toast('🧪 ' + k.name + ' ' + kid.streak + '일째' + (rewards.length ? ' · 쿠폰 ' + rewards.length + '장 발급!' : ''));
+  }
+
+  function resetToday(kidId){
+    const kid = state.kids[kidId];
+    if (!confirm('오늘 할 일 체크를 모두 지울까요? (연속 일수는 그대로예요)')) return;
+    kid.tasks = {};
+    kid.lastDone = kid.lastDone === todayStr() ? yesterdayStr() : kid.lastDone;
+    save(); renderAll();
+    toast('오늘 체크를 초기화했어요');
+  }
+
+  function grantCoupon(kidId){
+    const sel = $('#grant-' + kidId);
+    if (!sel) return;
+    const m = MILESTONES.filter(function(x){ return x.type === sel.value; })[0] || MILESTONES[0];
+    const kid = state.kids[kidId];
+    kid.coupons.unshift({
+      id: uid(), key: 'manual-' + uid(), emoji: m.emoji, title: m.title, desc: m.desc, type: m.type,
+      issuedAt: new Date().toISOString(), used: false, usedAt: null, streakAt: kid.streak
+    });
+    save(); renderAll();
+    toast(m.emoji + ' ' + m.title + ' 쿠폰을 넣었어요');
+  }
+
+  function deleteMission(id){
+    state.missions = state.missions.filter(function(m){ return m.id !== id; });
+    if (state.mission.text && !state.missions.some(function(m){ return m.text === state.mission.text; })) {
+      state.mission = { date:null, text:'', done:false };
+    }
+    save(); renderAll();
+  }
+
+  function resetAll(){
+    if (!confirm('모든 기록(체크·연속 일수·쿠폰·미션)을 지울까요? 되돌릴 수 없어요.')) return;
+    if (!confirm('정말 지울까요? 한 번 더 확인해 주세요!')) return;
+    state = defaultState();
+    save();
+    resetTimer(true);
+    renderAll();
+    toast('모든 기록을 초기화했어요');
+  }
+
+  function toggleSound(){
+    state.settings.sound = !state.settings.sound;
+    save(); renderAll();
+    if (state.settings.sound) { ensureAudio(); playTick(); }
+    toast(state.settings.sound ? '🔔 알림음을 켰어요' : '🔕 알림음을 껐어요');
+  }
+
+  /* ===================== 이벤트 ===================== */
+  document.addEventListener('click', function(e){
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+    const action = target.dataset.action;
+    const kidId = target.dataset.kid;
+
+    switch (action) {
+      case 'tab':
+        state.active = kidId; pendingUse = null; justChecked = null;
+        save(); renderAll();
+        break;
+      case 'toggle-task': toggleTask(target.dataset.task); break;
+      case 'use-coupon': useCouponConfirm(target.dataset.id); break;
+      case 'confirm-use': confirmUse(target.dataset.id); break;
+      case 'cancel-use': pendingUse = null; renderCoupons(); break;
+      case 'undo-coupon': undoUse(target.dataset.id); break;
+      case 'draw-mission': drawMission(); break;
+      case 'complete-mission': completeMission(); break;
+      case 'add-mission': addMission(); break;
+      case 'del-mission': deleteMission(target.dataset.id); break;
+      case 'timer-preset': startTimer(Number(target.dataset.min), target.dataset.label); break;
+      case 'timer-start-custom':
+        var minInput = $('#timerMinutes');
+        startTimer(minInput ? minInput.value : 20, '내가 정한 ' + (minInput ? Math.round(Number(minInput.value) || 0) : 20) + '분');
+        break;
+      case 'timer-pause':
+        if (timer.status === 'paused') resumeTimer(); else pauseTimer();
+        break;
+      case 'timer-reset': resetTimer(); break;
+      case 'sound': toggleSound(); break;
+      case 'set-streak': setStreak(kidId); break;
+      case 'test-day': testDay(kidId); break;
+      case 'reset-today': resetToday(kidId); break;
+      case 'grant-coupon': grantCoupon(kidId); break;
+      case 'reset-all': resetAll(); break;
+      case 'reset-timer': resetTimer(); break;
+      case 'test-sound': ensureAudio(); playChime(); toast('이런 소리가 나요 🔔'); break;
+      case 'close-highfive': closeHighFive(); break;
+      case 'close-break': closeBreak(); break;
+      case 'extra-ten': closeBreak(); startTimer(10, '10분 더'); break;
+    }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target && e.target.id === 'missionInput') { addMission(); }
+  });
+
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden) normalizeDay();
+  });
+
+  document.addEventListener('toggle', function(e){
+    if (e.target && e.target.tagName === 'DETAILS') settingsOpen = e.target.open;
+  }, true);
+
+  /* ===================== 시작 ===================== */
+  normalizeDay();
+  renderAll();
+
+  if (timer.status === 'running' && timerLeft() <= 0) {
+    finishTimer();
+  } else if (timer.status !== 'idle') {
+    paintTimer();
+  }
+
+  timerInterval = setInterval(tick, 1000);
+
+  window.addEventListener('beforeunload', function(){ save(); saveTimer(); });
+})();
+</script>
+</body>
+</html>
