@@ -194,6 +194,17 @@
   .sp-lilac{background:linear-gradient(180deg,#f7f3ff,#f2ecff);border-color:#ded2f8}
   .sp-lilac strong,.sp-lilac span{color:#5d5a91}
 
+  /* ============ 오늘의 메모 ============ */
+  .memo{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+  .memo-lb{font-size:11.5px;font-weight:800;color:#7c7391;display:flex;align-items:center;gap:5px}
+  .memo-input{
+    width:100%;border:1px solid #e6ddf5;border-radius:13px;padding:9px 11px;background:#fffefe;
+    font-size:12.5px;line-height:1.6;letter-spacing:-0.01em;color:#5f5776;outline:0;
+    resize:none;overflow:hidden;min-height:54px;transition:border-color .15s,box-shadow .15s
+  }
+  .memo-input::placeholder{color:#bdb2cf}
+  .memo-input:focus{border-color:#b9a4e8;box-shadow:0 0 0 3px #eae2fb}
+
   /* ============ 통계 ============ */
   .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
   .tile{background:linear-gradient(180deg,#fdfbff,#f8f4ff);border:1px solid var(--line);border-radius:15px;padding:9px 10px;min-width:0}
@@ -201,17 +212,7 @@
   .tile .v{font-size:clamp(13.5px,4.2vw,17px);font-weight:800;margin-top:3px;letter-spacing:-0.04em;color:#4b4163;line-height:1.18;word-break:keep-all}
   .tile .v small{font-size:10px;font-weight:700;color:#a79dbb;margin-left:2px}
 
-  /* 과목 구성 막대 (이번 달) */
-  .comp{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:9px 11px 11px;background:linear-gradient(180deg,#fdfbff,#f9f6ff)}
-  .comp-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:7px}
-  .comp-top .k{font-size:10.5px;font-weight:800;color:var(--muted)}
-  .comp-top .v{font-size:11.5px;font-weight:800;color:#6e56b8;white-space:nowrap}
-  .comp-bar{display:flex;height:10px;border-radius:99px;overflow:hidden;background:#efe9f9;gap:2px}
-  .comp-bar i{display:block;height:100%;transition:width .3s}
-  .comp-bar i:first-child{border-radius:99px 0 0 99px}
-  .comp-bar i:last-child{border-radius:0 99px 99px 0}
-  .comp-bar .comp-empty{width:100%;background:#efe9f9;border-radius:99px}
-
+  /* 과목별 막대 (5색 체계) */
   .bars{display:grid;gap:11px;margin-top:13px}
   .bar-row{display:grid;grid-template-columns:96px minmax(0,1fr) 56px;align-items:center;gap:9px}
   .bar-row .lb{font-size:12px;font-weight:800;color:#635a7c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -369,6 +370,12 @@
   .mon-badge{display:inline-block;font-size:7.5px;font-weight:800;color:#fff;background:#b49ae8;border-radius:99px;padding:1px 3.5px;margin-left:2px;vertical-align:1px;letter-spacing:-0.01em;white-space:nowrap}
 
   /* ============ 돌아보기 ============ */
+  .rev-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .rev-head .card-title{margin-bottom:0}
+  .rev-nav{display:flex;align-items:center;gap:5px;flex:none;margin-left:auto}
+  .rev-nav strong{font-size:12.5px;font-weight:800;color:#6e56b8;letter-spacing:-0.02em;min-width:82px;text-align:center;white-space:nowrap}
+  .nav-btn.tiny{width:28px;height:28px;font-size:13px;box-shadow:none}
+  .rev-nav .nav-btn.tiny:active{transform:scale(.92)}
   .rev-grid{display:grid;gap:10px}
   @media(min-width:760px){.rev-grid{grid-template-columns:1fr 1fr}.rev-grid .full{grid-column:1 / -1}}
   .rev-grid label{display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:800;color:#7c7391}
@@ -377,13 +384,7 @@
     min-height:62px;font-size:13px;line-height:1.55;outline:0;color:var(--ink)
   }
   .rev-grid textarea:focus{border-color:#b9a4e8;box-shadow:0 0 0 3px #eae2fb}
-  .stars{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
-  .stars .lb{font-size:12px;font-weight:800;color:#7c7391}
-  .star-btns{display:flex;gap:2px}
-  .star{font-size:21px;line-height:1;color:#e2dcf0;transition:transform .1s,color .15s;padding:0 1px}
-  .star.on{color:#f7b63f}
-  .star:active{transform:scale(1.15)}
-  .star-note{font-size:11px;font-weight:700;color:var(--muted)}
+  /* ============ 돌아보기 ============ */
 
   /* ============ 설정 모달 ============ */
   .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(58,50,88,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
@@ -486,16 +487,16 @@
         <div class="sum-pill sp-pink"><span>&#127344;&#65039; 영어 합계</span><strong id="sumEng">0분</strong></div>
         <div class="sum-pill sp-lilac"><span>⏱️ 총 학습 시간</span><strong id="sumTotal">0분</strong></div>
       </div>
-      <p class="hint">영어 합계 = 흘려듣기 + 집중듣기 + 영어책 분</p>
+      <div class="memo">
+        <label class="memo-lb" for="dayMemo">&#128221; 오늘의 메모</label>
+        <textarea id="dayMemo" class="memo-input" rows="2" maxlength="300" spellcheck="false"
+          placeholder="오늘 읽은 책 제목이나 기억하고 싶은 한 줄을 적어 두세요"></textarea>
+      </div>
     </section>
 
     <section class="card stats-card" aria-label="이번 달 학습 통계">
     <h2 class="card-title">&#128202; 이번 달 학습 통계 <span class="card-sub" id="statsSub">—</span></h2>
     <div class="tiles" id="statTiles"></div>
-    <div class="comp">
-      <div class="comp-top"><span class="k">과목 구성</span><span class="v" id="statCompTotal">—</span></div>
-      <div class="comp-bar" id="statComp"></div>
-    </div>
     <div class="bars" id="statBars"></div>
   </section>
 
@@ -529,16 +530,18 @@
   </section>
 
   <section class="card rev-card" aria-label="한 달 돌아보기">
-    <h2 class="card-title">&#127799; 한 달 돌아보기 <span class="card-sub" id="revSub">—</span></h2>
-    <div class="rev-grid">
-      <label>&#127775; 이번 달 가장 뿌듯했던 점<textarea id="revGood" rows="2" placeholder="매일 조금씩 꾸준히 책을 읽었다"></textarea></label>
-      <label>&#128079; 스스로에게 보내는 칭찬<textarea id="revPraise" rows="2" placeholder="집중듣기 시간이 늘었다"></textarea></label>
-      <label class="full">&#128140; 엄마&amp;아빠의 응원 한마디<textarea id="revCheer" rows="2" placeholder="우리 아가들 최고! 다음 달도 힘내자"></textarea></label>
+    <div class="rev-head">
+      <h2 class="card-title">&#127799; 한 달 돌아보기 <span class="card-sub" id="revSub">—</span></h2>
+      <div class="rev-nav" role="group" aria-label="돌아볼 달 고르기">
+        <button class="nav-btn tiny" id="revPrev" type="button" aria-label="이전 달 돌아보기">‹</button>
+        <strong id="revMonth" aria-live="polite">—</strong>
+        <button class="nav-btn tiny" id="revNext" type="button" aria-label="다음 달 돌아보기">›</button>
+      </div>
     </div>
-    <div class="stars">
-      <span class="lb">⭐ 이달의 만족도</span>
-      <div class="star-btns" id="starBtns" role="group" aria-label="이달의 만족도 별점"></div>
-      <span class="star-note" id="starNote">아직 없음</span>
+    <div class="rev-grid">
+      <label>&#127803; 이번 달 진행<textarea id="revGood" rows="2" placeholder="집중듣기 시간이 꾸준히 늘고 있다"></textarea></label>
+      <label>&#127919; 다음 달 계획<textarea id="revPraise" rows="2" placeholder="영어 원서 1권 더 도전하기"></textarea></label>
+      <label class="full">&#128140; 응원 한 마디<textarea id="revCheer" rows="2" placeholder="우리 아가들 최고! 다음 달도 힘내자"></textarea></label>
     </div>
     </section>
   </div>
@@ -632,6 +635,8 @@
   ];
   var MIN_IDS = ['listen', 'focus', 'engMin', 'korMin', 'mathMin'];
   var WEEK = ['일', '월', '화', '수', '목', '금', '토'];
+  var MEMO_MAX = 300;      /* 오늘의 메모 글자 수 */
+  var MEMO_MAX_H = 132;    /* 자동 높이 조절 상한(px) — 넘으면 칸 안에서 스크롤 */
 
   /* =========================================================
      2. 작은 도우미
@@ -691,7 +696,7 @@
       records: { c1: {}, c2: {} },     /* records[아이][YYYY-MM-DD] = {listen,focus,engMin,korMin,mathMin,u} · engCnt·korCnt 는 시트 호환용 0 */
       reviews: { c1: {}, c2: {} },     /* reviews[아이][YYYY-MM] = {rating,good,praise,cheer,u} */
       sheet: { url: '', auto: true, lastSync: '', aliases: { c1: [], c2: [] } },
-      ui: { child: 'c1', ym: monthKey(now), selected: dateKey(now), cmpYear: now.getFullYear() }
+      ui: { child: 'c1', ym: monthKey(now), revYm: monthKey(now), selected: dateKey(now), cmpYear: now.getFullYear() }
     };
   }
 
@@ -739,11 +744,13 @@
     if (data.ui) {
       if (data.ui.child === 'c1' || data.ui.child === 'c2') s.ui.child = data.ui.child;
       if (/^\d{4}-\d{2}$/.test(data.ui.ym || '')) s.ui.ym = data.ui.ym;
+      if (/^\d{4}-\d{2}$/.test(data.ui.revYm || '')) s.ui.revYm = data.ui.revYm;
       if (/^\d{4}-\d{2}-\d{2}$/.test(data.ui.selected || '')) s.ui.selected = data.ui.selected;
       if (/^\d{4}$/.test(String(data.ui.cmpYear || ''))) s.ui.cmpYear = Number(data.ui.cmpYear);
     }
     /* 선택 날짜와 보고 있는 달이 어긋나면 달을 맞춰 줍니다. */
     if (s.ui.selected.slice(0, 7) !== s.ui.ym) s.ui.ym = s.ui.selected.slice(0, 7);
+    if (!s.ui.revYm) s.ui.revYm = s.ui.ym;
     if (!s.ui.cmpYear) s.ui.cmpYear = Number(s.ui.ym.slice(0, 4));
     return s;
   }
@@ -754,12 +761,13 @@
     /* 책 권수 입력은 없앴지만, 시트(Code.gs)가 12열을 그대로 읽도록 값만 0으로 둡니다. */
     out.engCnt = 0;
     out.korCnt = 0;
+    out.memo = String(r && r.memo != null ? r.memo : '').slice(0, MEMO_MAX);
     out.u = (r && r.u) ? String(r.u) : '';
     return out;
   }
   function normRev(r) {
     /* 예전 저장본·시트 메모의 sorry(아쉬웠던 점)·goal(다음 달 목표)을
-       새 칸인 praise(칭찬)·cheer(응원)로 그대로 이어 받습니다. */
+       지금 칸(good 진행 · praise 다음 달 계획 · cheer 응원 한 마디)으로 그대로 이어 받습니다. */
     var src = r || {};
     var praise = src.praise != null ? src.praise : (src.bad != null ? src.bad : src.sorry);
     var cheer = src.cheer != null ? src.cheer : src.goal;
@@ -783,7 +791,7 @@
   function getRec(childKey, dk) { return state.records[childKey][dk] || null; }
   function ensureRec(childKey, dk) {
     if (!state.records[childKey][dk]) {
-      state.records[childKey][dk] = { listen: 0, focus: 0, engMin: 0, korMin: 0, mathMin: 0, engCnt: 0, korCnt: 0, u: '' };
+      state.records[childKey][dk] = { listen: 0, focus: 0, engMin: 0, korMin: 0, mathMin: 0, engCnt: 0, korCnt: 0, memo: '', u: '' };
     }
     return state.records[childKey][dk];
   }
@@ -798,6 +806,9 @@
     return num(r.listen) + num(r.focus) + num(r.engMin);
   }
   function isBlank(r) { return !r || totalMin(r) === 0; }
+  /* 5과목이 0분이어도 메모가 적힌 날은 남겨 둡니다(저장 유지·달력 표시용). */
+  function memoText(r) { return String((r && r.memo) || '').trim(); }
+  function hasContent(r) { return !!r && (totalMin(r) > 0 || !!memoText(r)); }
 
   function monthTotals(childKey, ym) {
     var recs = state.records[childKey] || {};
@@ -892,12 +903,12 @@
       var cls = 'day';
       if (dow === 0) cls += ' sun';
       if (dow === 6) cls += ' sat';
-      if (!isBlank(r)) cls += ' has';
+      if (hasContent(r)) cls += ' has';
       if (dk === tk) cls += ' today';
       if (dk === state.ui.selected) cls += ' sel';
       html += '<button type="button" class="' + cls + '" data-date="' + dk + '" ' +
               'aria-label="' + m + '월 ' + d + '일 ' + WEEK[dow] + '요일' +
-              (isBlank(r) ? '' : ' · 기록 있음') + '">' +
+              (hasContent(r) ? ' · 기록 있음' : '') + '">' +
               '<span class="num">' + d + '</span>' +
               '<span class="chips">' + chipHtml(r) + '</span></button>';
     }
@@ -936,7 +947,26 @@
     SUBJECTS.forEach(function (s) { html += fieldHtml(s); });
     $('dayFields').innerHTML = html;
     syncFieldInputs();
+    syncMemoInput();
     updateSums();
+  }
+
+  function syncMemoInput() {
+    var el = $('dayMemo');
+    if (!el) return;
+    var r = getRec(state.ui.child, state.ui.selected);
+    el.value = String((r && r.memo) || '');
+    memoAutoGrow();
+  }
+
+  /* 메모 칸은 글이 넘기지 않게 줄어들고 늘어납니다(상한을 넘으면 칸 안에서 스크롤). */
+  function memoAutoGrow() {
+    var el = $('dayMemo');
+    if (!el) return;
+    el.style.height = 'auto';
+    var need = el.scrollHeight;
+    el.style.height = Math.min(Math.max(54, need), MEMO_MAX_H) + 'px';
+    el.style.overflowY = need > MEMO_MAX_H ? 'auto' : 'hidden';
   }
 
   function syncFieldInputs() {
@@ -969,22 +999,6 @@
     $('statTiles').innerHTML = tiles.map(function (x) {
       return '<div class="tile"><div class="k">' + x.k + '</div><div class="v">' + x.v + '</div></div>';
     }).join('');
-
-    /* 과목 구성 막대 — 그래프와 같은 5색 체계 */
-    var compEl = $('statComp');
-    if (compEl) {
-      if (t.total > 0) {
-        compEl.innerHTML = SUBJECTS.map(function (s) {
-          if (!t[s.id]) return '';
-          var pc = t[s.id] / t.total * 100;
-          return '<i class="c-' + s.tone + '" style="width:' + pc.toFixed(2) + '%" title="' +
-                 s.label + ' ' + t[s.id] + '분 · ' + Math.round(pc) + '%"></i>';
-        }).join('');
-      } else {
-        compEl.innerHTML = '<i class="comp-empty"></i>';
-      }
-      $('statCompTotal').textContent = t.total > 0 ? hm(t.total) : '기록 없음';
-    }
 
     var maxMin = Math.max(1, t.listen, t.focus, t.engMin, t.korMin, t.mathMin);
     var rows = SUBJECTS.map(function (s) {
@@ -1228,30 +1242,23 @@
   }
 
   function currentReview() {
-    return state.reviews[state.ui.child][state.ui.ym] || null;
+    return state.reviews[state.ui.child][state.ui.revYm] || null;
   }
 
   function renderReview() {
-    var ym = state.ui.ym;
-    $('revSub').textContent = ymLabel(ym) + ' · ' + CHILDREN[state.ui.child === 'c1' ? 0 : 1].emoji + ' ' + state.names[state.ui.child];
+    var ym = state.ui.revYm;
+    $('revSub').textContent = CHILDREN[state.ui.child === 'c1' ? 0 : 1].emoji + ' ' + state.names[state.ui.child];
+    $('revMonth').textContent = ymLabel(ym);
     var rev = currentReview() || { rating: 0, good: '', praise: '', cheer: '' };
     $('revGood').value = rev.good || '';
     $('revPraise').value = rev.praise || '';
     $('revCheer').value = rev.cheer || '';
-
-    var html = '';
-    for (var i = 1; i <= 5; i++) {
-      html += '<button class="star' + (i <= (rev.rating || 0) ? ' on' : '') + '" type="button" data-star="' + i + '" ' +
-              'aria-label="' + i + '점" aria-pressed="' + (i <= (rev.rating || 0) ? 'true' : 'false') + '">★</button>';
-    }
-    $('starBtns').innerHTML = html;
-    $('starNote').textContent = rev.rating ? rev.rating + '점' : '아직 없음';
   }
 
   function renderDataStat() {
     var n1 = 0, n2 = 0;
     CHILDREN.forEach(function (c) {
-      Object.keys(state.records[c.key]).forEach(function (dk) { if (!isBlank(state.records[c.key][dk])) (c.key === 'c1' ? n1++ : n2++); });
+      Object.keys(state.records[c.key]).forEach(function (dk) { if (hasContent(state.records[c.key][dk])) (c.key === 'c1' ? n1++ : n2++); });
     });
     if ($('dataStat')) {
       $('dataStat').textContent = '기록이 있는 날: ' + state.names.c1 + ' ' + n1 + '일 · ' + state.names.c2 + ' ' + n2 + '일';
@@ -1268,7 +1275,7 @@
     var r = ensureRec(childKey, dk);
     r[field] = Math.max(0, Math.round(num(value)));
     r.u = new Date().toISOString();
-    if (isBlank(r)) delete state.records[childKey][dk];
+    if (isBlank(r) && !memoText(r)) delete state.records[childKey][dk];
     persist();
     updateSums();
     softRefresh();
@@ -1296,8 +1303,26 @@
     showToast('이 날 기록을 비웠어요');
   }
 
-  function saveReviewField(which, value) {
-    var childKey = state.ui.child, ym = state.ui.ym;
+  /* 📝 오늘의 메모 — 타이핑 즉시 그 아이·그 날짜에 저장합니다. */
+  function saveMemo(value) {
+    var childKey = state.ui.child, dk = state.ui.selected;
+    var text = String(value == null ? '' : value).slice(0, MEMO_MAX);
+    var r = ensureRec(childKey, dk);
+    r.memo = text;
+    r.u = new Date().toISOString();
+    if (isBlank(r) && !memoText(r)) {
+      delete state.records[childKey][dk];
+    }
+    persist();
+    softRefresh();
+    /* 시트에는 메모 열이 없으니, 분이 있는 날만 시트로 보냅니다. */
+    if (totalMin(r) > 0) { markDirty(childKey, dk); scheduleSync(); }
+  }
+
+  /* 달을 넘겨도 입력 중인 글이 엉뚱한 달로 가지 않도록, 칸을 잡을 때의 달(ym)을 같이 넘깁니다. */
+  function saveReviewField(which, value, ym) {
+    var childKey = state.ui.child;
+    ym = ym || state.ui.revYm;
     var rev = state.reviews[childKey][ym] || { rating: 0, good: '', praise: '', cheer: '', u: '' };
     rev[which] = value;
     rev.u = new Date().toISOString();
@@ -1314,22 +1339,33 @@
   var revTimers = { good: null, praise: null, cheer: null };
   function onReviewInput(which) {
     var el = $(which === 'good' ? 'revGood' : which === 'praise' ? 'revPraise' : 'revCheer');
-    var val = el.value;
+    var val = el.value, ym = state.ui.revYm;
     clearTimeout(revTimers[which]);
-    revTimers[which] = setTimeout(function () { saveReviewField(which, val.trim()); }, 400);
+    revTimers[which] = setTimeout(function () {
+      revTimers[which] = null;
+      saveReviewField(which, val.trim(), ym);
+    }, 400);
   }
 
-  function setStar(n) {
-    var childKey = state.ui.child, ym = state.ui.ym;
-    var rev = state.reviews[childKey][ym] || { rating: 0, good: '', praise: '', cheer: '', u: '' };
-    rev.rating = (rev.rating === n) ? 0 : n;   /* 같은 별을 다시 누르면 해제 */
-    rev.u = new Date().toISOString();
-    if (!rev.rating && !rev.good && !rev.praise && !rev.cheer) delete state.reviews[childKey][ym];
-    else state.reviews[childKey][ym] = rev;
+  /* 달을 넘기기 전에 아직 저장 안 된 타이핑을 그 달로 먼저 저장합니다. */
+  function flushReviewInputs() {
+    var ym = state.ui.revYm;
+    [['good', 'revGood'], ['praise', 'revPraise'], ['cheer', 'revCheer']].forEach(function (pair) {
+      if (!revTimers[pair[0]]) return;
+      clearTimeout(revTimers[pair[0]]);
+      revTimers[pair[0]] = null;
+      saveReviewField(pair[0], $(pair[1]).value.trim(), ym);
+    });
+  }
+
+  /* 돌아보기 카드만의 달 이동 — 달력은 그대로 두고 그 달 회고만 열어 줍니다. */
+  function stepReviewMonth(delta) {
+    flushReviewInputs();
+    var p = state.ui.revYm.split('-');
+    var d = new Date(Number(p[0]), Number(p[1]) - 1 + delta, 1);
+    state.ui.revYm = monthKey(d);
     persist();
     renderReview();
-    markReviewDirty(childKey, ym);
-    scheduleSync();
   }
 
   /* =========================================================
@@ -1340,6 +1376,7 @@
     var d = new Date(Number(p[0]), Number(p[1]) - 1 + delta, 1);
     state.ui.ym = monthKey(d);
     state.ui.cmpYear = Number(state.ui.ym.slice(0, 4));
+    state.ui.revYm = state.ui.ym;   /* 달력을 넘기면 돌아보기도 그 달로 */
     var sel = parseDK(state.ui.selected);
     if (monthKey(sel) !== state.ui.ym) {
       var tk = todayKey();
@@ -1352,6 +1389,7 @@
   function setMonth(ym) {
     state.ui.ym = ym;
     state.ui.cmpYear = Number(ym.slice(0, 4));
+    state.ui.revYm = ym;
     var tk = todayKey();
     state.ui.selected = (tk.slice(0, 7) === ym) ? tk : ym + '-01';
     persist();
@@ -1360,7 +1398,7 @@
 
   function selectDate(dk) {
     state.ui.selected = dk;
-    if (dk.slice(0, 7) !== state.ui.ym) { state.ui.ym = dk.slice(0, 7); state.ui.cmpYear = Number(state.ui.ym.slice(0, 4)); }
+    if (dk.slice(0, 7) !== state.ui.ym) { state.ui.ym = dk.slice(0, 7); state.ui.cmpYear = Number(state.ui.ym.slice(0, 4)); state.ui.revYm = state.ui.ym; }
     persist();
     renderCalendar(); renderDay(); renderStats(); renderCompare(); renderReview();
     if (window.matchMedia('(max-width: 979px)').matches) {
@@ -1374,6 +1412,7 @@
     state.ui.selected = tk;
     state.ui.ym = tk.slice(0, 7);
     state.ui.cmpYear = Number(state.ui.ym.slice(0, 4));
+    state.ui.revYm = state.ui.ym;
     persist();
     renderCalendar(); renderDay(); renderStats(); renderCompare(); renderReview();
   }
@@ -1415,22 +1454,25 @@
     };
   }
 
+  /* 시트 '월간회고' 메모 한 덩어리로 합칩니다. 저장 키(good·praise·cheer)는 그대로입니다. */
   function reviewMemo(rev) {
     var parts = [];
-    if (rev.good) parts.push('\uD83C\uDF1F 뿌듯했던 점: ' + rev.good);
-    if (rev.praise) parts.push('\uD83D\uDC4F 칭찬: ' + rev.praise);
-    if (rev.cheer) parts.push('\uD83D\uDC8C 응원: ' + rev.cheer);
+    if (rev.good) parts.push('\uD83C\uDF3B 이번 달 진행: ' + rev.good);
+    if (rev.praise) parts.push('\uD83C\uDFAF 다음 달 계획: ' + rev.praise);
+    if (rev.cheer) parts.push('\uD83D\uDC8C 응원 한 마디: ' + rev.cheer);
     return parts.join('\n');
   }
+  /* 지금 라벨(진행·계획·응원 한 마디)과 예전 라벨(뿌듯했던 점·칭찬·다음 달 목표)을 모두 읽어
+     세 칸으로 나눕니다. */
   function parseMemo(memo) {
     var out = { good: '', praise: '', cheer: '' };
     String(memo || '').split(/\r?\n/).forEach(function (line) {
       var m;
-      if ((m = line.match(/^\s*(?:\uD83C\uDF1F\uFE0F?)?\s*(?:이번\s*달\s*)?(?:가장\s*)?(?:잘한\s*점|뿌듯\S*\s*점|뿌듯\S*)\s*[:：]\s*(.*)$/))) {
+      if ((m = line.match(/^\s*(?:\uD83C\uDF3B|\uD83C\uDF1F\uFE0F?)?\s*(?:이번\s*달\s*)?(?:(?:가장\s*)?(?:잘한\s*점|뿌듯\S*\s*점|뿌듯\S*)|진행)\s*[:：]\s*(.*)$/))) {
         out.good += (out.good ? '\n' : '') + m[1];
-      } else if ((m = line.match(/^\s*(?:\uD83D\uDC4F\uFE0F?|\uD83C\uDF31\uFE0F?)?\s*(?:스스로에게\s*보내는\s*)?(?:칭찬|아쉬\S*\s*점|아쉬\S*)\s*[:：]\s*(.*)$/))) {
+      } else if ((m = line.match(/^\s*(?:\uD83C\uDFAF|\uD83D\uDC4F\uFE0F?|\uD83C\uDF31\uFE0F?)?\s*(?:다음\s*달\s*)?(?:(?:스스로에게\s*보내는\s*)?칭찬|계획|아쉬\S*\s*점|아쉬\S*)\s*[:：]\s*(.*)$/))) {
         out.praise += (out.praise ? '\n' : '') + m[1];
-      } else if ((m = line.match(/^\s*(?:\uD83D\uDC8C\uFE0F?|\uD83C\uDFAF\uFE0F?)?\s*(?:엄마\s*&\s*아빠의\s*)?(?:응원|(?:다음\s*달\s*)?목표)\s*(?:한마디)?\s*[:：]\s*(.*)$/))) {
+      } else if ((m = line.match(/^\s*(?:\uD83D\uDC8C\uFE0F?|\uD83C\uDFAF\uFE0F?)?\s*(?:엄마\s*&\s*아빠의\s*)?(?:응원\s*한\s*마디|응원|(?:다음\s*달\s*)?목표)\s*(?:한마디)?\s*[:：]\s*(.*)$/))) {
         out.cheer += (out.cheer ? '\n' : '') + m[1];
       } else if (line.trim()) {
         out.good += (out.good ? '\n' : '') + line.trim();
@@ -1487,7 +1529,7 @@
     dirtyDays.forEach(function (k) {
       var p = k.split('|'), childKey = p[0], dk = p[1];
       var r = state.records[childKey][dk];
-      if (r) days.push(sheetDayRow(childKey, dk, r));
+      if (r && totalMin(r) > 0) days.push(sheetDayRow(childKey, dk, r));
       else days.push({ date: dk, child: state.names[childKey], listen: 0, focus: 0, engMin: 0, korMin: 0, mathMin: 0, engCnt: 0, korCnt: 0, u: new Date().toISOString(), cleared: true });
     });
     dirtyReviews.forEach(function (k) {
@@ -1610,6 +1652,8 @@
       var rec = normRec(row);
       rec.u = row.u || row.updatedAt || '';
       var cur = state.records[childKey][dk];
+      /* 메모는 이 기기에만 있는 값이라, 시트에서 받은 기록에 메모가 없으면 적어 둔 메모를 지우지 않습니다. */
+      if (cur && row.memo == null) rec.memo = cur.memo || '';
       var sheetTime = parseStamp(row.u || row.updatedAt);
       var curTime = (cur && cur.u) ? parseStamp(cur.u) : 0;
       if (!cur) { state.records[childKey][dk] = rec; added++; }
@@ -1886,11 +1930,15 @@
   });
 
   $('clearDay').addEventListener('click', clearDay);
+  $('revPrev').addEventListener('click', function () { stepReviewMonth(-1); });
+  $('revNext').addEventListener('click', function () { stepReviewMonth(1); });
 
-  $('starBtns').addEventListener('click', function (e) {
-    var b = e.target.closest('button.star');
-    if (b) setStar(Number(b.dataset.star));
+  $('dayMemo').addEventListener('input', function () {
+    memoAutoGrow();
+    saveMemo(this.value);
   });
+
+  window.addEventListener('resize', memoAutoGrow);
 
   $('revGood').addEventListener('input', function () { onReviewInput('good'); });
   $('revPraise').addEventListener('input', function () { onReviewInput('praise'); });
