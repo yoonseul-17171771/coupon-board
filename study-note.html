@@ -262,17 +262,13 @@
     font-size:9px;font-weight:800;color:#b0a5c6;line-height:1;white-space:nowrap;letter-spacing:-0.02em
   }
   .cmp-bars{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
-  /* 달이 두어 개뿐인 해는 가운데에 나란히 두고, 고른 달 틴트도 막대 폭만큼만 */
-  .cmp-bars.few{display:flex;align-items:stretch;justify-content:center;gap:24px}
-  .cmp-bars.few .cbar{flex:0 1 auto;width:min(38%,120px)}
-  .cmp-bars.few .cbar-fill,.cmp-bars.few .cbar-stub{max-width:76px;border-radius:9px 9px 0 0}
   .cbar{
     display:grid;grid-template-rows:minmax(0,1fr) 16px;align-items:end;justify-items:center;
     height:100%;min-width:0;padding:0;border-radius:10px;background:none;border:0;transition:background .15s
   }
   .cbar:hover,.cbar:focus-visible{background:#f2ecfe;outline:0}
-  /* 고른 달은 은은한 배경 틴트만 — 테두리·그림자·둥근 박스 없이 깔끔하게 */
-  .cbar.on.has{background:#f4eefe;box-shadow:none;border-radius:0}
+  /* 고른 달도 막대 자체만 서고 배경 박스는 두지 않습니다 — 아래 달 숫자만 보라색 굵게 */
+  .cbar.on.has{background:none;box-shadow:none;border-radius:10px}
   .cbar-body{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;min-height:0}
   .cbar-fill{
     display:flex;flex-direction:column-reverse;width:100%;max-width:38px;min-height:3px;
@@ -288,14 +284,15 @@
   .cbar.has .cbar-bl{color:#8a7fa6}
   .cbar.on .cbar-bl{color:var(--pink-deep);font-weight:800}
   /* 좁은 화면: 눈금 라벨과 막대 위 합계 숫자가 서로 겹치지 않게 폭을 아껴 씁니다. */
+  @media(max-width:759px){
+    .cbar-fill,.cbar-stub{max-width:20px}
+  }
   @media(max-width:480px){
     .cmp-area{left:36px;right:8px}
     .cmp-bars{gap:3px}
     .cmp-ylab{font-size:8.5px;right:calc(100% + 5px)}
     .cbar-sum{font-size:7.5px;letter-spacing:-0.06em}
-    .cbar-fill,.cbar-stub{max-width:26px}
-    .cmp-bars.few{gap:14px}
-    .cmp-bars.few .cbar-fill,.cmp-bars.few .cbar-stub{max-width:54px}
+    .cbar-fill,.cbar-stub{max-width:14px}
   }
 
   .cmp-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:11px 2px 0}
@@ -332,28 +329,28 @@
       mask-image:linear-gradient(90deg,#000 85%,rgba(0,0,0,.2) 100%)
     }
   }
-  /* 표: 항목이 세로(첫 열), 달이 가로 — 2026년은 11·12월 두 칸뿐이라 좁은 화면에서도 넘치지 않습니다. */
+  /* 표: 항목이 세로(첫 열), 달이 가로 — 언제나 1~12월 12칸이라 넓은 화면에서 한눈에, 좁은 화면에서는 옆으로 넘겨 봅니다. */
   .cmp-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;table-layout:fixed}
   .cmp-table.few{min-width:0}
   .cmp-table.many{min-width:680px;font-size:11.5px}
-  .cmp-table col.c-item{width:78px}
-  .cmp-table.many col.c-item{width:88px}
+  .cmp-table col.c-item{width:60px}
+  .cmp-table.many col.c-item{width:64px}
   .cmp-table th{
     padding:8px 3px 9px;font-weight:800;color:#9a90ae;vertical-align:middle;line-height:1.2;
-    border-bottom:1px solid var(--line)
+    text-align:center;border-bottom:1px solid var(--line)
   }
   .cmp-table thead th.mh{font-size:11.5px;color:#8d82a7;font-weight:800;white-space:nowrap;cursor:pointer}
   .cmp-table thead th.mh:hover{color:var(--pink-deep)}
   .cmp-table.many thead th.mh{font-size:10.5px;padding-left:1px;padding-right:1px}
   .cmp-table.many .mon-badge{font-size:6.5px;padding:1px 2.5px;margin-left:1px}
   /* 좁은 화면에서 옆으로 넘겨도 항목 이름이 계속 보이도록 첫 열을 고정합니다. */
-  .cmp-table .rowh{position:sticky;left:0;z-index:2;background:#fffdfe;text-align:left}
-  .cmp-table thead .rowh{z-index:3;padding-left:7px;font-size:10.5px;color:#a99fbc}
+  .cmp-table .rowh{position:sticky;left:0;z-index:2;background:#fffdfe;text-align:center}
+  .cmp-table thead .rowh{z-index:3;padding-left:3px;font-size:10.5px;color:#a99fbc}
   .cmp-table tbody .rowh{
-    padding:9px 4px 9px 5px;font-size:11.5px;font-weight:800;color:#7c7391;white-space:nowrap;
+    padding:9px 3px;font-size:11.5px;font-weight:800;color:#7c7391;white-space:nowrap;
     border-bottom:1px dashed #eee7f8
   }
-  .cmp-table tbody .rowh .rh-em{font-size:12.5px;margin-right:2px}
+  .cmp-table tbody .rowh .rh-em{font-size:13.5px;margin-right:0}
   .cmp-table td{
     padding:9px 2px;text-align:center;border-bottom:1px dashed #eee7f8;color:#635a7c;font-weight:700;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer
@@ -366,8 +363,8 @@
   .cmp-table.many .rowh{box-shadow:6px 0 10px -6px rgba(110,92,150,.16)}
   @media(max-width:480px){
     .cmp-table{font-size:12px}
-    .cmp-table col.c-item{width:72px}
-    .cmp-table.many col.c-item{width:80px}
+    .cmp-table col.c-item{width:60px}
+    .cmp-table.many col.c-item{width:58px}
   }
   .mon-badge{display:inline-block;font-size:7.5px;font-weight:800;color:#fff;background:#b49ae8;border-radius:99px;padding:1px 3.5px;margin-left:2px;vertical-align:1px;letter-spacing:-0.01em;white-space:nowrap}
 
@@ -529,7 +526,6 @@
         </table>
       </div>
     </div>
-    <p class="hint">표의 월이나 그래프 막대를 누르면 그 달로 이동해요 · 과목 값은 분, 총합·영어평균·한글평균은 h m(예: 11h 15m) · 영어평균 = 흘려듣기 + 집중듣기 + 영어책의 하루 평균 · 세로축은 시간 단위 눈금이에요 · 좁은 화면에서는 표를 좌우로 넘겨 볼 수 있어요</p>
   </section>
 
   <section class="card rev-card" aria-label="한 달 돌아보기">
@@ -670,7 +666,7 @@
     var h = Math.floor(mins / 60), m = mins % 60;
     return h + '시간' + (m ? ' ' + m + '분' : '');
   }
-  /* 분 → "11h 15m" (표 안 총합) · 0분도 "0h 0m" */
+  /* 분 → "11h 15m" (표 안 영어평균·한글평균) · 0분도 "0h 0m" */
   function hmHM(mins) {
     mins = Math.max(0, Math.round(mins || 0));
     return Math.floor(mins / 60) + 'h ' + (mins % 60) + 'm';
@@ -911,7 +907,7 @@
   }
 
   function fieldHtml(f) {
-    /* 빠른 입력: +5분 · +30분 · −5분 · 초기화 (0분 미만으로는 내려가지 않아요) */
+    /* 빠른 입력: +10분 · +30분 · −5분 · 초기화 (0분 미만으로는 내려가지 않아요) */
     return '<div class="field" data-row="' + f.id + '">' +
              '<div class="field-top">' +
                '<span class="fname"><span class="em">' + f.emoji + '</span>' + f.label + '</span>' +
@@ -922,7 +918,7 @@
                '</span>' +
              '</div>' +
              '<div class="fbtns">' +
-               '<button class="qbtn" type="button" data-add="5" data-field="' + f.id + '" aria-label="' + f.label + ' 5분 더하기">+' + 5 + f.unit + '</button>' +
+               '<button class="qbtn" type="button" data-add="10" data-field="' + f.id + '" aria-label="' + f.label + ' 10분 더하기">+' + 10 + f.unit + '</button>' +
                '<button class="qbtn plus" type="button" data-add="30" data-field="' + f.id + '" aria-label="' + f.label + ' 30분 더하기">+' + 30 + f.unit + '</button>' +
                '<button class="qbtn minus" type="button" data-add="-5" data-field="' + f.id + '" aria-label="' + f.label + ' 5분 빼기">−5' + f.unit + '</button>' +
                '<button class="qbtn ghost" type="button" data-clear="1" data-field="' + f.id + '" aria-label="' + f.label + ' 0분으로 초기화">초기화</button>' +
@@ -1018,9 +1014,21 @@
     return out;
   }
 
-  /* 2026년은 11월·12월만, 그 밖의 해는 1월부터 12월까지 보여 줍니다. */
+  /* 도표는 해와 상관없이 언제나 1월부터 12월까지 12칸을 보여 줍니다(2026년 포함). */
   function cmpMonths(y) {
-    if (Number(y) === 2026) return [11, 12];
+    var out = [], m;
+    for (m = 1; m <= 12; m++) out.push(m);
+    return out;
+  }
+
+  /* 그 달의 날수(28·29·30·31) — 과목 5행과 영어평균·한글평균의 하루 평균 나눔값입니다. */
+  function daysInMonthOf(ym) {
+    var p = String(ym).split('-');
+    return new Date(Number(p[0]), Number(p[1]), 0).getDate();
+  }
+
+  /* 그래프는 해와 상관없이 언제나 1월부터 12월까지 12칸을 그립니다. */
+  function cmpChartMonths() {
     var out = [], m;
     for (m = 1; m <= 12; m++) out.push(m);
     return out;
@@ -1050,10 +1058,16 @@
 
     $('cmpSub').textContent = CHILDREN[childKey === 'c1' ? 0 : 1].emoji + ' ' + state.names[childKey];
 
-    var rows = [], ym;
-    cmpMonths(y).forEach(function (m) {
+    /* 그래프 막대: 언제나 1~12월 전체 — 기록이 없는 달은 바닥에 연한 회색 pill 만 */
+    var rows = [], trows = [], ym;
+    cmpChartMonths().forEach(function (m) {
       ym = y + '-' + pad2(m);
       rows.push({ ym: ym, m: m, t: monthTotals(childKey, ym) });
+    });
+    /* 도표: 해와 상관없이 1~12월 12개월 전체 */
+    cmpMonths(y).forEach(function (m) {
+      ym = y + '-' + pad2(m);
+      trows.push({ ym: ym, m: m, t: monthTotals(childKey, ym) });
     });
     var maxTotal = 0, any = 0;
     rows.forEach(function (r) {
@@ -1087,7 +1101,7 @@
                   '</span>';
     }
 
-    /* --- 일체형 스택 막대: 고른 해의 달만, 맨 위만 둥글게, 막대 위 총 분 --- */
+    /* --- 일체형 스택 막대: 1~12월 12칸, 맨 위만 둥글게, 막대 위 총 분 --- */
     var barsHtml = rows.map(function (r) {
       var d = r.t, on = (r.ym === state.ui.ym), inner = '';
       if (d.total > 0) {
@@ -1113,22 +1127,20 @@
     $('cmpChart').innerHTML =
       '<div class="cmp-area">' +
         '<div class="cmp-grid" aria-hidden="true">' + gridHtml + '</div>' +
-        '<div class="cmp-bars' + (rows.length < 6 ? ' few' : '') + '"' +
-             (rows.length < 6 ? '' : ' style="grid-template-columns:repeat(' + rows.length + ',minmax(0,1fr))"') +
-             '>' + barsHtml + '</div>' +
+        '<div class="cmp-bars">' + barsHtml + '</div>' +
       '</div>';
     $('cmpChart').setAttribute('aria-label',
-      rows[0].m + '월부터 ' + rows[rows.length - 1].m + '월까지 과목별 학습 시간 막대 그래프');
+      y + '년 1월부터 12월까지 과목별 학습 시간 막대 그래프');
 
     renderLegend();
     $('cmpNote').hidden = any > 0;
 
     /* --- 도표: 항목은 세로, 달은 가로 --- */
     var tbl = $('cmpTable');
-    tbl.className = 'cmp-table ' + (rows.length >= 6 ? 'many' : 'few');
+    tbl.className = 'cmp-table ' + (trows.length >= 6 ? 'many' : 'few');
     var thisYM = todayKey().slice(0, 7);
 
-    $('cmpHead').innerHTML = '<tr><th scope="col" class="rowh">항목</th>' + rows.map(function (r) {
+    $('cmpHead').innerHTML = '<tr><th scope="col" class="rowh">항목</th>' + trows.map(function (r) {
       var on = (r.ym === state.ui.ym);
       return '<th scope="col" class="mh' + (on ? ' on' : '') + '" data-month="' + r.ym + '"' +
              ' aria-label="' + ymLabel(r.ym) + '로 이동">' + r.m + '월' +
@@ -1137,7 +1149,7 @@
 
     /* 달마다 같은 모양의 칸을 만듭니다. c.html 은 칸 내용, c.dim 은 기록 없음 표시. */
     function monthCells(pick) {
-      return rows.map(function (r) {
+      return trows.map(function (r) {
         var c = pick(r), on = (r.ym === state.ui.ym);
         return '<td class="' + (on ? 'on' : '') + (c.dim ? ' dim' : '') + '" data-month="' + r.ym + '">' +
                c.html + '</td>';
@@ -1150,22 +1162,25 @@
              '</tr>';
     }
 
+    /* 과목 5행은 그 달 누적 ÷ 그 달 일수(28~31)의 하루 평균(분)으로 보여 줍니다. */
     var body = SUBJECTS.map(function (s) {
-      return rowHtml('', s.label + ' (' + s.unit + ')',
-        '<span class="rh-em" aria-hidden="true">' + s.emoji + '</span>' + s.label,
-        function (r) { var v = r.t[s.id]; return { html: v ? v : '–', dim: !v }; });
+      return rowHtml('', s.label + ' 하루 평균 (그 달 누적 ÷ 그 달 일수)',
+        '<span class="rh-em" title="' + s.label + ' 하루 평균" aria-label="' + s.label + ' 하루 평균">' + s.emoji + '</span>',
+        function (r) {
+          var v = r.t[s.id];
+          return { html: v ? Math.round(v / daysInMonthOf(r.ym)) + '분' : '–', dim: !v };
+        });
     }).join('');
-    body += rowHtml('r-total', '이 달 총합 (시간)',
-      '총합', function (r) { return { html: hmHM(r.t.total), dim: !r.t.total }; });
-    body += rowHtml('r-total', '하루 평균 영어 (흘려듣기+집중듣기+영어책)',
+    /* 영어평균·한글평균도 과목 5행과 똑같이 그 달 누적 ÷ 그 달 일수(28~31)입니다. */
+    body += rowHtml('r-total', '영어 하루 평균 (흘려듣기+집중듣기+영어책 누적 ÷ 그 달 일수)',
       '영어평균', function (r) {
         var d = r.t;
-        return { html: d.days ? hmHM(Math.round(d.engTotal / d.days)) : '–', dim: !d.days };
+        return { html: d.engTotal > 0 ? hmHM(Math.round(d.engTotal / daysInMonthOf(r.ym))) : '–', dim: !d.engTotal };
       });
-    body += rowHtml('r-total', '하루 평균 한글책',
+    body += rowHtml('r-total', '한글책 하루 평균 (한글책 누적 ÷ 그 달 일수)',
       '한글평균', function (r) {
         var d = r.t;
-        return { html: d.days ? hmHM(Math.round(d.korMin / d.days)) : '–', dim: !d.days };
+        return { html: d.korMin > 0 ? hmHM(Math.round(d.korMin / daysInMonthOf(r.ym))) : '–', dim: !d.korMin };
       });
     body += rowHtml('r-total', '기록한 날 수',
       '일수', function (r) { return { html: r.t.days ? r.t.days : '–', dim: !r.t.days }; });
