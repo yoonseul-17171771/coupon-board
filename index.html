@@ -186,47 +186,68 @@
   .task-foot .dot{width:9px;height:9px;border-radius:99px;background:#E7DEFA}
   .task-foot .dot.on{background:linear-gradient(135deg,#B9A6F0,#8E74DE)}
 
-  /* ---------- 흘려듣기 (분) ---------- */
-  .listen-hero{display:flex;align-items:center;gap:12px;margin:2px 0 12px}
-  .listen-min{
-    display:flex;align-items:baseline;gap:3px;padding:8px 15px;border-radius:18px;
-    background:linear-gradient(140deg,#EFF4FF,#F6EEFF);border:2px solid #E7E9FF;
-    box-shadow:inset 0 0 0 2px rgba(255,255,255,.65);flex:0 0 auto;
+  /* ---------- 기록 입력: 시간(분) · 권수(권) ---------- */
+  .io-list{display:flex;flex-direction:column;gap:11px}
+  .io-item{
+    border-radius:20px;padding:12px 12px 11px;
+    background:linear-gradient(140deg,#FCFAFF,#F7F2FF);
+    border:2px solid #F0E9FC;
   }
-  .listen-min b{font-size:32px;line-height:1;letter-spacing:-.03em;color:var(--lilac-3);font-variant-numeric:tabular-nums}
-  .listen-min span.u{font-size:13px;font-weight:800;color:var(--ink-3)}
-  .listen-min.bump{animation:listenBump .34s ease-out both}
-  @keyframes listenBump{0%{transform:scale(1)}42%{transform:scale(1.08)}100%{transform:scale(1)}}
-  .listen-sub{min-width:0;font-size:12.5px;font-weight:700;color:var(--ink-2);line-height:1.5}
-  .listen-sub b{font-size:13.5px;color:var(--ink)}
-  .listen-week{color:var(--ink-3);font-weight:600;font-size:11.5px}
-  .listen-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .l-quick{
-    padding:12px 4px;border-radius:15px;font-size:14.5px;font-weight:800;min-height:48px;
-    background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;
-    box-shadow:0 6px 14px rgba(142,116,222,.26);
+  .io-top{display:flex;align-items:center;gap:9px}
+  .io-emoji{
+    width:34px;height:34px;flex:0 0 34px;border-radius:12px;background:#fff;
+    display:grid;place-items:center;font-size:17px;
+    box-shadow:0 3px 9px rgba(111,83,196,.10);
   }
-  .l-quick:active{transform:scale(.96)}
-  .listen-set{display:flex;align-items:center;gap:7px;margin-top:9px}
-  .l-lab{font-size:11.5px;font-weight:800;color:var(--ink-3);flex:0 0 auto}
-  .listen-set input{
-    flex:0 0 78px;min-width:0;width:78px;padding:10px 6px;border-radius:14px;border:2px solid var(--line);
-    background:#FCFAFF;font-size:15px;font-weight:800;text-align:center;outline:none;
+  .io-name{flex:1;min-width:0;font-size:14.5px;font-weight:800;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .io-today{display:flex;align-items:baseline;gap:2px;font-size:11.5px;font-weight:800;color:var(--ink-3);flex:0 0 auto}
+  .io-today b{
+    font-size:22px;line-height:1;color:var(--lilac-3);font-variant-numeric:tabular-nums;
+    letter-spacing:-.03em;display:inline-block;
+  }
+  .io-today.bump b{animation:ioBump .36s ease-out both}
+  @keyframes ioBump{0%{transform:scale(1)}42%{transform:scale(1.16)}100%{transform:scale(1)}}
+  .io-sub{margin:5px 0 8px 43px;font-size:11.5px;font-weight:700;color:var(--ink-3);line-height:1.5}
+  .io-sub b{color:var(--ink-2);font-weight:800}
+  .io-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .io-quick.three{grid-template-columns:repeat(3,1fr)}
+  .io-q{
+    min-height:44px;padding:8px 2px;border-radius:13px;font-size:13px;font-weight:800;
+    background:#fff;border:2px solid #EDE5FB;color:var(--lilac-3);
+    box-shadow:0 3px 8px rgba(111,83,196,.07);transition:transform .12s ease;
+  }
+  .io-q:active{transform:scale(.95)}
+  .io-q.plus{
+    background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;border-color:transparent;
+    box-shadow:0 5px 13px rgba(142,116,222,.26);
+  }
+  .io-q.minus{color:#A79FBC;background:#FBF9FF}
+  .io-set{display:flex;align-items:center;gap:6px;margin-top:8px}
+  .io-set input{
+    flex:1 1 auto;min-width:0;padding:8px 10px;border-radius:12px;border:2px solid var(--line);
+    background:#fff;font-size:14px;font-weight:800;text-align:center;outline:none;
     -moz-appearance:textfield;
   }
-  .listen-set input::-webkit-outer-spin-button,.listen-set input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-  .listen-set input:focus{border-color:var(--lilac);background:#fff}
-  .listen-set .u{font-size:13px;font-weight:800;color:var(--ink-3);margin-left:-2px;flex:0 0 auto}
-  .listen-set .btn{flex:1;max-width:200px}
-  .listen-recent{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:11px}
-  .l-chip{
-    font-size:11.5px;font-weight:800;color:var(--ink-2);background:#FBF8FF;
-    border:1.5px solid #EFE8FB;padding:4px 9px;border-radius:999px;
+  .io-set input::-webkit-outer-spin-button,.io-set input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .io-set input:focus{border-color:var(--lilac)}
+  .io-set .u{font-size:12px;font-weight:800;color:var(--ink-3);flex:0 0 auto}
+  .io-set .btn{flex:0 0 58px;min-height:38px;padding:8px 6px;font-size:12.5px}
+  .io-del{flex:0 0 auto;font-size:11px;font-weight:800;color:#B3ABC6;text-decoration:underline;padding:4px 2px}
+  .io-hist{margin-top:12px;border-top:2px solid #F4EEFF;padding-top:10px}
+  .io-hist-head{font-size:11.5px;font-weight:800;color:var(--ink-3);margin:0 0 6px;display:flex;align-items:center;gap:5px}
+  .io-hist-head span{margin-left:auto;font-weight:700;color:#BDB6CE}
+  .io-table{width:100%;border-collapse:collapse;font-size:11.5px;font-variant-numeric:tabular-nums}
+  .io-table th{font-weight:800;color:var(--ink-3);padding:3px 1px 4px;text-align:center;white-space:nowrap;font-size:11px}
+  .io-table th:first-child{text-align:left;padding-left:2px}
+  .io-table td{
+    padding:5px 1px;text-align:center;font-weight:700;color:var(--ink-2);
+    border-top:1.5px solid #F6F2FF;white-space:nowrap;
   }
-  .l-chip.today{background:var(--lilac-soft);border-color:#DDD0FB;color:var(--lilac-3)}
-  .listen-note{margin:10px 0 0;font-size:12px;font-weight:600;color:var(--ink-3);line-height:1.55}
-  .listen-tools{display:flex;gap:14px;margin-top:10px;justify-content:flex-end}
-  .l-link{font-size:11.5px;font-weight:800;color:var(--ink-3);text-decoration:underline;padding:2px 1px;min-height:28px}
+  .io-table td:first-child{text-align:left;color:var(--ink-3);font-weight:800;padding-left:2px}
+  .io-table tr.is-today td{color:var(--lilac-3);font-weight:900}
+  .io-table td.total{color:var(--ink);font-weight:900}
+  .io-table .zero{color:#D8D2E7;font-weight:700}
+  .io-foot{margin:9px 0 0;font-size:11.5px;font-weight:600;color:var(--ink-3);line-height:1.6;word-break:keep-all}
 
   /* ---------- coupons ---------- */
   .coupon-list{display:flex;flex-direction:column;gap:11px}
@@ -452,40 +473,6 @@
   @keyframes snowFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(4px) rotate(10deg)}}
   @media (max-width:400px){ .ny-dday{font-size:28px} .ny-art{width:48px;height:48px;font-size:22px} .ny-title{font-size:13.5px} }
 
-  /* ---------- 크리스마스 트리 ---------- */
-  .tree-stage{
-    position:relative;border-radius:22px;overflow:hidden;
-    background:
-      radial-gradient(130% 85% at 50% -8%, #4C3F7E 0%, rgba(76,63,126,0) 72%),
-      linear-gradient(180deg,#3A3166 0%,#53447F 58%,#7A689F 100%);
-    box-shadow:inset 0 -18px 30px rgba(20,14,40,.22);
-    transition:box-shadow .5s ease;
-  }
-  .tree-stage.done{box-shadow:inset 0 0 46px rgba(255,226,150,.34),0 0 0 2px rgba(255,214,120,.55)}
-  .tree-svg{display:block;width:100%;height:auto;max-width:320px;margin:0 auto}
-  .orn{opacity:.5;transition:opacity .45s ease}
-  .orn.on{opacity:1;filter:drop-shadow(0 0 5px rgba(255,236,170,.85));animation:ornTwinkle 3.6s ease-in-out infinite}
-  @keyframes ornTwinkle{0%,100%{opacity:1}50%{opacity:.8}}
-  .tree-star{opacity:.45;transition:opacity .5s ease}
-  .tree-star.on{
-    opacity:1;filter:drop-shadow(0 0 13px rgba(255,216,110,.95));
-    transform-box:fill-box;transform-origin:center;animation:starPulse 2.6s ease-in-out infinite;
-  }
-  @keyframes starPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-  .tree-spark{opacity:0}
-  .tree-stage.done .tree-spark{animation:sparkBlink 2.4s ease-in-out infinite}
-  @keyframes sparkBlink{0%,100%{opacity:.12}50%{opacity:.95}}
-  .tree-bar{height:12px;border-radius:999px;background:#F3EEFF;overflow:hidden;margin:12px 0 7px}
-  .tree-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#8ED7B0,#4FB07A 48%,#F2B33D);transition:width .5s cubic-bezier(.2,.8,.3,1)}
-  .tree-legend{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;font-weight:800;color:var(--ink-3);margin-bottom:7px}
-  .tree-note{margin:0;font-size:12.5px;font-weight:700;color:var(--ink-3);line-height:1.6;text-align:center;word-break:keep-all}
-  .tree-done{
-    display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 8px;
-    padding:10px 8px;border-radius:16px;font-size:13.5px;font-weight:900;color:#8A5B12;
-    background:linear-gradient(135deg,#FFF7DA,#FFE8B3);border:2px dashed rgba(226,170,60,.55);
-    animation:breathe 3s ease-in-out infinite;text-align:center;
-  }
-
   /* ---------- settings ---------- */
   .settings{max-width:1080px;margin:16px auto 0}
   .settings details{
@@ -612,11 +599,11 @@
 <div class="layout">
   <div class="col">
     <section class="card" id="streakCard" aria-label="연속 성공"></section>
-    <section class="card" id="treeCard" aria-label="크리스마스 트리 35일 완성"></section>
     <section class="card" id="taskCard" aria-label="오늘의 할 일"></section>
+    <section class="card" id="timeCard" aria-label="공부 시간 기록"></section>
   </div>
   <div class="col">
-    <section class="card" id="listenCard" aria-label="오늘 흘려듣기 분"></section>
+    <section class="card" id="bookCard" aria-label="읽은 책 권수"></section>
     <section class="card" id="couponCard" aria-label="내 쿠폰함"></section>
     <section class="card" id="missionCard" aria-label="가족 미션"></section>
     <section class="card" id="timerCard" aria-label="공부 타이머"></section>
@@ -655,14 +642,46 @@
     { id:'kid2', name:'쭌쭈니 💜', emoji:'🐶' }
   ];
 
+  /* 오늘의 할 일 7개 — 7개를 모두 체크하면 하루 성공 */
   const TASKS = [
+    { id:'flow',    emoji:'🌊', label:'흘려듣기' },
+    { id:'focus',   emoji:'🎧', label:'집중듣기' },
     { id:'engbook', emoji:'📕', label:'영어책' },
-    { id:'kobook',  emoji:'📗', label:'한글책' }
+    { id:'kobook',  emoji:'📗', label:'한글책' },
+    { id:'math',    emoji:'➗', label:'수학문제집' },
+    { id:'engwb',   emoji:'✏️', label:'영어문제집' },
+    { id:'ppajak',  emoji:'📝', label:'빠작' }
   ];
 
-  /* 흘려듣기 빠른 입력 버튼 (분) */
-  const LISTEN_QUICK = [10, 20, 30];
-  const LISTEN_MAX = 600;
+  /* 이전 저장본(v1·v2)의 할 일 id → 새 7개 id */
+  const TASK_ALIASES = {
+    flow:    ['flow', 'listen', 'heullyeo'],
+    focus:   ['focus', 'jipjung'],
+    engbook: ['engbook', 'englishbook', 'eng'],
+    kobook:  ['kobook', 'koreanbook', 'kor'],
+    math:    ['math', 'mathbook'],
+    engwb:   ['engwb', 'engwork', 'engworkbook', 'englishworkbook'],
+    ppajak:  ['ppajak', 'bbajak']
+  };
+
+  /* 시간 기록 4종 (분) */
+  const TIME_ITEMS = [
+    { id:'flow',    emoji:'🌊', label:'흘려듣기',   short:'흘림' },
+    { id:'focus',   emoji:'🎧', label:'집중듣기',   short:'집중' },
+    { id:'engRead', emoji:'📕', label:'영어책읽기', short:'영책' },
+    { id:'korRead', emoji:'📗', label:'한글책읽기', short:'한책' }
+  ];
+  const TIME_QUICK = [10, 20, 30];
+  const TIME_STEP  = 10;
+  const TIME_MAX   = 600;
+
+  /* 권수 기록 2종 (권) */
+  const BOOK_ITEMS = [
+    { id:'eng', emoji:'📕', label:'영어책', short:'영어' },
+    { id:'kor', emoji:'📗', label:'한글책', short:'한글' }
+  ];
+  const BOOK_QUICK = [1, 2];
+  const BOOK_MAX   = 50;
 
   const MILESTONES = [
     { day:7,  type:'free',   emoji:'⏱️', title:'30분 자유시간',   desc:'좋아하는 걸로 30분!' },
@@ -946,14 +965,8 @@
   const TIMER_KEY  = 'family-coupon-dashboard.timer.v1';
   const DAY_MS = 86400000;
 
-  /* ---------- 시즌: 2027 새해 디데이 · 35일 크리스마스 트리 ---------- */
-  const NY_DAY       = '2027-01-01';
-  const TREE_START   = '2026-11-21';
-  const TREE_END     = '2026-12-25';
-  const TREE_TOTAL   = 35;
-
-  const ORN_COLORS = ['#FF6B8A','#FFC24B','#5FB8FF','#7ED9A8','#C79BFF','#FF9F68','#FF7FC8'];
-  const fx = function(v){ return Math.round(v * 100) / 100; };
+  /* ---------- 시즌: 2027 새해 디데이 ---------- */
+  const NY_DAY = '2027-01-01';
 
   /* ===================== 도우미 ===================== */
   const $ = (sel, root) => (root || document).querySelector(sel);
@@ -961,13 +974,13 @@
     tabs: $('#tabs'), todayLabel: $('#todayLabel'), soundBtn: $('#soundBtn'),
     streakCard: $('#streakCard'), taskCard: $('#taskCard'), couponCard: $('#couponCard'),
     missionCard: $('#missionCard'), timerCard: $('#timerCard'), settingsWrap: $('#settingsWrap'),
-    listenCard: $('#listenCard'),
+    timeCard: $('#timeCard'), bookCard: $('#bookCard'),
     highfive: $('#highfiveOverlay'), highfiveContent: $('#highfiveContent'),
     breakOverlay: $('#breakOverlay'), breakContent: $('#breakContent'),
     toast: $('#toast'), storageNote: $('#storageNote'),
     viewTabs: $('#viewTabs'), vtabHome: $('#vtabHome'), vtabQuiz: $('#vtabQuiz'),
     homeView: $('#homeView'), quizView: $('#quizView'), quizCard: $('#quizCard'),
-    newyear: $('#newyearBanner'), treeCard: $('#treeCard'), sheetNote: $('#sheetNote'), footerNote: $('#footerNote')
+    newyear: $('#newyearBanner'), sheetNote: $('#sheetNote'), footerNote: $('#footerNote')
   };
 
   function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
@@ -1017,7 +1030,7 @@
   let storageOK = true;
 
   function defaultKid(day){
-    return { streak:0, best:0, totalDone:0, lastDone:null, date:day, tasks:{}, coupons:[], listen:{} };
+    return { streak:0, best:0, totalDone:0, lastDone:null, date:day, tasks:{}, coupons:[], time:{}, books:{} };
   }
 
   function defaultState(){
@@ -1025,7 +1038,7 @@
     const kids = {};
     KIDS.forEach(function(k){ kids[k.id] = defaultKid(t); });
     return {
-      v: 2,
+      v: 3,
       active: 'kid1',
       kids: kids,
       missions: BASE_MISSIONS.map(function(text, i){ return { id:'base' + i, text:text, custom:false }; }),
@@ -1064,28 +1077,66 @@
       s.kids[k.id] = kid;
     });
 
-    /* --- 마이그레이션(v1 → v2) ---
-       v1은 할 일이 7개였어요. 이제 영어책·한글책 2개만 쓰므로
-       예전에 저장된 체크 중 사라진 항목은 정리하고, 두 항목의 체크는 그대로 살립니다.
-       흘려듣기 기록은 kid.listen 에 날짜별(YYYY-MM-DD) 분 수로 쌓입니다. */
-    const TASK_IDS = TASKS.map(function(t){ return t.id; });
+    /* --- 마이그레이션(이전 저장본 → v3) ---
+       · 할 일은 v1의 7개(focus/listen/engbook/kobook/math/engwb/ppajak)와
+         v2의 2개(engbook/kobook) 이름을 모두 새 7개 id로 옮겨 받습니다.
+       · v2까지 쓰던 흘려듣기 분(kid.listen)은 날짜별 시간 기록의 '흘려듣기'로 옮깁니다.
+       · 시간 기록은 kid.time, 권수 기록은 kid.books 에 날짜별(YYYY-MM-DD)로 쌓입니다. */
     KIDS.forEach(function(k){
       const kid = s.kids[k.id];
-      const keptTasks = {};
-      TASK_IDS.forEach(function(id){ if (kid.tasks[id]) keptTasks[id] = true; });
-      kid.tasks = keptTasks;
 
-      const src = (kid.listen && typeof kid.listen === 'object' && !Array.isArray(kid.listen)) ? kid.listen : {};
-      const keptListen = {};
-      Object.keys(src).forEach(function(d){
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
-        const v = Math.round(Number(src[d]));
-        if (isFinite(v) && v > 0) keptListen[d] = Math.min(LISTEN_MAX, v);
+      const rawTasks = (kid.tasks && typeof kid.tasks === 'object') ? kid.tasks : {};
+      const nextTasks = {};
+      Object.keys(TASK_ALIASES).forEach(function(newId){
+        (TASK_ALIASES[newId] || []).forEach(function(oldId){
+          if (rawTasks[oldId] === true || rawTasks[oldId] === 'true') nextTasks[newId] = true;
+        });
       });
-      kid.listen = keptListen;
+      kid.tasks = nextTasks;
+
+      const timeSrc = (kid.time && typeof kid.time === 'object' && !Array.isArray(kid.time)) ? kid.time : {};
+      const cleanTime = {};
+      Object.keys(timeSrc).forEach(function(d){
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+        const one = timeSrc[d];
+        if (!one || typeof one !== 'object' || Array.isArray(one)) return;
+        const rec = {};
+        TIME_ITEMS.forEach(function(it){
+          const v = clampInt(one[it.id], TIME_MAX);
+          if (v > 0) rec[it.id] = v;
+        });
+        if (Object.keys(rec).length) cleanTime[d] = rec;
+      });
+
+      const listenSrc = (kid.listen && typeof kid.listen === 'object' && !Array.isArray(kid.listen)) ? kid.listen : {};
+      Object.keys(listenSrc).forEach(function(d){
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+        const v = clampInt(listenSrc[d], TIME_MAX);
+        if (v <= 0) return;
+        const rec = Object.assign({}, cleanTime[d] || {});
+        if (!(rec.flow > 0)) rec.flow = v;
+        cleanTime[d] = rec;
+      });
+      kid.time = cleanTime;
+      delete kid.listen;
+
+      const bookSrc = (kid.books && typeof kid.books === 'object' && !Array.isArray(kid.books)) ? kid.books : {};
+      const cleanBooks = {};
+      Object.keys(bookSrc).forEach(function(d){
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+        const one = bookSrc[d];
+        if (!one || typeof one !== 'object' || Array.isArray(one)) return;
+        const rec = {};
+        BOOK_ITEMS.forEach(function(it){
+          const v = clampInt(one[it.id], BOOK_MAX);
+          if (v > 0) rec[it.id] = v;
+        });
+        if (Object.keys(rec).length) cleanBooks[d] = rec;
+      });
+      kid.books = cleanBooks;
     });
-    s.v = 2;
-    if (Number(saved.v) !== 2) needsMigrateSave = true;
+    s.v = 3;
+    if (Number(saved.v) !== 3) needsMigrateSave = true;
 
     if (!s.kids[s.active]) s.active = 'kid1';
     return s;
@@ -1159,16 +1210,20 @@
     return k ? k.id : null;
   }
 
-  /* 오늘 하루치 기록 본문 */
+  /* 오늘 하루치 기록 본문 — 할 일 7개 · 시간 4종(분) · 권수 2종(권) */
   function sheetRow(kidId){
     var kid = state.kids[kidId];
+    var tasks = {}, time = {}, books = {};
+    TASKS.forEach(function(x){ tasks[x.id] = !!kid.tasks[x.id]; });
+    TIME_ITEMS.forEach(function(x){ time[x.id] = timeToday(kid, x.id); });
+    BOOK_ITEMS.forEach(function(x){ books[x.id] = bookToday(kid, x.id); });
     return {
       action: 'upsert',
       date: todayStr(),
       kid: kidSheetName(kidId),
-      englishBook: !!kid.tasks.engbook,
-      koreanBook: !!kid.tasks.kobook,
-      listeningMin: listenToday(kid)
+      tasks: tasks,
+      time: time,
+      books: books
     };
   }
 
@@ -1240,33 +1295,63 @@
   }
 
   /* 시트 기록을 이 기기에 합칩니다.
-     · 흘려듣기(분): 시트에 있는 날짜의 값으로 맞춥니다(0이면 지워요).
-     · 오늘 체크: 시트에서 한 것으로 적힌 항목만 켭니다(이 기기에서 방금 한 체크는 지우지 않아요). */
+     · 시간·권수: 시트에 있는 날짜의 값으로 맞춥니다(0이면 지워요).
+     · 오늘 할 일 체크: 시트에서 한 것으로 적힌 항목만 켭니다(이 기기에서 방금 한 체크는 지우지 않아요). */
+  function sameDayRec(a, b, ids, max){
+    return ids.every(function(it){
+      return clampInt((a || {})[it.id], max) === clampInt((b || {})[it.id], max);
+    });
+  }
+
   function applySheetRows(rows){
     var t = todayStr();
     var changed = false;
     var applied = 0;
+
     rows.forEach(function(r){
       if (!r || !r.date) return;
       var raw = String(r.kid || '').trim();
       var kidId = kidIdByName(raw) || (state.kids[raw] ? raw : null);
       if (!kidId) return;
       var kid = state.kids[kidId];
-      if (!kid.listen || typeof kid.listen !== 'object' || Array.isArray(kid.listen)) kid.listen = {};
       var d = String(r.date).slice(0, 10);
-      var v = Math.max(0, Math.min(LISTEN_MAX, Math.round(Number(r.listeningMin) || 0)));
-      var before = Math.round(Number(kid.listen[d]) || 0);
-      if (before !== v) {
-        if (v > 0) kid.listen[d] = v;
-        else delete kid.listen[d];
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+
+      /* 시간 4종 */
+      var timeMap = ensureDayMap(kid, 'time');
+      var timeRec = {};
+      TIME_ITEMS.forEach(function(it){
+        var v = clampInt(r.time && r.time[it.id], TIME_MAX);
+        if (v > 0) timeRec[it.id] = v;
+      });
+      if (!sameDayRec(timeMap[d], timeRec, TIME_ITEMS, TIME_MAX)) {
+        if (Object.keys(timeRec).length) timeMap[d] = timeRec;
+        else delete timeMap[d];
         changed = true;
       }
-      if (d === t) {
-        if (r.englishBook && !kid.tasks.engbook) { kid.tasks.engbook = true; changed = true; }
-        if (r.koreanBook && !kid.tasks.kobook) { kid.tasks.kobook = true; changed = true; }
+
+      /* 권수 2종 */
+      var bookMap = ensureDayMap(kid, 'books');
+      var bookRec = {};
+      BOOK_ITEMS.forEach(function(it){
+        var v = clampInt(r.books && r.books[it.id], BOOK_MAX);
+        if (v > 0) bookRec[it.id] = v;
+      });
+      if (!sameDayRec(bookMap[d], bookRec, BOOK_ITEMS, BOOK_MAX)) {
+        if (Object.keys(bookRec).length) bookMap[d] = bookRec;
+        else delete bookMap[d];
+        changed = true;
+      }
+
+      /* 오늘 할 일 체크 (켜기만) */
+      if (d === t && r.tasks && typeof r.tasks === 'object') {
+        TASKS.forEach(function(x){
+          if (r.tasks[x.id] && !kid.tasks[x.id]) { kid.tasks[x.id] = true; changed = true; }
+        });
       }
       applied++;
     });
+
     if (changed) { save(); renderAll(); }
     return applied;
   }
@@ -1518,556 +1603,6 @@
       '</div>';
   }
 
-  /* ===================== 렌더: 35일 크리스마스 트리 ===================== */
-  /* 일러스트 트리: 5단 스캘럽 가지 · 금빛 가랜드 · 흩뿌린 오너먼트 34개 + 꼭대기 별 */
-  /* 하나의 원뿔 실루엣 위에 5단 스커트를 얹는다 (옆으로 삐져나오는 모서리 없음) */
-  function coneW(y){
-    const p = Math.min(1, Math.max(0, (y - 64) / (336 - 64)));
-    return 121 * Math.pow(p, 0.72);
-  }
-  const TREE_TIERS = [
-    { top:200, bot:336, lobes:7 },
-    { top:160, bot:288, lobes:6 },
-    { top:125, bot:240, lobes:6 },
-    { top: 95, bot:194, lobes:5 },
-    { top: 64, bot:148, lobes:4 }
-  ];
-  TREE_TIERS.forEach(function(t){
-    t.hw = coneW(t.bot) + 4;
-    t.wTop = coneW(t.top) * 0.94;
-  });
-  const TREE_CX = 160;
-
-  function treeHwAt(y){
-    if (y <= 64 || y >= 338) return 0;
-    return coneW(y) * 0.96;
-  }
-
-  function treeRng(a){
-    return function(){
-      a = (a + 0x6D2B79F5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  function hexShade(hex, amt){
-    const n = parseInt(hex.slice(1), 16);
-    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    if (amt >= 0){ r += (255 - r) * amt; g += (255 - g) * amt; b += (255 - b) * amt; }
-    else { r *= (1 + amt); g *= (1 + amt); b *= (1 + amt); }
-    return '#' + [r, g, b].map(function(v){
-      const s = Math.max(0, Math.min(255, Math.round(v))).toString(16);
-      return s.length < 2 ? '0' + s : s;
-    }).join('');
-  }
-
-  /* 34개: 유리 방울 9 · 전구 알 8 · 지팡이사탕 5 · 리본 4 · 선물 3 · 별 3 · 방울 2 (자리마다 섞이게) */
-  const TREE_KINDS = [
-    'ribbon','ball','bulb','gift','candy','bulb','ribbon','bulb','ball','bulb',
-    'star','bell','gift','star','ball','ribbon','candy','ball','ball','bell',
-    'ribbon','ball','star','candy','candy','bulb','bulb','ball','gift','ball',
-    'ball','bulb','candy','bulb'
-  ];
-
-  /* 오너먼트 34개 — 격자·줄세우기 없이 나뭇가지 안에 유기적으로 흩뿌린다 */
-  const TREE_ORN = (function(){
-    const rnd = treeRng(20261225);
-    const list = [];
-    const sizeOf = { ball:9.2, bulb:7.9, candy:8.3, ribbon:8.2, gift:8.4, star:7.7, bell:7.9 };
-
-    function candidate(){
-      const x = TREE_CX + (rnd() * 2 - 1) * 122;
-      const half = Math.abs(x - TREE_CX);
-      let y = 0, tries = 0;
-      do { y = 104 + rnd() * 214; tries++; } while (treeHwAt(y) * 0.84 < half + 7 && tries < 30);
-      if (treeHwAt(y) * 0.84 < half + 7) return null;
-      return { x: x, y: y };
-    }
-
-    while (list.length < 34){
-      let best = null, bestGap = -1;
-      for (let k = 0; k < 24; k++){
-        const c = candidate();
-        if (!c) continue;
-        let gap = 1e9;
-        for (let j = 0; j < list.length; j++){
-          const o = list[j];
-          const dx = o.x - c.x, dy = (o.y - c.y) * 1.15;
-          const d2 = Math.sqrt(dx * dx + dy * dy) - (o.r + 9.4);
-          if (d2 < gap) gap = d2;
-        }
-        if (gap > bestGap){ bestGap = gap; best = c; }
-      }
-      if (!best) break;
-      const n = list.length;
-      const kind = TREE_KINDS[n % TREE_KINDS.length];
-      list.push({
-        x: best.x, y: best.y,
-        r: (sizeOf[kind] || 8) + (rnd() - 0.5) * 1.4,
-        kind: kind,
-        gi: (n * 3) % ORN_COLORS.length,
-        color: ORN_COLORS[(n * 3) % ORN_COLORS.length],
-        tilt: (rnd() - 0.5) * 24,
-        hang: rnd() > 0.4
-      });
-    }
-
-    /* 켜지는 순서: 아래에서 차오르되 높이가 조금씩 섞여 여기저기 불이 켜지는 느낌 */
-    const ranked = list.map(function(o, i){ return { i: i, k: o.y + (rnd() - 0.5) * 46 }; });
-    ranked.sort(function(a, b){ return b.k - a.k; });
-    ranked.forEach(function(r, rank){ list[r.i].order = rank; });
-    return list;
-  })();
-
-  function ornShape(kind, s, gi, tilt){
-    const rot = ' transform="rotate(' + fx(tilt || 0) + ')"';
-    if (kind === 'gift'){
-      return '<g' + rot + '>' +
-        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 2) + '" height="' + fx(s * 1.5) + '" rx="' + fx(s * 0.24) + '" fill="currentColor"/>' +
-        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 2) + '" height="' + fx(s * 0.42) + '" rx="' + fx(s * 0.22) + '" fill="#FFFFFF" opacity=".16"/>' +
-        '<rect x="' + fx(-s * 0.17) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 0.34) + '" height="' + fx(s * 1.5) + '" fill="#FFF3D0" opacity=".9"/>' +
-        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.12) + '" width="' + fx(s * 2) + '" height="' + fx(s * 0.3) + '" fill="#FFF3D0" opacity=".9"/>' +
-        '<path d="M0 ' + fx(-s * 0.66) + ' C ' + fx(-s * 0.94) + ' ' + fx(-s * 1.2) + ' ' + fx(-s * 0.06) + ' ' + fx(-s * 1.16) + ' 0 ' + fx(-s * 0.66) + ' Z" fill="#FFF3D0" opacity=".92"/>' +
-        '<path d="M0 ' + fx(-s * 0.66) + ' C ' + fx(s * 0.94) + ' ' + fx(-s * 1.2) + ' ' + fx(s * 0.06) + ' ' + fx(-s * 1.16) + ' 0 ' + fx(-s * 0.66) + ' Z" fill="#FFF3D0" opacity=".92"/>' +
-      '</g>';
-    }
-    if (kind === 'bulb'){
-      return '<g' + rot + '>' +
-        '<circle cy="' + fx(-s * 0.04) + '" r="' + fx(s * 0.64) + '" fill="currentColor"/>' +
-        '<circle cy="' + fx(-s * 0.04) + '" r="' + fx(s * 0.64) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width=".8"/>' +
-        '<ellipse cx="' + fx(-s * 0.23) + '" cy="' + fx(-s * 0.28) + '" rx="' + fx(s * 0.19) + '" ry="' + fx(s * 0.14) + '" fill="#FFFFFF" opacity=".62"/>' +
-        '<rect x="' + fx(-s * 0.24) + '" y="' + fx(s * 0.5) + '" width="' + fx(s * 0.48) + '" height="' + fx(s * 0.3) + '" rx="' + fx(s * 0.07) + '" fill="#C99A55"/>' +
-        '<path d="M' + fx(-s * 0.24) + ' ' + fx(s * 0.62) + ' h' + fx(s * 0.48) + '" stroke="#8E6633" stroke-opacity=".55" stroke-width=".8"/>' +
-      '</g>';
-    }
-    if (kind === 'candy'){
-      const cane = 'M' + fx(-s * 0.42) + ' ' + fx(s * 0.92) + ' V' + fx(-s * 0.06) +
-        ' A' + fx(s * 0.42) + ' ' + fx(s * 0.42) + ' 0 0 1 ' + fx(s * 0.42) + ' ' + fx(-s * 0.06);
-      return '<g' + rot + '>' +
-        '<path d="' + cane + '" fill="none" stroke="currentColor" stroke-width="' + fx(s * 0.46) + '" stroke-linecap="round"/>' +
-        '<path d="' + cane + '" fill="none" stroke="#FFFFFF" stroke-opacity=".88" stroke-width="' + fx(s * 0.13) + '" stroke-dasharray="' + fx(s * 0.22) + ' ' + fx(s * 0.3) + '"/>' +
-      '</g>';
-    }
-    if (kind === 'ribbon'){
-      return '<g' + rot + '>' +
-        '<path d="M' + fx(-s * 0.18) + ' ' + fx(s * 0.04) + ' L' + fx(-s * 0.5) + ' ' + fx(s * 0.95) + ' L' + fx(-s * 0.06) + ' ' + fx(s * 0.7) + ' Z" fill="currentColor" opacity=".92"/>' +
-        '<path d="M' + fx(s * 0.18) + ' ' + fx(s * 0.04) + ' L' + fx(s * 0.5) + ' ' + fx(s * 0.95) + ' L' + fx(s * 0.06) + ' ' + fx(s * 0.7) + ' Z" fill="currentColor" opacity=".92"/>' +
-        '<path d="M0 0 C ' + fx(-s * 1.06) + ' ' + fx(-s * 0.7) + ' ' + fx(-s * 0.98) + ' ' + fx(s * 0.3) + ' ' + fx(-s * 0.08) + ' ' + fx(s * 0.1) + ' Z" fill="currentColor"/>' +
-        '<path d="M0 0 C ' + fx(s * 1.06) + ' ' + fx(-s * 0.7) + ' ' + fx(s * 0.98) + ' ' + fx(s * 0.3) + ' ' + fx(s * 0.08) + ' ' + fx(s * 0.1) + ' Z" fill="currentColor"/>' +
-        '<circle r="' + fx(s * 0.23) + '" fill="#FFF6DA" opacity=".95"/>' +
-      '</g>';
-    }
-    if (kind === 'star'){
-      return '<g' + rot + '>' +
-        '<path d="' + starPath(0, 0, s * 1.16, s * 0.48) + '" fill="currentColor"/>' +
-        '<path d="' + starPath(0, 0, s * 0.52, s * 0.22) + '" fill="#FFFFFF" opacity=".5"/>' +
-      '</g>';
-    }
-    if (kind === 'bell'){
-      return '<g' + rot + '>' +
-        '<path d="M' + fx(-s * 0.6) + ' ' + fx(s * 0.42) + ' C ' + fx(-s * 0.6) + ' ' + fx(-s * 0.5) + ' ' + fx(-s * 0.33) + ' ' + fx(-s * 0.84) + ' 0 ' + fx(-s * 0.84) +
-          ' C ' + fx(s * 0.33) + ' ' + fx(-s * 0.84) + ' ' + fx(s * 0.6) + ' ' + fx(-s * 0.5) + ' ' + fx(s * 0.6) + ' ' + fx(s * 0.42) + ' Z" fill="currentColor"/>' +
-        '<rect x="' + fx(-s * 0.7) + '" y="' + fx(s * 0.38) + '" width="' + fx(s * 1.4) + '" height="' + fx(s * 0.22) + '" rx="' + fx(s * 0.1) + '" fill="currentColor"/>' +
-        '<circle cy="' + fx(s * 0.76) + '" r="' + fx(s * 0.19) + '" fill="#E9C071"/>' +
-        '<path d="M' + fx(-s * 0.32) + ' ' + fx(s * 0.12) + ' C ' + fx(-s * 0.38) + ' ' + fx(-s * 0.28) + ' ' + fx(-s * 0.15) + ' ' + fx(-s * 0.58) + ' 0 ' + fx(-s * 0.64) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="' + fx(s * 0.15) + '" stroke-linecap="round"/>' +
-      '</g>';
-    }
-    return '<g>' +
-      '<circle r="' + fx(s) + '" fill="url(#orn' + gi + ')"/>' +
-      '<circle r="' + fx(s) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".28" stroke-width=".9"/>' +
-      '<ellipse cx="' + fx(-s * 0.3) + '" cy="' + fx(-s * 0.34) + '" rx="' + fx(s * 0.29) + '" ry="' + fx(s * 0.18) + '" fill="#FFFFFF" opacity=".8" transform="rotate(-32 ' + fx(-s * 0.3) + ' ' + fx(-s * 0.34) + ')"/>' +
-      '<rect x="' + fx(-s * 0.18) + '" y="' + fx(-s * 1.08) + '" width="' + fx(s * 0.36) + '" height="' + fx(s * 0.2) + '" rx=".6" fill="#E8C57A"/>' +
-    '</g>';
-  }
-
-  function starPath(cx, cy, R, r){
-    let d = '';
-    for (let i = 0; i < 10; i++){
-      const rad = (i % 2 === 0) ? R : r;
-      const a = (-Math.PI / 2) + (i * Math.PI / 5);
-      d += (i ? 'L' : 'M') + fx(cx + Math.cos(a) * rad) + ' ' + fx(cy + Math.sin(a) * rad);
-    }
-    return d + 'Z';
-  }
-
-  function lobeEdges(t){
-    const n = t.lobes;
-    const w = [];
-    let acc = 0;
-    for (let i = 0; i < n; i++){
-      const v = 1 + (((i * 13 + t.lobes * 7) % 7) - 3) * 0.11;
-      w.push(v); acc += v;
-    }
-    const out = [0];
-    let sum = 0;
-    for (let i = 0; i < n; i++){ sum += w[i]; out.push(sum / acc); }
-    return out;
-  }
-
-  function lobeDroop(t, i){
-    const n = t.lobes;
-    const base = 18 + ((i * 7 + t.lobes * 5) % 4) * 2.4;
-    return base * (0.42 + 0.58 * Math.sin(Math.PI * (i + 0.5) / n));
-  }
-
-  function hemD(t){
-    const n = t.lobes, span = 2 * t.hw, y0 = t.bot, base = t.bot;
-    const e = lobeEdges(t);
-    let d = 'M' + fx(TREE_CX - t.hw) + ' ' + fx(y0);
-    for (let i = 0; i < n; i++){
-      const x1 = TREE_CX - t.hw + span * e[i], x2 = TREE_CX - t.hw + span * e[i + 1];
-      const w = x2 - x1, droop = lobeDroop(t, i);
-      d += ' Q' + fx(x1 + w * 0.26) + ' ' + fx(base + droop * 0.68) + ' ' + fx((x1 + x2) / 2) + ' ' + fx(base + droop);
-      d += ' Q' + fx(x2 - w * 0.26) + ' ' + fx(base + droop * 0.68) + ' ' + fx(x2) + ' ' + fx(y0);
-    }
-    return d;
-  }
-
-  function qp(p0, p1, p2, u){
-    const a = (1 - u) * (1 - u), b = 2 * (1 - u) * u, c = u * u;
-    return [a * p0[0] + b * p1[0] + c * p2[0], a * p0[1] + b * p1[1] + c * p2[1]];
-  }
-
-  function hemPoints(t){
-    const n = t.lobes, span = 2 * t.hw, y0 = t.bot, base = t.bot, e = lobeEdges(t);
-    const pts = [[TREE_CX - t.hw, y0]];
-    for (let i = 0; i < n; i++){
-      const x1 = TREE_CX - t.hw + span * e[i], x2 = TREE_CX - t.hw + span * e[i + 1];
-      const w = x2 - x1, droop = lobeDroop(t, i);
-      const c1 = [x1 + w * 0.26, base + droop * 0.68], mid = [(x1 + x2) / 2, base + droop], c2 = [x2 - w * 0.26, base + droop * 0.68];
-      for (let s2 = 1; s2 <= 5; s2++){
-        const u = s2 / 5;
-        pts.push(qp([x1, y0], c1, mid, u));
-        pts.push(qp(mid, c2, [x2, y0], u));
-      }
-    }
-    return pts;
-  }
-
-  function needleD(t, off, len){
-    const pts = hemPoints(t);
-    const o = off || 0, L = len || 4.2;
-    let d = '';
-    for (let i = 2 + o; i < pts.length - 1; i += 3){
-      const p = pts[i];
-      const dx = ((i % 5) - 2) * 0.9;
-      d += 'M' + fx(p[0]) + ' ' + fx(p[1]) + 'l' + fx(dx) + ' ' + fx(L + (i % 3) * 0.9) + ' ';
-    }
-    return d;
-  }
-
-  function tuftD(t, light){
-    const pts = hemPoints(t), n = t.lobes;
-    let d = '';
-    for (let i = 0; i < n; i++){
-      const idx = 1 + i * 10 + (light ? 3 : 4);
-      const p = pts[idx];
-      if (!p) continue;
-      for (let k = -1; k <= 1; k++){
-        const len = 4.6 - Math.abs(k) * 1.1;
-        d += 'M' + fx(p[0] + k * 1.7) + ' ' + fx(p[1] - 1.2) + 'l' + fx(k * 1.6 + (light ? 0.8 : -0.8)) + ' ' + fx(len) + ' ';
-      }
-    }
-    return d;
-  }
-
-  function tierD(t){
-    const h = t.bot - t.top;
-    let d = 'M' + fx(TREE_CX - t.wTop) + ' ' + fx(t.top);
-    d += ' C' + fx(TREE_CX - t.wTop - (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
-         ' ' + fx(TREE_CX - t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
-         ' ' + fx(TREE_CX - t.hw) + ' ' + fx(t.bot);
-    d += hemD(t).replace(/^M[^Q]*/, '');
-    d += ' C' + fx(TREE_CX + t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
-         ' ' + fx(TREE_CX + t.wTop + (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
-         ' ' + fx(TREE_CX + t.wTop) + ' ' + fx(t.top);
-    return d + ' Z';
-  }
-
-  function sideD(t){
-    const h = t.bot - t.top;
-    return 'M' + fx(TREE_CX - t.wTop) + ' ' + fx(t.top) +
-      ' C' + fx(TREE_CX - t.wTop - (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
-      ' ' + fx(TREE_CX - t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
-      ' ' + fx(TREE_CX - t.hw) + ' ' + fx(t.bot);
-  }
-
-  function smoothD(pts){
-    if (!pts.length) return '';
-    let d = 'M' + fx(pts[0][0]) + ' ' + fx(pts[0][1]);
-    for (let i = 0; i < pts.length - 1; i++){
-      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || pts[i + 1];
-      d += ' C' + fx(p1[0] + (p2[0] - p0[0]) / 6) + ' ' + fx(p1[1] + (p2[1] - p0[1]) / 6) +
-           ' ' + fx(p2[0] - (p3[0] - p1[0]) / 6) + ' ' + fx(p2[1] - (p3[1] - p1[1]) / 6) +
-           ' ' + fx(p2[0]) + ' ' + fx(p2[1]);
-    }
-    return d;
-  }
-
-  /* 트리 몸통을 S자로 감아 내려오는 금빛 가랜드 */
-  function garlandD(){
-    const pts = [];
-    const N = 54;
-    for (let i = 0; i <= N; i++){
-      const t = i / N;
-      const y = 100 + t * 216;
-      const hw = treeHwAt(y);
-      const a = -Math.PI * 0.5 + t * Math.PI * 2.9;
-      pts.push([TREE_CX + Math.cos(a) * hw * 0.78, y + Math.sin(a) * 2.6]);
-    }
-    return smoothD(pts);
-  }
-
-  function treeSvg(lit){
-    const litN = Math.min(TREE_TOTAL, Math.max(0, Math.round(Number(lit) || 0)));
-    const bodyLit = Math.min(TREE_TOTAL - 1, litN);
-    const starOn = litN >= TREE_TOTAL;
-
-    const tierDs = TREE_TIERS.map(function(t){ return tierD(t); });
-
-    /* ---------- defs ---------- */
-    let ballGrads = '';
-    ORN_COLORS.forEach(function(c, i){
-      ballGrads += '<radialGradient id="orn' + i + '" cx="34%" cy="26%" r="82%">' +
-        '<stop offset="0%" stop-color="' + hexShade(c, .58) + '"/>' +
-        '<stop offset="44%" stop-color="' + hexShade(c, .06) + '"/>' +
-        '<stop offset="100%" stop-color="' + hexShade(c, -.44) + '"/>' +
-      '</radialGradient>';
-    });
-
-    const tierTones = [
-      ['#2A8862', '#0E4A33'],
-      ['#3CA57C', '#1A6A4E'],
-      ['#2C8E67', '#114F39'],
-      ['#43AC84', '#1D7253'],
-      ['#4DBA90', '#26805F']
-    ];
-    let tierGrads = '';
-    TREE_TIERS.forEach(function(t, i){
-      tierGrads += '<linearGradient id="tg' + i + '" gradientUnits="userSpaceOnUse" x1="0" y1="' + t.top + '" x2="0" y2="' + (t.bot + 10) + '">' +
-        '<stop offset="0%" stop-color="' + hexShade(tierTones[i][0], .1) + '"/>' +
-        '<stop offset="62%" stop-color="' + tierTones[i][1] + '"/>' +
-        '<stop offset="100%" stop-color="' + hexShade(tierTones[i][1], -.2) + '"/>' +
-      '</linearGradient>';
-    });
-
-    const defs = '<defs>' + tierGrads + ballGrads +
-      '<linearGradient id="tierShade" gradientUnits="userSpaceOnUse" x1="70" y1="0" x2="292" y2="0">' +
-        '<stop offset="0%" stop-color="#08281D" stop-opacity="0"/>' +
-        '<stop offset="58%" stop-color="#08281D" stop-opacity=".10"/>' +
-        '<stop offset="100%" stop-color="#06201A" stop-opacity=".34"/>' +
-      '</linearGradient>' +
-      '<linearGradient id="tierLight" gradientUnits="userSpaceOnUse" x1="34" y1="0" x2="190" y2="0">' +
-        '<stop offset="0%" stop-color="#C8FFDF" stop-opacity=".22"/>' +
-        '<stop offset="46%" stop-color="#C8FFDF" stop-opacity=".04"/>' +
-        '<stop offset="100%" stop-color="#C8FFDF" stop-opacity="0"/>' +
-      '</linearGradient>' +
-      '<radialGradient id="floorWarm" cx="50%" cy="50%" r="50%">' +
-        '<stop offset="0%" stop-color="#FFD9A0" stop-opacity=".5"/>' +
-        '<stop offset="60%" stop-color="#FFC27A" stop-opacity=".16"/>' +
-        '<stop offset="100%" stop-color="#FFC27A" stop-opacity="0"/>' +
-      '</radialGradient>' +
-      '<linearGradient id="snowSnow" gradientUnits="userSpaceOnUse" x1="0" y1="336" x2="0" y2="366">' +
-        '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".92"/>' +
-        '<stop offset="100%" stop-color="#D9E8FF" stop-opacity=".55"/>' +
-      '</linearGradient>' +
-      '<linearGradient id="woodPot" gradientUnits="userSpaceOnUse" x1="138" y1="0" x2="182" y2="0">' +
-        '<stop offset="0%" stop-color="#B98551"/>' +
-        '<stop offset="52%" stop-color="#9C6A3C"/>' +
-        '<stop offset="100%" stop-color="#774C29"/>' +
-      '</linearGradient>' +
-      '<radialGradient id="starGlow" cx="50%" cy="50%" r="50%">' +
-        '<stop offset="0%" stop-color="#FFF6CF" stop-opacity=".95"/>' +
-        '<stop offset="52%" stop-color="#FFDF8A" stop-opacity=".4"/>' +
-        '<stop offset="100%" stop-color="#FFDF8A" stop-opacity="0"/>' +
-      '</radialGradient>' +
-      '<linearGradient id="starShade" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1">' +
-        '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
-        '<stop offset="48%" stop-color="#FFF0B8" stop-opacity=".05"/>' +
-        '<stop offset="100%" stop-color="#C97B12" stop-opacity=".45"/>' +
-      '</linearGradient>' +
-      '<filter id="warmGlow" x="-40%" y="-40%" width="180%" height="180%">' +
-        '<feGaussianBlur stdDeviation="3.4"/>' +
-      '</filter>' +
-      '<filter id="softBlur" x="-25%" y="-60%" width="150%" height="240%">' +
-        '<feGaussianBlur stdDeviation="4.4"/>' +
-      '</filter>' +
-      '<filter id="thinBlur" x="-25%" y="-60%" width="150%" height="240%">' +
-        '<feGaussianBlur stdDeviation="1.1"/>' +
-      '</filter>' +
-      '<clipPath id="treeClip">' + tierDs.map(function(d){ return '<path d="' + d + '"/>'; }).join('') + '</clipPath>' +
-      '<radialGradient id="treeLit" cx="50%" cy="50%" r="50%">' +
-        '<stop offset="0%" stop-color="#EAFFF2" stop-opacity=".30"/>' +
-        '<stop offset="55%" stop-color="#CFFFE4" stop-opacity=".10"/>' +
-        '<stop offset="100%" stop-color="#CFFFE4" stop-opacity="0"/>' +
-      '</radialGradient>' +
-      '<linearGradient id="treeBase" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="0" y2="350">' +
-        '<stop offset="0%" stop-color="#04241B" stop-opacity="0"/>' +
-        '<stop offset="62%" stop-color="#04241B" stop-opacity=".12"/>' +
-        '<stop offset="100%" stop-color="#04241B" stop-opacity=".32"/>' +
-      '</linearGradient>' +
-      '<radialGradient id="treeWarm" cx="50%" cy="50%" r="50%">' +
-        '<stop offset="0%" stop-color="#FFDFA2" stop-opacity=".16"/>' +
-        '<stop offset="55%" stop-color="#FFC98A" stop-opacity=".06"/>' +
-        '<stop offset="100%" stop-color="#FFC98A" stop-opacity="0"/>' +
-      '</radialGradient>' +
-      '<radialGradient id="treeAura" cx="50%" cy="50%" r="50%">' +
-        '<stop offset="0%" stop-color="#9BF2C8" stop-opacity=".22"/>' +
-        '<stop offset="62%" stop-color="#6CD9A8" stop-opacity=".07"/>' +
-        '<stop offset="100%" stop-color="#6CD9A8" stop-opacity="0"/>' +
-      '</radialGradient>' +
-    '</defs>';
-
-    /* ---------- 밤하늘 ---------- */
-    let sky = '';
-    [[38,54,1.3,.45],[68,30,1,.32],[96,72,1.1,.4],[128,24,1,.28],[196,28,1.1,.34],[226,58,1.2,.42],[262,30,1,.28],[290,68,1.3,.46],[312,108,1,.26],[22,106,1.1,.3],[302,164,1,.22],[18,176,1.1,.28],[306,232,1,.24],[16,258,1,.22],[304,282,.9,.2],[26,314,1,.18],[292,326,.9,.18],[62,14,1,.26],[250,14,1,.24],[176,16,.9,.2],[142,54,.9,.3]].forEach(function(p){
-      sky += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="#FFFFFF" opacity="' + p[3] + '"/>';
-    });
-    [[80,44,4.2],[248,92,3.2],[300,206,3.6],[46,240,3.2]].forEach(function(p){
-      sky += '<path d="M' + p[0] + ' ' + (p[1] - p[2]) + ' V' + (p[1] + p[2]) + ' M' + (p[0] - p[2]) + ' ' + p[1] + ' H' + (p[0] + p[2]) +
-        '" stroke="#FFFFFF" stroke-opacity=".5" stroke-width=".9" stroke-linecap="round"/>';
-    });
-
-    /* ---------- 눈 언덕 · 바닥 빛 ---------- */
-    const ground =
-      '<ellipse cx="160" cy="352" rx="140" ry="28" fill="url(#floorWarm)"/>' +
-      '<ellipse cx="160" cy="214" rx="152" ry="176" fill="url(#treeAura)"/>' +
-      '<path d="M34 348 C 58 332, 108 330, 138 338 C 150 341, 170 341, 184 338 C 216 330, 264 332, 288 348 C 290 360, 274 368, 250 368 L 72 368 C 46 368, 32 360, 34 348 Z" fill="url(#snowSnow)" opacity=".9"/>';
-
-    /* ---------- 나무: 아래 단부터 겹쳐 올린다 ---------- */
-    let tiers = '';
-    TREE_TIERS.forEach(function(t, i){
-      const d = tierDs[i];
-      tiers += '<g>' +
-        '<path d="' + d + '" fill="url(#tg' + i + ')"/>' +
-        '<path d="' + d + '" fill="url(#tierLight)"/>' +
-        '<path d="' + d + '" fill="url(#tierShade)"/>' +
-        '<path d="' + hemD(t) + '" fill="none" stroke="#04241B" stroke-opacity=".26" stroke-width="9" stroke-linecap="round" filter="url(#softBlur)" transform="translate(0 3.5)"/>' +
-        '<path d="' + tuftD(t, false) + '" fill="none" stroke="#07331F" stroke-opacity=".2" stroke-width="1.05" stroke-linecap="round"/>' +
-        '<path d="' + tuftD(t, true) + '" fill="none" stroke="#86E7B8" stroke-opacity=".16" stroke-width=".95" stroke-linecap="round"/>' +
-        '<path d="' + sideD(t) + '" fill="none" stroke="#D9FFEC" stroke-opacity=".14" stroke-width="1.6"/>' +
-      '</g>';
-
-    });
-
-    const treeLighting = '<g clip-path="url(#treeClip)">' +
-      '<ellipse cx="112" cy="150" rx="150" ry="180" fill="url(#treeLit)"/>' +
-      '<ellipse cx="160" cy="220" rx="120" ry="130" fill="url(#treeWarm)"/>' +
-      '<rect x="0" y="120" width="320" height="230" fill="url(#treeBase)"/>' +
-    '</g>';
-
-    /* ---------- 금빛 가랜드 ---------- */
-    const gd = garlandD();
-    const garland =
-      '<g>' +
-        '<path d="' + gd + '" fill="none" stroke="#FFE3A6" stroke-opacity=".85" stroke-width="5.2" stroke-linecap="round" stroke-dasharray=".1 19" filter="url(#warmGlow)"/>' +
-        '<path d="' + gd + '" fill="none" stroke="#C79A4E" stroke-opacity=".65" stroke-width="1.3"/>' +
-        '<path d="' + gd + '" fill="none" stroke="#FFE9B4" stroke-width="3.6" stroke-linecap="round" stroke-dasharray=".1 19"/>' +
-      '</g>';
-
-    /* ---------- 오너먼트 ---------- */
-    let orns = '';
-    TREE_ORN.forEach(function(o, i){
-      const on = (o.order + 1) <= bodyLit;
-      orns += '<g class="orn' + (on ? ' on' : '') + '" transform="translate(' + fx(o.x) + ' ' + fx(o.y) + ')"' +
-        ' style="color:' + (on ? o.color : '#8B81A6') + ';animation-delay:' + fx((i % 9) * 0.19) + 's">' +
-        (o.hang ? '<line x1="0" y1="' + fx(-o.r - 5.5) + '" x2="0" y2="' + fx(-o.r - 0.4) + '" stroke="' + (on ? '#FFE7B0' : '#9A90B4') + '" stroke-opacity=".5" stroke-width="1"/>' : '') +
-        '<ellipse cx="' + fx(o.r * 0.22) + '" cy="' + fx(o.r * 0.92) + '" rx="' + fx(o.r * 0.7) + '" ry="' + fx(o.r * 0.26) + '" fill="#032018" opacity=".2"/>' +
-        ornShape(o.kind, o.r, o.gi, o.tilt) +
-        '</g>';
-    });
-
-    /* ---------- 화분 · 선물 ---------- */
-    const pot =
-      '<g>' +
-        '<path d="M136 345 H184 L178 371 Q160 376 142 371 Z" fill="url(#woodPot)"/>' +
-        '<rect x="132" y="336" width="56" height="12" rx="5" fill="url(#woodPot)"/>' +
-        '<path d="M132 338 Q160 334 188 338" fill="none" stroke="#FFF6E4" stroke-opacity=".6" stroke-width="2.6" stroke-linecap="round"/>' +
-        '<path d="M141 352 V366 M160 350 V368 M179 352 V366" stroke="#5E3A1F" stroke-opacity=".3" stroke-width="1.1"/>' +
-        '<path d="M137 344 H183" stroke="#5E3A1F" stroke-opacity=".35" stroke-width="1.4"/>' +
-      '</g>';
-
-    const gifts =
-      '<g transform="translate(102 352)">' +
-        '<rect x="-15" y="-14" width="30" height="24" rx="3" fill="#E0576F"/>' +
-        '<rect x="-15" y="-14" width="30" height="7" rx="3" fill="#FFFFFF" opacity=".14"/>' +
-        '<rect x="-3.4" y="-14" width="6.8" height="24" fill="#FFE7A8"/>' +
-        '<rect x="-15" y="-5" width="30" height="5.6" fill="#FFE7A8" opacity=".92"/>' +
-        '<path d="M0 -14 C -9 -25, -17 -19, -3 -14 Z" fill="#F7C75A"/>' +
-        '<path d="M0 -14 C 9 -25, 17 -19, 3 -14 Z" fill="#F7C75A"/>' +
-      '</g>' +
-      '<g transform="translate(222 354)">' +
-        '<rect x="-12" y="-11" width="24" height="20" rx="3" fill="#5FA8E0"/>' +
-        '<rect x="-12" y="-11" width="24" height="6" rx="3" fill="#FFFFFF" opacity=".16"/>' +
-        '<rect x="-3" y="-11" width="6" height="20" fill="#EAF6FF"/>' +
-        '<rect x="-12" y="-3.6" width="24" height="4.8" fill="#EAF6FF" opacity=".9"/>' +
-        '<path d="M0 -11 C -7 -20, -14 -15, -2.6 -11 Z" fill="#EAF6FF"/>' +
-        '<path d="M0 -11 C 7 -20, 14 -15, 2.6 -11 Z" fill="#EAF6FF"/>' +
-      '</g>' +
-      '<g transform="translate(126 364)">' +
-        '<rect x="-9" y="-8" width="18" height="15" rx="2.6" fill="#C79BFF"/>' +
-        '<rect x="-2.4" y="-8" width="4.8" height="15" fill="#FFF3D0" opacity=".9"/>' +
-        '<rect x="-9" y="-2.6" width="18" height="3.8" fill="#FFF3D0" opacity=".85"/>' +
-      '</g>';
-
-    /* ---------- 꼭대기 별 ---------- */
-    const starG =
-      '<g class="tree-star' + (starOn ? ' on' : '') + '">' +
-        (starOn ? '<circle cx="160" cy="42" r="36" fill="url(#starGlow)"/>' : '') +
-        (starOn ? '<path d="M160 4 V22 M160 62 V80 M126 42 H142 M178 42 H194" stroke="#FFF1C4" stroke-opacity=".45" stroke-width="1.2" stroke-linecap="round"/>' : '') +
-        '<path d="' + starPath(160, 42, 20.5, 8.6) + '" fill="' + (starOn ? '#FFD75E' : '#6E6289') + '" stroke="' + (starOn ? '#FFF0C0' : '#5B5177') + '" stroke-width="1.5" stroke-linejoin="round"/>' +
-        (starOn ? '<path d="' + starPath(160, 42, 20.5, 8.6) + '" fill="url(#starShade)"/>' : '') +
-        (starOn ? '<path d="M160 30.5 L163.4 40.4 L160 38.2 L156.6 40.4 Z" fill="#FFFFFF" opacity=".85"/>' : '') +
-      '</g>';
-
-    /* ---------- 반짝임(완성 시) ---------- */
-    let sparks = '';
-    [[86,116,7],[238,150,6],[62,254,6],[264,292,5],[110,52,5],[196,220,5],[150,286,4]].forEach(function(s, i){
-      sparks += '<path class="tree-spark" d="' + starPath(s[0], s[1], s[2], s[2] * 0.42) +
-        '" fill="#FFF3C4" style="animation-delay:' + fx(i * 0.34) + 's"/>';
-    });
-
-    return '<svg class="tree-svg" viewBox="0 0 320 380" role="img" aria-label="크리스마스 트리, 35개 중 ' + litN + '개 오너먼트 켜짐">' +
-      defs + sky + ground + tiers + treeLighting + garland + orns + pot + gifts + sparks + starG +
-    '</svg>';
-  }
-
-  function renderTree(){
-    if (!el.treeCard) return;
-    const k = curKid();
-    const kid = kidState(k.id);
-    const lit = Math.min(TREE_TOTAL, Math.max(0, Math.round(Number(kid.streak) || 0)));
-    const pct = Math.round((lit / TREE_TOTAL) * 100);
-    const left = TREE_TOTAL - lit;
-    const today = todayStr();
-    const toXmas = daysUntil(TREE_END);
-    const toStart = daysUntil(TREE_START);
-    const complete = lit >= TREE_TOTAL;
-
-    let note;
-    if (complete) {
-      note = '🎉 35일을 모두 채웠어요! 트리가 반짝반짝해요.';
-    } else if (today < TREE_START) {
-      note = '11/21(토)~12/25(금) 35일 챌린지 · 시작까지 ' + Math.max(0, toStart) +
-        '일. 부모 설정의 연속 일수로 오너먼트를 미리 켜 볼 수 있어요.';
-    } else if (today > TREE_END) {
-      note = '11/21(토)~12/25(금) 35일 챌린지가 끝났어요. 내년 겨울에 다시!';
-    } else {
-      note = '11/21(토)~12/25(금) 35일 챌린지 · 크리스마스까지 ' + Math.max(0, toXmas) + '일';
-    }
-
-    el.treeCard.innerHTML =
-      '<div class="card-head"><h2>🎄 크리스마스 트리</h2><span class="badge">' + lit + ' / ' + TREE_TOTAL + '</span></div>' +
-      '<div class="tree-stage' + (complete ? ' done' : '') + '">' + treeSvg(lit) + '</div>' +
-      '<div class="tree-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
-      '<div class="tree-legend"><span>' + k.emoji + ' ' + k.name + '</span><span>오너먼트 ' + lit + '개' +
-        (left > 0 ? ' · ' + left + '개 남았어요' : ' · 완성!') + '</span></div>' +
-      (complete ? '<div class="tree-done">🎄 크리스마스 트리 완성! ⭐</div>' : '') +
-      '<p class="tree-note">' + note + '</p>';
-  }
-
   /* ===================== 렌더: 오늘의 할 일 ===================== */
   let justChecked = null;
 
@@ -2099,8 +1634,8 @@
         '<span>' + (complete ? '오늘 ' + TASKS.length + '개 완료! 정말 대단해요 🎉' : (TASKS.length - n) + '개 남았어요') + '</span></div>';
   }
 
-  /* ===================== 렌더: 흘려듣기 (분) ===================== */
-  let listenBump = false;
+  /* ===================== 렌더: 공부 시간 기록 (분) ===================== */
+  let timeBump = '';   /* 방금 값을 바꾼 시간 항목 id — 숫자가 톡 튀는 애니메이션용 */
 
   function fmtMin(m){
     const v = Math.max(0, Math.round(Number(m) || 0));
@@ -2110,27 +1645,73 @@
     return h + '시간' + (r ? ' ' + r + '분' : '');
   }
 
-  function listenMap(kid){
-    return (kid.listen && typeof kid.listen === 'object' && !Array.isArray(kid.listen)) ? kid.listen : {};
+  function fmtBook(n){
+    return Math.max(0, Math.round(Number(n) || 0)) + '권';
   }
 
-  function listenToday(kid){
-    const v = Math.round(Number(listenMap(kid)[todayStr()]));
-    return isFinite(v) && v > 0 ? v : 0;
+  function clampInt(v, max){
+    const n = Math.round(Number(v) || 0);
+    if (!isFinite(n)) return 0;
+    return Math.max(0, Math.min(max, n));
   }
 
-  function listenSum(kid, sinceStr){
-    const map = listenMap(kid);
+  function dayMap(kid, key){
+    return (kid && kid[key] && typeof kid[key] === 'object' && !Array.isArray(kid[key])) ? kid[key] : {};
+  }
+
+  function ensureDayMap(kid, key){
+    if (!kid[key] || typeof kid[key] !== 'object' || Array.isArray(kid[key])) kid[key] = {};
+    return kid[key];
+  }
+
+  function dayRec(kid, key, d){
+    const rec = dayMap(kid, key)[d];
+    return (rec && typeof rec === 'object' && !Array.isArray(rec)) ? rec : {};
+  }
+
+  function timeToday(kid, id){ return clampInt(dayRec(kid, 'time', todayStr())[id], TIME_MAX); }
+  function bookToday(kid, id){ return clampInt(dayRec(kid, 'books', todayStr())[id], BOOK_MAX); }
+
+  /* 항목별 합계: sinceStr 을 주면 그 날짜 이후만 셉니다. */
+  function itemSum(kid, key, id, sinceStr, max){
+    const map = dayMap(kid, key);
     let sum = 0;
     Object.keys(map).forEach(function(d){
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
       if (sinceStr && d < sinceStr) return;
-      const v = Math.round(Number(map[d]));
-      if (isFinite(v) && v > 0) sum += v;
+      const rec = map[d];
+      if (!rec || typeof rec !== 'object') return;
+      sum += clampInt(rec[id], max);
     });
     return sum;
   }
 
-  function listenWeekStart(){ return dateStr(new Date(Date.now() - 6 * DAY_MS)); }
+  function timeSum(kid, id, sinceStr){ return itemSum(kid, 'time', id, sinceStr, TIME_MAX); }
+  function bookSum(kid, id, sinceStr){ return itemSum(kid, 'books', id, sinceStr, BOOK_MAX); }
+
+  function timeTotal(kid){
+    return TIME_ITEMS.reduce(function(s, it){ return s + timeSum(kid, it.id, null); }, 0);
+  }
+
+  function bookTotal(kid){
+    return BOOK_ITEMS.reduce(function(s, it){ return s + bookSum(kid, it.id, null); }, 0);
+  }
+
+  function timeDayTotal(kid, d){
+    return TIME_ITEMS.reduce(function(s, it){ return s + clampInt(dayRec(kid, 'time', d)[it.id], TIME_MAX); }, 0);
+  }
+
+  function bookDayTotal(kid, d){
+    return BOOK_ITEMS.reduce(function(s, it){ return s + clampInt(dayRec(kid, 'books', d)[it.id], BOOK_MAX); }, 0);
+  }
+
+  function weekStartStr(){ return dateStr(new Date(Date.now() - 6 * DAY_MS)); }
+
+  function recentDays(n){
+    const out = [];
+    for (let i = 0; i < n; i++) out.push(dateStr(new Date(Date.now() - i * DAY_MS)));
+    return out;
+  }
 
   function shortDay(d){
     const p = String(d).split('-');
@@ -2138,114 +1719,270 @@
     return Number(p[1]) + '/' + Number(p[2]);
   }
 
-  function renderListen(){
-    if (!el.listenCard) return;
+  /* 시트가 돌려준 아이별 누적 합계 (이 기기 기록이 더 적을 때만 채워 보여 줍니다) */
+  function sheetTotalOf(kidName, kind){
+    const v = sheetTotals && sheetTotals[kidName];
+    if (v == null) return 0;
+    if (typeof v === 'number') return kind === 'minutes' ? Math.max(0, Math.round(v)) : 0;
+    return Math.max(0, Math.round(Number(v[kind]) || 0));
+  }
+
+  function renderTime(){
+    if (!el.timeCard) return;
     const k = curKid();
     const kid = kidState(k.id);
-    const map = listenMap(kid);
     const t = todayStr();
-    const today = listenToday(kid);
-    const week = listenSum(kid, listenWeekStart());
-    const total = Math.max(listenSum(kid, null), Math.round(Number(sheetTotals[k.name]) || 0));
+    const days = recentDays(5);
+    const weekStart = weekStartStr();
+    const total = Math.max(timeTotal(kid), sheetTotalOf(k.name, 'minutes'));
 
-    const recent = Object.keys(map)
-      .filter(function(d){ const v = Math.round(Number(map[d])); return isFinite(v) && v > 0; })
-      .sort()
-      .reverse()
-      .slice(0, 5)
-      .map(function(d){
-        const isToday = d === t;
-        return '<span class="l-chip' + (isToday ? ' today' : '') + '">' +
-          (isToday ? '오늘' : shortDay(d)) + ' ' + Math.round(Number(map[d])) + '분</span>';
-      }).join('');
+    const items = TIME_ITEMS.map(function(it){
+      const today = timeToday(kid, it.id);
+      const week = timeSum(kid, it.id, weekStart);
+      const all = timeSum(kid, it.id, null);
+      const quick = TIME_QUICK.map(function(m){
+        return '<button class="io-q plus" data-action="time-add" data-item="' + it.id + '" data-min="' + m + '">+' + m + '분</button>';
+      }).join('') +
+      '<button class="io-q minus" data-action="time-add" data-item="' + it.id + '" data-min="-' + TIME_STEP + '">−' + TIME_STEP + '분</button>';
 
-    const quick = LISTEN_QUICK.map(function(m){
-      return '<button class="l-quick" data-action="listen-add" data-min="' + m + '">+' + m + '분</button>';
+      return '<div class="io-item">' +
+        '<div class="io-top">' +
+          '<span class="io-emoji" aria-hidden="true">' + it.emoji + '</span>' +
+          '<span class="io-name">' + esc(it.label) + '</span>' +
+          '<span class="io-today' + (timeBump === it.id ? ' bump' : '') + '"><b>' + today + '</b>분</span>' +
+        '</div>' +
+        '<div class="io-sub">이번 주 <b>' + fmtMin(week) + '</b> · 누적 <b>' + fmtMin(all) + '</b></div>' +
+        '<div class="io-quick">' + quick + '</div>' +
+        '<div class="io-set">' +
+          '<input type="number" id="time-' + it.id + '" min="0" max="' + TIME_MAX + '" step="1" inputmode="numeric" ' +
+            'value="' + today + '" aria-label="' + esc(it.label) + ' 오늘 분 입력">' +
+          '<span class="u">분</span>' +
+          '<button class="btn tiny primary" data-action="time-set" data-item="' + it.id + '">저장</button>' +
+          '<button class="io-del" data-action="time-clear" data-item="' + it.id + '">지우기</button>' +
+        '</div>' +
+      '</div>';
     }).join('');
 
-    el.listenCard.innerHTML =
-      '<div class="card-head"><h2>🎧 흘려듣기</h2><span class="badge">누적 ' + fmtMin(total) + '</span></div>' +
-      '<div class="listen-hero">' +
-        '<div class="listen-min' + (listenBump ? ' bump' : '') + '">' +
-          '<b>' + today + '</b><span class="u">분</span>' +
-        '</div>' +
-        '<div class="listen-sub"><b>' + k.emoji + ' ' + k.name + ' 오늘</b><br>' +
-          '<span class="listen-week">이번 주 ' + fmtMin(week) + '</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="listen-quick">' + quick + '</div>' +
-      '<div class="listen-set">' +
-        '<span class="l-lab">직접 입력</span>' +
-        '<input type="number" id="listenMinutes" min="0" max="' + LISTEN_MAX + '" step="1" inputmode="numeric" ' +
-          'value="' + (today > 0 ? today : '') + '" placeholder="몇 분" aria-label="오늘 흘려듣기 분">' +
-        '<span class="u">분</span>' +
-        '<button class="btn tiny primary" data-action="listen-set">저장</button>' +
-      '</div>' +
-      (recent
-        ? '<div class="listen-recent"><span class="l-lab">최근</span>' + recent + '</div>'
-        : '<p class="listen-note">오늘 몇 분 흘려들었는지 위 버튼을 누르거나 직접 입력해 두면, 여기에 날짜별로 쌓여요.</p>') +
-      '<div class="listen-tools">' +
-        '<button class="l-link" data-action="listen-add" data-min="-10">−10분</button>' +
-        '<button class="l-link" data-action="listen-clear">오늘 기록 지우기</button>' +
-      '</div>';
+    const head = '<tr><th>날짜</th>' +
+      TIME_ITEMS.map(function(it){ return '<th>' + esc(it.short) + '</th>'; }).join('') + '<th>합계</th></tr>';
 
-    listenBump = false;
+    const body = days.map(function(d){
+      let sum = 0;
+      const cells = TIME_ITEMS.map(function(it){
+        const v = clampInt(dayRec(kid, 'time', d)[it.id], TIME_MAX);
+        sum += v;
+        return '<td class="' + (v ? '' : 'zero') + '">' + (v ? v : '·') + '</td>';
+      }).join('');
+      return '<tr class="' + (d === t ? 'is-today' : '') + '">' +
+        '<td>' + (d === t ? '오늘' : shortDay(d)) + '</td>' + cells +
+        '<td class="total' + (sum ? '' : ' zero') + '">' + (sum ? sum : '·') + '</td></tr>';
+    }).join('');
+
+    el.timeCard.innerHTML =
+      '<div class="card-head"><h2>⏱️ 공부 시간</h2><span class="badge">누적 ' + fmtMin(total) + '</span></div>' +
+      '<div class="io-list">' + items + '</div>' +
+      '<div class="io-hist">' +
+        '<p class="io-hist-head">최근 5일 <span>단위: 분</span></p>' +
+        '<table class="io-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      '</div>' +
+      '<p class="io-foot">버튼을 누르면 오늘 기록에 더해져요. 직접 입력하고 [저장]해도 됩니다.</p>';
+
+    timeBump = '';
   }
 
-  /* ===================== 동작: 흘려듣기 (분) ===================== */
-  function ensureListenMap(kid){
-    if (!kid.listen || typeof kid.listen !== 'object' || Array.isArray(kid.listen)) kid.listen = {};
-    return kid.listen;
-  }
+  /* ===================== 렌더: 읽은 책 권수 (권) ===================== */
+  let bookBump = '';
 
-  /* 빠른 버튼(+10/+20/+30/−10): 오늘 분 수에 더하거나 뻘니다. */
-  function listenAdd(delta){
+  function renderBooks(){
+    if (!el.bookCard) return;
     const k = curKid();
     const kid = kidState(k.id);
-    const map = ensureListenMap(kid);
     const t = todayStr();
-    const before = Math.round(Number(map[t]) || 0);
-    const next = Math.max(0, Math.min(LISTEN_MAX, before + (Number(delta) || 0)));
+    const days = recentDays(5);
+    const weekStart = weekStartStr();
+    const total = Math.max(bookTotal(kid), sheetTotalOf(k.name, 'books'));
+
+    const items = BOOK_ITEMS.map(function(it){
+      const today = bookToday(kid, it.id);
+      const week = bookSum(kid, it.id, weekStart);
+      const all = bookSum(kid, it.id, null);
+      const quick = BOOK_QUICK.map(function(n){
+        return '<button class="io-q plus" data-action="book-add" data-item="' + it.id + '" data-n="' + n + '">+' + n + '권</button>';
+      }).join('') +
+      '<button class="io-q minus" data-action="book-add" data-item="' + it.id + '" data-n="-1">−1권</button>';
+
+      return '<div class="io-item">' +
+        '<div class="io-top">' +
+          '<span class="io-emoji" aria-hidden="true">' + it.emoji + '</span>' +
+          '<span class="io-name">' + esc(it.label) + '</span>' +
+          '<span class="io-today' + (bookBump === it.id ? ' bump' : '') + '"><b>' + today + '</b>권</span>' +
+        '</div>' +
+        '<div class="io-sub">이번 주 <b>' + fmtBook(week) + '</b> · 누적 <b>' + fmtBook(all) + '</b></div>' +
+        '<div class="io-quick three">' + quick + '</div>' +
+        '<div class="io-set">' +
+          '<input type="number" id="book-' + it.id + '" min="0" max="' + BOOK_MAX + '" step="1" inputmode="numeric" ' +
+            'value="' + today + '" aria-label="' + esc(it.label) + ' 오늘 권수 입력">' +
+          '<span class="u">권</span>' +
+          '<button class="btn tiny primary" data-action="book-set" data-item="' + it.id + '">저장</button>' +
+          '<button class="io-del" data-action="book-clear" data-item="' + it.id + '">지우기</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    const head = '<tr><th>날짜</th>' +
+      BOOK_ITEMS.map(function(it){ return '<th>' + esc(it.short) + '</th>'; }).join('') + '<th>합계</th></tr>';
+
+    const body = days.map(function(d){
+      let sum = 0;
+      const cells = BOOK_ITEMS.map(function(it){
+        const v = clampInt(dayRec(kid, 'books', d)[it.id], BOOK_MAX);
+        sum += v;
+        return '<td class="' + (v ? '' : 'zero') + '">' + (v ? v : '·') + '</td>';
+      }).join('');
+      return '<tr class="' + (d === t ? 'is-today' : '') + '">' +
+        '<td>' + (d === t ? '오늘' : shortDay(d)) + '</td>' + cells +
+        '<td class="total' + (sum ? '' : ' zero') + '">' + (sum ? sum : '·') + '</td></tr>';
+    }).join('');
+
+    el.bookCard.innerHTML =
+      '<div class="card-head"><h2>📚 읽은 책</h2><span class="badge">누적 ' + fmtBook(total) + '</span></div>' +
+      '<div class="io-list">' + items + '</div>' +
+      '<div class="io-hist">' +
+        '<p class="io-hist-head">최근 5일 <span>단위: 권</span></p>' +
+        '<table class="io-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table>' +
+      '</div>' +
+      '<p class="io-foot">읽은 책을 한 권씩 더해 두면 이번 주·누적 권수가 저절로 쌓여요.</p>';
+
+    bookBump = '';
+  }
+
+  /* ===================== 동작: 시간 · 권수 ===================== */
+  function timeAdd(itemId, delta){
+    if (!TIME_ITEMS.some(function(x){ return x.id === itemId; })) return;
+    const k = curKid();
+    const kid = kidState(k.id);
+    const t = todayStr();
+    const map = ensureDayMap(kid, 'time');
+    const rec = Object.assign({}, dayRec(kid, 'time', t));
+    const before = clampInt(rec[itemId], TIME_MAX);
+    const next = clampInt(before + (Number(delta) || 0), TIME_MAX);
     if (next === before) {
       if (before === 0) toast('오늘은 아직 0분이에요. 직접 입력해도 좋아요!');
       return;
     }
-    map[t] = next;
-    listenBump = true;
+    if (next > 0) rec[itemId] = next;
+    else delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
+    else delete map[t];
+    timeBump = itemId;
     saveAndSync(k.id);
-    renderListen();
+    renderTime();
     playTick();
   }
 
-  /* 직접 입력 + 저장: 오늘 분 수를 입력한 값으로 맞춥니다. */
-  function listenSet(val){
+  function timeSet(itemId){
+    if (!TIME_ITEMS.some(function(x){ return x.id === itemId; })) return;
     const k = curKid();
     const kid = kidState(k.id);
-    const raw = String(val == null ? '' : val).trim();
+    const input = $('#time-' + itemId);
+    const raw = String(input ? input.value : '').trim();
     if (!raw) { toast('몇 분인지 먼저 적어 주세요'); return; }
-    const map = ensureListenMap(kid);
     const t = todayStr();
-    const v = Math.max(0, Math.min(LISTEN_MAX, Math.round(Number(raw) || 0)));
-    if (v > 0) map[t] = v;
+    const map = ensureDayMap(kid, 'time');
+    const rec = Object.assign({}, dayRec(kid, 'time', t));
+    const v = clampInt(raw, TIME_MAX);
+    if (v > 0) rec[itemId] = v;
+    else delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
+    else delete map[t];
+    timeBump = itemId;
+    saveAndSync(k.id);
+    renderTime();
+    playTick();
+    const it = TIME_ITEMS.filter(function(x){ return x.id === itemId; })[0];
+    toast('⏱️ 오늘 ' + it.label + ' ' + fmtMin(v) + ' 저장!');
+  }
+
+  function timeClear(itemId){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const t = todayStr();
+    const cur = timeToday(kid, itemId);
+    if (!cur) { toast('오늘 기록이 아직 없어요'); return; }
+    const it = TIME_ITEMS.filter(function(x){ return x.id === itemId; })[0];
+    if (!confirm(k.name + ' 오늘 ' + it.label + ' ' + fmtMin(cur) + ' 기록을 지울까요?')) return;
+    const map = ensureDayMap(kid, 'time');
+    const rec = Object.assign({}, dayRec(kid, 'time', t));
+    delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
     else delete map[t];
     saveAndSync(k.id);
-    renderListen();
-    playTick();
-    toast('🎧 오늘 흘려듣기 ' + fmtMin(v) + ' 저장!');
+    renderTime();
+    toast('오늘 ' + it.label + ' 기록을 지웠어요');
   }
 
-  function listenClear(){
+  function bookAdd(itemId, delta){
+    if (!BOOK_ITEMS.some(function(x){ return x.id === itemId; })) return;
     const k = curKid();
     const kid = kidState(k.id);
     const t = todayStr();
-    const cur = listenToday(kid);
-    if (!cur) { toast('오늘 기록이 아직 없어요'); return; }
-    if (!confirm(k.name + ' 오늘 흘려듣기 ' + cur + '분 기록을 지울까요?')) return;
-    ensureListenMap(kid);
-    delete kid.listen[t];
+    const map = ensureDayMap(kid, 'books');
+    const rec = Object.assign({}, dayRec(kid, 'books', t));
+    const before = clampInt(rec[itemId], BOOK_MAX);
+    const next = clampInt(before + (Number(delta) || 0), BOOK_MAX);
+    if (next === before) {
+      if (before === 0) toast('오늘은 아직 0권이에요. 직접 입력해도 좋아요!');
+      return;
+    }
+    if (next > 0) rec[itemId] = next;
+    else delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
+    else delete map[t];
+    bookBump = itemId;
     saveAndSync(k.id);
-    renderListen();
-    toast('오늘 흘려듣기 기록을 지웠어요');
+    renderBooks();
+    playTick();
+  }
+
+  function bookSet(itemId){
+    if (!BOOK_ITEMS.some(function(x){ return x.id === itemId; })) return;
+    const k = curKid();
+    const kid = kidState(k.id);
+    const input = $('#book-' + itemId);
+    const raw = String(input ? input.value : '').trim();
+    if (!raw) { toast('몇 권인지 먼저 적어 주세요'); return; }
+    const t = todayStr();
+    const map = ensureDayMap(kid, 'books');
+    const rec = Object.assign({}, dayRec(kid, 'books', t));
+    const v = clampInt(raw, BOOK_MAX);
+    if (v > 0) rec[itemId] = v;
+    else delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
+    else delete map[t];
+    bookBump = itemId;
+    saveAndSync(k.id);
+    renderBooks();
+    playTick();
+    const it = BOOK_ITEMS.filter(function(x){ return x.id === itemId; })[0];
+    toast('📚 오늘 ' + it.label + ' ' + fmtBook(v) + ' 저장!');
+  }
+
+  function bookClear(itemId){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const t = todayStr();
+    const cur = bookToday(kid, itemId);
+    if (!cur) { toast('오늘 기록이 아직 없어요'); return; }
+    const it = BOOK_ITEMS.filter(function(x){ return x.id === itemId; })[0];
+    if (!confirm(k.name + ' 오늘 ' + it.label + ' ' + fmtBook(cur) + ' 기록을 지울까요?')) return;
+    const map = ensureDayMap(kid, 'books');
+    const rec = Object.assign({}, dayRec(kid, 'books', t));
+    delete rec[itemId];
+    if (Object.keys(rec).length) map[t] = rec;
+    else delete map[t];
+    saveAndSync(k.id);
+    renderBooks();
+    toast('오늘 ' + it.label + ' 기록을 지웠어요');
   }
 
   /* ===================== 렌더: 쿠폰함 ===================== */
@@ -2779,9 +2516,6 @@
         return '<div class="reward">🎁 새 쿠폰! ' + r.emoji + ' ' + r.title + '</div>';
       }).join('');
     }
-    if (kid && kid.streak === TREE_TOTAL) {
-      rewardHtml += '<div class="reward">🎄 크리스마스 트리 완성! 꼭대기 별이 빛나고 있어요 ⭐</div>';
-    }
 
     el.highfiveContent.innerHTML =
       '<span class="hero">🙌</span>' +
@@ -2884,7 +2618,7 @@
           '</div>' +
           '<p class="sheet-status' + (sheetStatus.kind ? ' ' + sheetStatus.kind : '') + '" id="sheetStatus">' +
             esc(sheetStatus.text || (sheetCfg.url ? '연결된 주소로 시트에 저장돼요.' : '아직 연결하지 않았어요. 비워 두면 이 기기에만 저장돼요.')) + '</p>' +
-          '<p class="set-help">주소를 넣으면 영어책·한글책 체크와 흘려듣기 분이 그때마다 시트에 한 줄로 쌓이고, 새로 고칠 때 시트 기록을 다시 불러와 다른 가족 폰과 같은 기록을 봐요. 붙여 넣을 Apps Script 코드는 노션 “🎫 가족 쿠폰 대시보드” 페이지 아래에 있어요.</p>' +
+          '<p class="set-help">주소를 넣으면 할 일 7개 체크와 시간 4종(분)·권수 2종(권)이 그때마다 시트 “독서기록”에 (날짜, 아이) 한 줄로 쌓이고, 새로 고칠 때 시트 기록을 다시 불러와 다른 가족 폰과 같은 기록을 봐요. 붙여 넣을 Apps Script 코드는 노션 “⚙️ 구글 시트 Apps Script 코드 (Code.gs)” 페이지에 있어요.</p>' +
         '</div>' +
         '<div class="set-group">' +
           '<h3>데이터</h3>' +
@@ -2893,7 +2627,7 @@
             '<button class="btn tiny" data-action="reset-timer">타이머 끄기</button>' +
           '</div>' +
           '<p class="set-help">' + (sheetOn()
-            ? '이 기기 브라우저에 저장하고, 같은 내용을 구글 시트에도 쌓아요. 다른 기기에서도 불러올 수 있어요.'
+            ? '이 기기 브라우저에 저장하고, 같은 내용을 구글 시트에도 쌓아요. 다른 기기에서도 불러올 수 있어요. [모든 기록 초기화]를 누르면 시트의 독서기록도 함께 지워요.'
             : '기록은 이 기기의 브라우저에만 저장돼요. 다른 기기와 자동으로 맞춰지지 않아요.') + '</p>' +
         '</div>' +
       '</details>';
@@ -2914,9 +2648,9 @@
     renderTabs();
     renderStreak();
     renderNewYear();
-    renderTree();
     renderTasks();
-    renderListen();
+    renderTime();
+    renderBooks();
     renderCoupons();
     renderMission();
     renderTimer();
@@ -3081,7 +2815,7 @@
   }
 
   function resetAll(){
-    if (!confirm('모든 기록(체크·흘려듣기·연속 일수·쿠폰·미션)을 지울까요? 되돌릴 수 없어요.')) return;
+    if (!confirm('모든 기록(할 일 체크·시간·권수·연속 일수·쿠폰·미션)을 지울까요? 구글 시트에 연결돼 있으면 시트의 독서기록도 함께 지워요. 되돌릴 수 없어요.')) return;
     if (!confirm('정말 지울까요? 한 번 더 확인해 주세요!')) return;
     state = defaultState();
     save();
@@ -3091,6 +2825,17 @@
     ensureQuiz(); quizView = 'today';
     sheetTotals = {};
     renderAll();
+    /* 시트가 연결돼 있으면 시트 기록도 함께 비웁니다. (안 비우면 새로 고칠 때 지운 기록이 되살아나요) */
+    if (sheetOn()) {
+      setSheetStatus('busy', '시트 기록을 지우는 중…');
+      sheetPost({ action:'clear' }).then(function(out){
+        setSheetStatus('ok', '시트 기록도 지웠어요 ✓ (' + (Number(out.cleared) || 0) + '줄) ' + timeHHMM(new Date()));
+        sheetTotals = {};
+        renderAll();
+      }).catch(function(err){
+        setSheetStatus('err', '시트 기록은 지우지 못했어요 · ' + (err && err.message ? err.message : '연결을 확인해 주세요'));
+      });
+    }
     toast('모든 기록을 초기화했어요');
   }
 
@@ -3119,12 +2864,12 @@
       case 'quiz-retry': retryQuiz(); break;
       case 'quiz-practice': startPracticeQuiz(); break;
       case 'quiz-today': backToTodayQuiz(); break;
-      case 'listen-add': listenAdd(Number(target.dataset.min) || 0); break;
-      case 'listen-set':
-        var listenInput = $('#listenMinutes');
-        listenSet(listenInput ? listenInput.value : 0);
-        break;
-      case 'listen-clear': listenClear(); break;
+      case 'time-add': timeAdd(target.dataset.item, Number(target.dataset.min) || 0); break;
+      case 'time-set': timeSet(target.dataset.item); break;
+      case 'time-clear': timeClear(target.dataset.item); break;
+      case 'book-add': bookAdd(target.dataset.item, Number(target.dataset.n) || 0); break;
+      case 'book-set': bookSet(target.dataset.item); break;
+      case 'book-clear': bookClear(target.dataset.item); break;
       case 'sheet-save': sheetSaveAndTest(); break;
       case 'sheet-load': sheetLoad(false); break;
       case 'sheet-unlink': sheetUnlink(); break;
@@ -3161,12 +2906,12 @@
   });
 
   document.addEventListener('keydown', function(e){
-    if (e.key !== 'Enter' || !e.target) return;
-    if (e.target.id === 'missionInput') addMission();
-    else if (e.target.id === 'listenMinutes' || e.target.id === 'sheetUrl') {
-      if (e.target.id === 'sheetUrl') sheetSaveAndTest();
-      else listenSet(e.target.value);
-    }
+    if (e.key !== 'Enter' || !e.target || !e.target.id) return;
+    var id = e.target.id;
+    if (id === 'missionInput') addMission();
+    else if (id === 'sheetUrl') sheetSaveAndTest();
+    else if (id.indexOf('time-') === 0) timeSet(id.slice(5));
+    else if (id.indexOf('book-') === 0) bookSet(id.slice(5));
   });
 
   document.addEventListener('visibilitychange', function(){
