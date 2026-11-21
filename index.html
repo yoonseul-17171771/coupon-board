@@ -176,17 +176,57 @@
     padding:1px 8px;background:rgba(255,255,255,.75);pointer-events:none;
     letter-spacing:.02em;
   }
-  .stamp.pop{animation:stampPop .46s cubic-bezier(.18,.9,.24,1.5) both}
-  @keyframes stampPop{
-    0%{transform:translateY(-50%) rotate(-30deg) scale(2.6);opacity:0}
-    55%{transform:translateY(-50%) rotate(-6deg) scale(.9);opacity:1}
-    75%{transform:translateY(-50%) rotate(-10deg) scale(1.08)}
+  .stamp.soft{animation:stampSoft .3s ease-out both}
+  @keyframes stampSoft{
+    0%{transform:translateY(-50%) rotate(-9deg) scale(.96);opacity:0}
     100%{transform:translateY(-50%) rotate(-9deg) scale(1);opacity:1}
   }
   .task-foot{margin-top:11px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-3)}
   .task-foot .dots{display:flex;gap:4px}
   .task-foot .dot{width:9px;height:9px;border-radius:99px;background:#E7DEFA}
   .task-foot .dot.on{background:linear-gradient(135deg,#B9A6F0,#8E74DE)}
+
+  /* ---------- 흘려듣기 (분) ---------- */
+  .listen-hero{display:flex;align-items:center;gap:12px;margin:2px 0 12px}
+  .listen-min{
+    display:flex;align-items:baseline;gap:3px;padding:8px 15px;border-radius:18px;
+    background:linear-gradient(140deg,#EFF4FF,#F6EEFF);border:2px solid #E7E9FF;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.65);flex:0 0 auto;
+  }
+  .listen-min b{font-size:32px;line-height:1;letter-spacing:-.03em;color:var(--lilac-3);font-variant-numeric:tabular-nums}
+  .listen-min span.u{font-size:13px;font-weight:800;color:var(--ink-3)}
+  .listen-min.bump{animation:listenBump .34s ease-out both}
+  @keyframes listenBump{0%{transform:scale(1)}42%{transform:scale(1.08)}100%{transform:scale(1)}}
+  .listen-sub{min-width:0;font-size:12.5px;font-weight:700;color:var(--ink-2);line-height:1.5}
+  .listen-sub b{font-size:13.5px;color:var(--ink)}
+  .listen-week{color:var(--ink-3);font-weight:600;font-size:11.5px}
+  .listen-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .l-quick{
+    padding:12px 4px;border-radius:15px;font-size:14.5px;font-weight:800;min-height:48px;
+    background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;
+    box-shadow:0 6px 14px rgba(142,116,222,.26);
+  }
+  .l-quick:active{transform:scale(.96)}
+  .listen-set{display:flex;align-items:center;gap:7px;margin-top:9px}
+  .l-lab{font-size:11.5px;font-weight:800;color:var(--ink-3);flex:0 0 auto}
+  .listen-set input{
+    flex:0 0 78px;min-width:0;width:78px;padding:10px 6px;border-radius:14px;border:2px solid var(--line);
+    background:#FCFAFF;font-size:15px;font-weight:800;text-align:center;outline:none;
+    -moz-appearance:textfield;
+  }
+  .listen-set input::-webkit-outer-spin-button,.listen-set input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .listen-set input:focus{border-color:var(--lilac);background:#fff}
+  .listen-set .u{font-size:13px;font-weight:800;color:var(--ink-3);margin-left:-2px;flex:0 0 auto}
+  .listen-set .btn{flex:1;max-width:200px}
+  .listen-recent{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:11px}
+  .l-chip{
+    font-size:11.5px;font-weight:800;color:var(--ink-2);background:#FBF8FF;
+    border:1.5px solid #EFE8FB;padding:4px 9px;border-radius:999px;
+  }
+  .l-chip.today{background:var(--lilac-soft);border-color:#DDD0FB;color:var(--lilac-3)}
+  .listen-note{margin:10px 0 0;font-size:12px;font-weight:600;color:var(--ink-3);line-height:1.55}
+  .listen-tools{display:flex;gap:14px;margin-top:10px;justify-content:flex-end}
+  .l-link{font-size:11.5px;font-weight:800;color:var(--ink-3);text-decoration:underline;padding:2px 1px;min-height:28px}
 
   /* ---------- coupons ---------- */
   .coupon-list{display:flex;flex-direction:column;gap:11px}
@@ -288,6 +328,164 @@
   .timer-actions .btn{flex:1;padding:11px 8px;font-size:13.5px;min-height:44px}
   .timer-note{margin-top:10px;font-size:12px;color:var(--ink-3);font-weight:600;text-align:center}
 
+  /* ---------- view switch ---------- */
+  .viewtabs{
+    max-width:1080px;margin:0 auto;padding:0 18px 12px;display:flex;gap:9px;
+  }
+  .vtab{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:10px 10px;border-radius:15px;border:2px solid var(--line);background:#fff;
+    font-size:13.5px;font-weight:800;color:var(--ink-2);min-height:46px;
+    transition:transform .14s ease,background .18s ease,color .18s ease;
+  }
+  .vtab:active{transform:scale(.97)}
+  .vtab.active{background:var(--lilac-soft);border-color:#DDD0FB;color:var(--lilac-3)}
+
+  /* ---------- quiz ---------- */
+  .quiz-wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+  .quiz-card{padding:16px 16px 18px}
+  .quiz-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:-2px 0 12px}
+  .quiz-meta .book{
+    font-size:11.5px;font-weight:800;color:#4E7BA8;background:#EEF7FF;
+    border:1.5px solid #DCEBF9;padding:3px 8px;border-radius:999px;
+  }
+  .quiz-meta .muted{font-size:11.5px}
+  .q-item{
+    border:2px solid #F2ECFF;border-radius:20px;padding:13px 12px 12px;
+    background:#FCFAFF;margin-bottom:11px;
+  }
+  .q-head{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+  .q-no{
+    width:26px;height:26px;flex:0 0 26px;border-radius:9px;
+    background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff;
+    font-size:13px;font-weight:900;display:grid;place-items:center;
+  }
+  .q-chip{font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px}
+  .q-chip.word{background:#FFF3E0;color:#B4762B}
+  .q-chip.read{background:#EFF6FF;color:#4E7BA8}
+  .q-chip.book{background:var(--lilac-soft);color:var(--lilac-3)}
+  .q-text{font-size:15.5px;font-weight:800;line-height:1.55;margin:0 0 10px;letter-spacing:-.01em;word-break:keep-all}
+  .q-opt{
+    display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+    padding:11px 12px;border-radius:15px;border:2px solid #EFE8FB;background:#fff;
+    font-size:14px;font-weight:700;color:var(--ink);margin-bottom:7px;min-height:48px;
+    line-height:1.4;transition:transform .12s ease,border-color .16s ease,background .16s ease;
+  }
+  .q-opt:last-child{margin-bottom:0}
+  .q-opt:active{transform:scale(.985)}
+  .q-opt:disabled{cursor:default;opacity:1}
+  .q-opt .k{
+    width:23px;height:23px;flex:0 0 23px;border-radius:8px;background:#F4EEFF;
+    color:var(--lilac-3);font-size:11.5px;font-weight:900;display:grid;place-items:center;
+  }
+  .q-opt .t{flex:1;min-width:0;word-break:keep-all}
+  .q-opt.sel{border-color:var(--lilac);background:#F7F1FF}
+  .q-opt.sel .k{background:linear-gradient(135deg,var(--lilac),var(--lilac-2));color:#fff}
+  .q-opt.ok{border-color:#86D6AE;background:#EDFBF3}
+  .q-opt.ok .k{background:#55BE8C;color:#fff}
+  .q-opt.ok .t{color:#2F7A57}
+  .q-opt.no{border-color:#F3A9A9;background:#FFF2F2}
+  .q-opt.no .k{background:#E58585;color:#fff}
+  .q-opt.no .t{color:#A85656}
+  .q-opt.mark::after{font-size:14px;font-weight:900;line-height:1;margin-left:2px}
+  .q-opt.ok.mark::after{content:'⭕'}
+  .q-opt.no.mark::after{content:'❌'}
+  .q-explain{
+    margin-top:9px;font-size:12.5px;font-weight:700;color:var(--ink-2);line-height:1.6;word-break:keep-all;
+    background:#F6F0FF;border:1.5px solid #EADFFC;border-radius:13px;padding:9px 11px;
+  }
+  .q-explain b{color:var(--lilac-3)}
+  .quiz-score{
+    display:flex;flex-direction:column;align-items:center;gap:2px;
+    padding:12px;border-radius:18px;margin:2px 0 11px;
+    background:linear-gradient(135deg,#FFF6E6,#F4ECFF);border:2px dashed rgba(142,116,222,.4);
+    text-align:center;
+  }
+  .quiz-score .num{font-size:15px;font-weight:800;color:var(--lilac-3)}
+  .quiz-score .num b{font-size:28px;line-height:1;letter-spacing:-.03em}
+  .quiz-score .msg{font-size:12.5px;font-weight:800;color:var(--ink-2);line-height:1.5;word-break:keep-all}
+  .quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+  .quiz-actions .btn{flex:1;min-width:130px}
+  @media (max-width:430px){
+    .quiz-actions{flex-direction:column}
+    .quiz-actions .btn{width:100%}
+  }
+  .quiz-hint{font-size:12px;font-weight:700;color:var(--ink-3);text-align:center;margin:9px 0 0;line-height:1.6;word-break:keep-all}
+  .btn[disabled]{opacity:.45;box-shadow:none}
+  @media (min-width:820px){
+    .quiz-wrap{max-width:840px}
+    .quiz-actions .btn{flex:0 0 auto;min-width:190px}
+  }
+
+  /* ---------- 새해 디데이 배너 ---------- */
+  .newyear{max-width:1080px;margin:0 auto 16px;padding:0 18px}
+  .ny-inner{
+    position:relative;overflow:hidden;display:flex;align-items:center;gap:13px;
+    padding:15px 17px;border-radius:24px;
+    background:
+      radial-gradient(120% 150% at 102% -10%, #EDE2FF 0%, rgba(237,226,255,0) 58%),
+      radial-gradient(120% 150% at -5% 110%, #DCEFFF 0%, rgba(220,239,255,0) 60%),
+      linear-gradient(135deg,#FFFAF0 0%,#F7F1FF 55%,#EEF7FF 100%);
+    border:2px solid #EFE7FF;box-shadow:var(--shadow);
+  }
+  .ny-main{flex:1;min-width:0}
+  .ny-kicker{font-size:12.5px;font-weight:900;letter-spacing:.02em;color:var(--lilac-3)}
+  .ny-row{display:flex;align-items:center;gap:11px;margin-top:3px;flex-wrap:wrap}
+  .ny-dday{
+    font-size:33px;font-weight:900;letter-spacing:-.04em;line-height:1;
+    color:var(--lilac-3);font-variant-numeric:tabular-nums;
+    text-shadow:0 3px 10px rgba(142,116,222,.18);
+  }
+  .ny-dday.gold{color:#C08A22;text-shadow:0 3px 10px rgba(226,170,60,.28)}
+  .ny-text{min-width:0}
+  .ny-title{font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+  .ny-sub{font-size:12px;font-weight:700;color:var(--ink-3);margin-top:2px;line-height:1.45}
+  .ny-art{
+    position:relative;flex:0 0 auto;width:56px;height:56px;border-radius:20px;
+    display:grid;place-items:center;font-size:26px;
+    background:linear-gradient(140deg,#FFFFFF,#F0E8FF);
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),0 8px 18px rgba(142,116,222,.18);
+    animation:breathe 4.2s ease-in-out infinite;
+  }
+  .ny-flakes{position:absolute;inset:0;pointer-events:none;font-size:10px;color:#A9BCF0;opacity:.8}
+  .ny-flakes span{position:absolute;animation:snowFloat 5.6s ease-in-out infinite}
+  @keyframes snowFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(4px) rotate(10deg)}}
+  @media (max-width:400px){ .ny-dday{font-size:28px} .ny-art{width:48px;height:48px;font-size:22px} .ny-title{font-size:13.5px} }
+
+  /* ---------- 크리스마스 트리 ---------- */
+  .tree-stage{
+    position:relative;border-radius:22px;overflow:hidden;
+    background:
+      radial-gradient(130% 85% at 50% -8%, #4C3F7E 0%, rgba(76,63,126,0) 72%),
+      linear-gradient(180deg,#3A3166 0%,#53447F 58%,#7A689F 100%);
+    box-shadow:inset 0 -18px 30px rgba(20,14,40,.22);
+    transition:box-shadow .5s ease;
+  }
+  .tree-stage.done{box-shadow:inset 0 0 46px rgba(255,226,150,.34),0 0 0 2px rgba(255,214,120,.55)}
+  .tree-svg{display:block;width:100%;height:auto;max-width:320px;margin:0 auto}
+  .orn{opacity:.5;transition:opacity .45s ease}
+  .orn.on{opacity:1;filter:drop-shadow(0 0 5px rgba(255,236,170,.85));animation:ornTwinkle 3.6s ease-in-out infinite}
+  @keyframes ornTwinkle{0%,100%{opacity:1}50%{opacity:.8}}
+  .tree-star{opacity:.45;transition:opacity .5s ease}
+  .tree-star.on{
+    opacity:1;filter:drop-shadow(0 0 13px rgba(255,216,110,.95));
+    transform-box:fill-box;transform-origin:center;animation:starPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes starPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  .tree-spark{opacity:0}
+  .tree-stage.done .tree-spark{animation:sparkBlink 2.4s ease-in-out infinite}
+  @keyframes sparkBlink{0%,100%{opacity:.12}50%{opacity:.95}}
+  .tree-bar{height:12px;border-radius:999px;background:#F3EEFF;overflow:hidden;margin:12px 0 7px}
+  .tree-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#8ED7B0,#4FB07A 48%,#F2B33D);transition:width .5s cubic-bezier(.2,.8,.3,1)}
+  .tree-legend{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;font-weight:800;color:var(--ink-3);margin-bottom:7px}
+  .tree-note{margin:0;font-size:12.5px;font-weight:700;color:var(--ink-3);line-height:1.6;text-align:center;word-break:keep-all}
+  .tree-done{
+    display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 8px;
+    padding:10px 8px;border-radius:16px;font-size:13.5px;font-weight:900;color:#8A5B12;
+    background:linear-gradient(135deg,#FFF7DA,#FFE8B3);border:2px dashed rgba(226,170,60,.55);
+    animation:breathe 3s ease-in-out infinite;text-align:center;
+  }
+
   /* ---------- settings ---------- */
   .settings{max-width:1080px;margin:16px auto 0}
   .settings details{
@@ -314,6 +512,28 @@
     font-size:13px;font-weight:700;outline:none;
   }
   .set-help{font-size:11.5px;color:var(--ink-3);font-weight:600;line-height:1.6;margin:2px 0 0}
+
+  /* ---------- 구글 시트 연결 ---------- */
+  .sheet-url{
+    flex:1;min-width:0;width:100%;padding:10px 11px;border-radius:12px;border:2px solid var(--line);
+    background:#FCFAFF;font-size:12px;font-weight:700;outline:none;letter-spacing:-.01em;
+  }
+  .sheet-url:focus{border-color:var(--lilac);background:#fff}
+  .sheet-status{font-size:11.5px;font-weight:800;color:var(--ink-3);margin:0 0 2px;line-height:1.55;word-break:break-all}
+  .sheet-status.ok{color:#3F8F6B}
+  .sheet-status.err{color:#C05B5B}
+  .sheet-note{
+    max-width:1080px;margin:0 auto 10px;padding:0 18px;
+    font-size:11.5px;font-weight:800;color:var(--ink-3);
+    display:flex;align-items:center;gap:6px;line-height:1.5;
+  }
+  .sheet-note[hidden]{display:none}
+  .sheet-note .dot{width:7px;height:7px;border-radius:99px;background:#C9C2DC;flex:0 0 7px}
+  .sheet-note.ok{color:#3F8F6B}
+  .sheet-note.ok .dot{background:#55BE8C}
+  .sheet-note.err{color:#C05B5B}
+  .sheet-note.err .dot{background:#E58585}
+  .sheet-note.busy .dot{background:var(--lilac)}
   .custom-mission-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
   .chip{
     display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
@@ -381,12 +601,22 @@
 
 <nav class="tabs" id="tabs" aria-label="아이 선택"></nav>
 
+<nav class="viewtabs" id="viewTabs" aria-label="화면 선택">
+  <button class="vtab active" id="vtabHome" data-action="view" data-view="home" aria-pressed="true">🎟️ 쿠폰·미션</button>
+  <button class="vtab" id="vtabQuiz" data-action="view" data-view="quiz" aria-pressed="false">📚 오늘의 퀴즈</button>
+</nav>
+
+<div id="homeView">
+<div class="sheet-note" id="sheetNote" hidden></div>
+<section class="newyear" id="newyearBanner" aria-label="다가오는 새해 디데이"></section>
 <div class="layout">
   <div class="col">
     <section class="card" id="streakCard" aria-label="연속 성공"></section>
+    <section class="card" id="treeCard" aria-label="크리스마스 트리 35일 완성"></section>
     <section class="card" id="taskCard" aria-label="오늘의 할 일"></section>
   </div>
   <div class="col">
+    <section class="card" id="listenCard" aria-label="오늘 흘려듣기 분"></section>
     <section class="card" id="couponCard" aria-label="내 쿠폰함"></section>
     <section class="card" id="missionCard" aria-label="가족 미션"></section>
     <section class="card" id="timerCard" aria-label="공부 타이머"></section>
@@ -394,9 +624,14 @@
 </div>
 
 <section class="settings" id="settingsWrap" aria-label="부모 설정"></section>
+</div>
+
+<div class="quiz-wrap" id="quizView" hidden>
+  <section class="card quiz-card" id="quizCard" aria-label="오늘의 영어 퀴즈"></section>
+</div>
 
 <footer>
-  외부 연결 없이 이 파일만으로 열려요 · 기록은 이 기기 브라우저에만 저장됩니다 🔒<br>
+  <span id="footerNote">외부 연결 없이 이 파일만으로 열려요 · 기록은 이 기기 브라우저에만 저장됩니다 🔒</span><br>
   <span id="storageNote"></span>
 </footer>
 
@@ -421,14 +656,13 @@
   ];
 
   const TASKS = [
-    { id:'focus',   emoji:'🎧', label:'집중듣기' },
-    { id:'listen',  emoji:'🌊', label:'흘려듣기' },
-    { id:'engbook', emoji:'📕', label:'영어책 1시간' },
-    { id:'kobook',  emoji:'📗', label:'한글책 1시간' },
-    { id:'math',    emoji:'➗', label:'수학' },
-    { id:'engwb',   emoji:'✏️', label:'영어문제집' },
-    { id:'ppajak',  emoji:'📝', label:'빠작' }
+    { id:'engbook', emoji:'📕', label:'영어책' },
+    { id:'kobook',  emoji:'📗', label:'한글책' }
   ];
+
+  /* 흘려듣기 빠른 입력 버튼 (분) */
+  const LISTEN_QUICK = [10, 20, 30];
+  const LISTEN_MAX = 600;
 
   const MILESTONES = [
     { day:7,  type:'free',   emoji:'⏱️', title:'30분 자유시간',   desc:'좋아하는 걸로 30분!' },
@@ -458,9 +692,268 @@
     { label:'자유시간 30분', min:30, emoji:'🎈' }
   ];
 
+  /* ---------- 영어 퀴즈: 14일 × 5문제 = 70문제 ---------- */
+  const QUIZ_BOOKS = {
+    macky: { label:'Mr. Macky Is Wacky!', emoji:'🎩' },
+    daisy: { label:'Miss Daisy Is Crazy!', emoji:'🤪' },
+    cup:   { label:'Cup Run', emoji:'⚽' }
+  };
+  const QUIZ_PER_DAY = 5;
+  const QUIZ_DAYS = 14;
+
+  const QUIZ_BANK = [
+    /* ---------- Day 1 ---------- */
+    { book:'macky', type:'단어', q:'What does "wacky" mean in the title "Mr. Macky Is Wacky!"?',
+      options:['Very quiet and calm', 'Very scary and angry', 'Silly and strange in a funny way', 'Very fast and busy'],
+      answer:2, explain:'Wacky means silly or strange in a funny way! ("엉뚱하고 별난"이라는 뜻이에요) Mr. Macky is a very wacky teacher.' },
+    { book:'macky', type:'내용', q:'What is Mr. Macky\'s job at the school?',
+      options:['He cooks lunch for the school.', 'He teaches soccer.', 'He is a reading specialist.', 'He guards the school door.'],
+      answer:2, explain:'Mr. Macky helps kids read better. He is a reading specialist. ("읽기를 도와주는 전담 선생님이에요")' },
+    { book:'cup', type:'단어', q:'What does "cup run" mean?',
+      options:['Running fast with a cup', 'A long try to win games in a cup and reach the final', 'Filling a cup with water', 'A game of breaking cups'],
+      answer:1, explain:'A cup run is a long try to win game after game and get to the final. ("컵 대회 결승까지 가는 도전"이에요)' },
+    { book:'daisy', type:'단어', q:'What does "weird" mean in "Welcome to My Weird School!"?',
+      options:['Very strange and odd', 'Very quiet and good', 'Very pretty and shiny', 'Very dark and scary'],
+      answer:0, explain:'Weird means strange or odd! ("이상한, 별난") A.J.\'s school is full of weird things.' },
+    { book:'daisy', type:'내용', q:'What did A.J. say about himself on the first day of second grade?',
+      options:['"I like math and I love school."', '"My name is A.J. and I am the principal."', '"I hate football and I love homework."', '"My name is A.J. I like football and video games, and I hate school."'],
+      answer:3, explain:'A.J. said he likes football and video games, and he hates school. ("축구와 게임은 좋아하고 학교는 싫어한다고 했어요")' },
+
+    /* ---------- Day 2 ---------- */
+    { book:'macky', type:'단어', q:'In "Mr. Macky is our reading specialist," who is a reading specialist?',
+      options:['The person who cooks in the lunchroom', 'The principal', 'The person who helps kids read', 'The person who drives the school bus'],
+      answer:2, explain:'A reading specialist is the teacher who helps kids with reading. ("읽기를 도와주는 전담 선생님")' },
+    { book:'macky', type:'내용', q:'What homework did Mr. Macky give the class for Presidents\' Day?',
+      options:['Read 100 books about presidents', 'Write a letter to a president', 'Study one president, dress up like him, and give an oral report', 'Clean the school playground'],
+      answer:2, explain:'The kids had to study a president, dress up, and give an oral report. ("대통령으로 분장하고 말로 발표하기")' },
+    { book:'cup', type:'내용', q:'What is the name of the soccer team in Cup Run?',
+      options:['The Super Strikers', 'The Belton Goalbusters', 'The Flying Tigers', 'The Red Dragons'],
+      answer:1, explain:'The kids play for the Belton Goalbusters. ("벨튼 골버스터즈라는 어린이 축구팀이에요")' },
+    { book:'daisy', type:'단어', q:'Which sentence uses "weird" correctly?',
+      options:['The weather is weird today. It is sunny and then snowy!', 'I weird my homework every day.', 'Please weird the door.', 'He weirds to school by bus.'],
+      answer:0, explain:'Weird is an adjective, a word that describes something. ("weird는 \'이상한\'이라는 형용사예요")' },
+    { book:'daisy', type:'내용', q:'When A.J. said "I hate school," what did Miss Daisy say?',
+      options:['"I hate school too. I want to eat bonbons and watch TV at home."', '"Then you will get in trouble."', '"School is really fun."', '"I will call your mother."'],
+      answer:0, explain:'Miss Daisy said she hates school too. She was on A.J.\'s side! ("선생님이 A.J. 편이 되어 주었어요")' },
+
+    /* ---------- Day 3 ---------- */
+    { book:'macky', type:'단어', q:'In "When I was a boy, I lived in a log cabin," what is a log cabin?',
+      options:['A very tall glass building', 'A boat on the water', 'A secret room in a cave', 'A small house made of wood'],
+      answer:3, explain:'A log cabin is a small house made of wood. ("나무로 만든 작은 통나무집") Lincoln lived in one as a boy.' },
+    { book:'macky', type:'내용', q:'What did Mr. Macky carry into the classroom on his first day?',
+      options:['A can of chicken soup', 'A giant lollipop', 'A soccer ball', 'A wooden hammer'],
+      answer:0, explain:'He came in with a can of chicken soup and read the label. ("수프 통조림 겉면을 읽었어요") He reads anything!' },
+    { book:'cup', type:'단어', q:'What does "competition" mean?',
+      options:['Free time at school', 'Snack time', 'Time to go home', 'An event where teams try to win'],
+      answer:3, explain:'A competition is a game or contest where teams try to win. ("대회, 시합")' },
+    { book:'daisy', type:'단어', q:'What does "hate" mean in A.J.\'s shout "I hate school!"?',
+      options:['To really like', 'To really not like', 'To be a little curious', 'To often forget'],
+      answer:1, explain:'Hate means to really not like something. ("정말 싫어하다")' },
+    { book:'daisy', type:'내용', q:'Which math problem did Miss Daisy say she did not know?',
+      options:['2 plus 2', '10 minus 3', '4 times 4', '100 divided by 2'],
+      answer:2, explain:'She said she did not know 4 times 4. ("4 곱하기 4를 모른다고 했어요") Maybe she was only pretending!' },
+
+    /* ---------- Day 4 ---------- */
+    { book:'macky', type:'단어', q:'What does "president" mean?',
+      options:['A person who cleans the school', 'The leader of a country', 'A person who writes books', 'The judge in a soccer game'],
+      answer:1, explain:'A president is the leader of a country. ("대통령") On Presidents\' Day we remember presidents.' },
+    { book:'macky', type:'내용', q:'Who did Mr. Macky believe he was?',
+      options:['George Washington', 'Benjamin Franklin', 'Abraham Lincoln', 'Millard Fillmore'],
+      answer:2, explain:'He wore a beard and a big hat and said, "My name is Abraham Lincoln." ("링컨인 척했어요")' },
+    { book:'cup', type:'내용', q:'What sport do the Goalbusters play?',
+      options:['Baseball', 'Basketball', 'Swimming', 'Soccer'],
+      answer:3, explain:'The Goalbusters are a soccer team. ("축구팀이라 이름도 Goalbusters, 골을 넣는 팀이에요")' },
+    { book:'daisy', type:'단어', q:'Which word is the opposite of "hate"?',
+      options:['run', 'eat', 'cry', 'love'],
+      answer:3, explain:'Love is the opposite of hate. ("hate의 반대는 love, 사랑하다·좋아하다예요")' },
+    { book:'daisy', type:'내용', q:'Miss Daisy\'s apple problem: If there are 58 apples and the principal takes 28, how many are left?',
+      options:['20 apples', '30 apples', '40 apples', '86 apples'],
+      answer:1, explain:'58 minus 28 is 30. ("정답은 30개") Andrea answered right away, but A.J. does not care about apples.' },
+
+    /* ---------- Day 5 ---------- */
+    { book:'macky', type:'단어', q:'In "We have to give an oral report on a president," what is an oral report?',
+      options:['A report you draw as a picture', 'A talk you give in front of the class', 'A note you pass to a friend', 'A poem you sing'],
+      answer:1, explain:'An oral report is a talk you give in front of the class. ("교실 앞에서 말로 하는 발표") Mr. Macky wanted costumes too!' },
+    { book:'macky', type:'내용', q:'Mr. Macky came to class wearing only a towel. Which president was he pretending to be?',
+      options:['Ulysses Grant', 'William Howard Taft', 'John Quincy Adams', 'James Madison'],
+      answer:2, explain:'He acted like John Quincy Adams, who swam naked in a river. ("존 퀸시 애덤스가 강에서 수영했던 이야기를 흉내 냈어요")' },
+    { book:'cup', type:'단어', q:'In "The goalkeeper saved the ball. It was a close call!" what is a close call?',
+      options:['A very easy question', 'A moment when something bad almost happened', 'Calling someone loudly', 'A friend who lives near'],
+      answer:1, explain:'A close call is a moment when something bad almost happened. ("하마터면 큰일 날 뻔한 아슬아슬한 순간")' },
+    { book:'daisy', type:'단어', q:'Miss Daisy said "I hate arithmetic too!" What is arithmetic?',
+      options:['Math with adding, subtracting, and multiplying', 'Drawing pictures', 'The rules of soccer', 'Singing songs'],
+      answer:0, explain:'Arithmetic is math with numbers, like adding and multiplying. ("더하기·곱하기 같은 산수")' },
+    { book:'daisy', type:'내용', q:'Miss Daisy spelled "read" as "R-e-e-d." What is the correct spelling?',
+      options:['R-e-e-d', 'R-a-e-d', 'R-e-a-d', 'R-e-d'],
+      answer:2, explain:'Read is spelled R-e-a-d. ("맞는 철자는 R-e-a-d예요") The kids taught the teacher!' },
+
+    /* ---------- Day 6 ---------- */
+    { book:'macky', type:'단어', q:'In "A.J. really researched his report," what does "research" mean?',
+      options:['To look for facts and information', 'To walk by quickly', 'To ask someone else to do it', 'To shout and play'],
+      answer:0, explain:'To research is to look for facts and information. ("조사하고 자료를 찾아보다") A.J. used books and the internet.' },
+    { book:'macky', type:'내용', q:'Who is Mr. Macky\'s favorite president?',
+      options:['Millard Fillmore', 'Abraham Lincoln', 'George Washington', 'John F. Kennedy'],
+      answer:0, explain:'He likes Millard Fillmore because the name is funny. ("이름이 재미있다며 밀러드 필모어를 좋아했어요")' },
+    { book:'cup', type:'내용', q:'What do the Goalbusters want to do in Cup Run?',
+      options:['Read a million pages of books', 'Win games in the cup and reach the final', 'Win the school president election', 'Turn the school into an arcade'],
+      answer:1, explain:'They want to win the cup games and get to the final. ("컵 대회에서 이겨 결승까지 가고 싶어 해요")' },
+    { book:'daisy', type:'단어', q:'Which of these is an arithmetic problem?',
+      options:['What is your favorite color?', 'How is the weather today?', 'What is 4 times 4?', 'Who can run the fastest?'],
+      answer:2, explain:'Arithmetic problems are about numbers. ("수를 계산하는 문제가 산수 문제예요") 4 times 4 is arithmetic.' },
+    { book:'daisy', type:'내용', q:'What did the kids suspect about Miss Daisy?',
+      options:['She might be an alien', 'She might be a soccer player', 'She might be the principal', 'She might be an impostor who is not a real teacher'],
+      answer:3, explain:'They thought she might be an impostor, a person pretending to be a teacher. ("다른 사람인 척하는 게 아닐까 의심했어요")' },
+
+    /* ---------- Day 7 ---------- */
+    { book:'macky', type:'단어', q:'In "A.J. wore a Benjamin Franklin costume," what is a costume?',
+      options:['Clothes you wear to look like someone else', 'A school uniform', 'Pajamas', 'Sneakers'],
+      answer:0, explain:'A costume is clothes you wear to look like someone else. ("분장 옷, 의상")' },
+    { book:'macky', type:'내용', q:'Who were the two candidates in the Presidents\' Day school election?',
+      options:['Lincoln and Kennedy', 'Washington and Jefferson', 'Lincoln and Taft', 'Washington and Lincoln'],
+      answer:3, explain:'Mrs. Roopy was Washington and Mr. Macky was Lincoln. ("사서 선생님은 워싱턴, Mr. Macky는 링컨으로 분장했어요")' },
+    { book:'cup', type:'단어', q:'What is a "match report"?',
+      options:['A ticket to enter the stadium', 'A soccer ball', 'A written record of what happened in a game', 'A team song'],
+      answer:2, explain:'A match report tells what happened in a game. ("경기에서 있었던 일을 적은 기록")' },
+    { book:'daisy', type:'단어', q:'What is a "bonbon," Miss Daisy\'s favorite snack?',
+      options:['A round fruit', 'Hard bread', 'Cold ice cream', 'A round candy with chocolate outside and cream inside'],
+      answer:3, explain:'A bonbon is a small chocolate candy. ("초콜릿 사탕") Miss Daisy can eat a whole box!' },
+    { book:'daisy', type:'내용', q:'Why did the kids decide not to tell the principal Miss Daisy\'s secret?',
+      options:['They were afraid of the teacher.', 'They could not win a prize.', 'If a real teacher came, they would have to study a lot.', 'The teacher gave them money.'],
+      answer:2, explain:'A.J. said a real teacher would make them study a lot. ("진짜 선생님이 오면 공부를 많이 해야 한다고 했어요")' },
+
+    /* ---------- Day 8 ---------- */
+    { book:'macky', type:'단어', q:'In "The school had an election," what is an election?',
+      options:['A sports day at school', 'A vote to choose someone', 'A time to read books', 'A day to clean the classroom'],
+      answer:1, explain:'An election is when people vote to choose someone. ("투표로 누군가를 뽑는 선거")' },
+    { book:'macky', type:'내용', q:'What happened to the Washington and Lincoln campaign?',
+      options:['They shook hands and it ended nicely.', 'They argued and it turned into a wrestling match.', 'It became a singing contest.', 'Nobody said anything.'],
+      answer:1, explain:'They argued and it became a wrestling match. ("서로 놀리다가 씨름판이 되었어요") The principal had to stop them.' },
+    { book:'cup', type:'내용', q:'How is the story of Cup Run told?',
+      options:['In many forms, like a video diary, posters, letters, and match reports', 'With magic spells', 'Only with text messages', 'Only with pictures'],
+      answer:0, explain:'The story comes in a video diary, posters, letters, and match reports. ("여러 형식으로 이야기가 펼쳐져요")' },
+    { book:'daisy', type:'단어', q:'In "I could eat a whole box of bonbons in one sitting," what is a bonbon?',
+      options:['A chocolate candy', 'A book', 'A sneaker', 'A pencil'],
+      answer:0, explain:'A bonbon is a chocolate candy. ("초콜릿 사탕") She could eat a whole box in one sitting.' },
+    { book:'daisy', type:'내용', q:'What was Ryan\'s "greatest idea in the world"?',
+      options:['Sell the school building to get money', 'Send the teacher to another school', 'Play outside every day', 'Buy the school and turn it into a video-game arcade'],
+      answer:3, explain:'Ryan said they could buy the school and turn it into an arcade. ("학교를 사서 오락실로 만들자고 했어요")' },
+
+    /* ---------- Day 9 ---------- */
+    { book:'macky', type:'단어', q:'In "Everybody voted for Mr. Wiggles," what does "vote" mean?',
+      options:['To choose someone in an election', 'To run away', 'To laugh', 'To sing'],
+      answer:0, explain:'To vote is to choose someone in an election. ("투표하다")' },
+    { book:'macky', type:'내용', q:'Who really won the school president election?',
+      options:['George Washington', 'Abraham Lincoln', 'Neil\'s ferret, Mr. Wiggles', 'The principal, Mr. Klutz'],
+      answer:2, explain:'The kids all voted for Neil\'s ferret, Mr. Wiggles. ("페럿이 학교 대통령이 되었어요")' },
+    { book:'cup', type:'단어', q:'What does "team spirit" mean?',
+      options:['Wanting to win all by yourself', 'Working together and helping each other', 'The name of a team', 'The grass on the field'],
+      answer:1, explain:'Team spirit means working together and helping each other. ("팀워크, 협동심")' },
+    { book:'daisy', type:'단어', q:'In "Principal Klutz is completely bald!" who is the principal?',
+      options:['The strongest kid in school', 'The person who runs the school', 'The cook in the lunchroom', 'The school bus driver'],
+      answer:1, explain:'The principal is the person who runs the school. ("교장 선생님") This one is bald!' },
+    { book:'daisy', type:'내용', q:'How much money did the kids collect?',
+      options:['One dollar and thirty-two cents', 'Ten dollars', 'One hundred dollars', 'Thirty-two cents'],
+      answer:0, explain:'They had one dollar and thirty-two cents. ("1달러 32센트") That was not enough to buy a school.' },
+
+    /* ---------- Day 10 ---------- */
+    { book:'macky', type:'단어', q:'In "Their debate turned into a wrestling match," what is a debate?',
+      options:['A singing contest', 'A cleaning contest', 'A running race', 'A talk where two sides argue'],
+      answer:3, explain:'A debate is a talk where two sides argue. ("두 편이 말로 겨루는 토론")' },
+    { book:'macky', type:'내용', q:'Which person did A.J. dress up as for his report?',
+      options:['George Washington', 'John F. Kennedy', 'Benjamin Franklin', 'Abraham Lincoln'],
+      answer:2, explain:'A.J. dressed as Benjamin Franklin with a cane, glasses, and a fur hat. ("프랭클린으로 분장했어요")' },
+    { book:'cup', type:'내용', q:'How do the Goalbusters get to the final of the cup?',
+      options:['They win one game and go straight to the final.', 'People vote for them.', 'They go if it rains.', 'They win one game at a time and move up step by step.'],
+      answer:3, explain:'In a cup, you must win one game at a time and move up. ("경기를 하나씩 이겨야 다음 단계로 올라가요")' },
+    { book:'daisy', type:'단어', q:'Which word means "the person who runs the school"?',
+      options:['president', 'principal', 'parent', 'painter'],
+      answer:1, explain:'Principal means the person who runs the school. ("교장 선생님") Do not mix it up with president!' },
+    { book:'daisy', type:'내용', q:'What did the principal want the kids to do so they could borrow the school for one night?',
+      options:['Read one million pages', 'Clean 100 classrooms', 'Win a soccer game', 'Get 100 on a test'],
+      answer:0, explain:'The principal said yes if they read one million pages. ("백만 쪽을 읽으면 하룻밤 빌려주겠다고 했어요")' },
+
+    /* ---------- Day 11 ---------- */
+    { book:'macky', type:'단어', q:'In "The ferret escaped from his cage," what kind of animal is a ferret?',
+      options:['A bird with big wings', 'A turtle with a hard shell', 'A small animal with a long, thin body', 'A fluffy puppy'],
+      answer:2, explain:'A ferret is a small animal with a long, thin body. ("가늘고 긴 몸을 가진 족제비과 동물") Neil\'s ferret is Mr. Wiggles.' },
+    { book:'macky', type:'내용', q:'What did Andrea say after A.J.\'s report?',
+      options:['"That was great!"', '"It\'s my turn next."', '"Teacher, A.J. is crying."', '"Benjamin Franklin was not even a president, dumbhead."'],
+      answer:3, explain:'Andrea said Franklin was not even a president. ("프랭클린은 대통령도 아니었다고 했어요") She called him a dumbhead.' },
+    { book:'cup', type:'단어', q:'What does "determination" mean?',
+      options:['Giving up fast', 'A strong feeling to finish even when it is hard', 'A rule of the game', 'A seat for people watching'],
+      answer:1, explain:'Determination is a strong feeling to finish even when it is hard. ("끝까지 해내려는 강한 마음")' },
+    { book:'daisy', type:'단어', q:'In "Read one million pages!" what number is one million?',
+      options:['100', '1,000', '1,000,000', '100,000,000'],
+      answer:2, explain:'One million is 1,000,000. ("백만 쪽은 어마어마한 양이에요")' },
+    { book:'daisy', type:'내용', q:'What special bonus did the principal promise?',
+      options:['He would open the school doors wide.', 'He would come to school in a gorilla suit.', 'He would buy them a cake.', 'He would put a trampoline on the playground.'],
+      answer:1, explain:'He promised to come to school in a gorilla suit. ("고릴라 옷을 입고 오겠다고 약속했어요") And he did!' },
+
+    /* ---------- Day 12 ---------- */
+    { book:'macky', type:'단어', q:'What does "escape" mean in "The ferret escaped from his cage"?',
+      options:['To sleep inside the cage', 'To run away outside', 'To eat food', 'To say hello'],
+      answer:1, explain:'To escape is to get away or run out. ("탈출하다, 달아나다") Mr. Wiggles ran out of his cage.' },
+    { book:'macky', type:'내용', q:'What jumped out of Emily\'s big hat during her Lincoln report?',
+      options:['A chicken', 'A turtle', 'A cat', 'The ferret, Mr. Wiggles'],
+      answer:3, explain:'The ferret, Mr. Wiggles, was hiding in her hat. ("모자 속에 페럿이 있었어요")' },
+    { book:'cup', type:'내용', q:'What helped the team keep going in hard moments?',
+      options:['Team spirit and helping each other', 'Only trying to be the best alone', 'New uniforms', 'A very big field'],
+      answer:0, explain:'Team spirit helped them keep going. ("서로 돕는 팀워크 덕분에 끝까지 힘을 냈어요")' },
+    { book:'daisy', type:'단어', q:'In "Turn the school into a video-game arcade!" what is an arcade?',
+      options:['A library for borrowing books', 'A field for playing soccer', 'An art room for drawing', 'A place to play video games'],
+      answer:3, explain:'An arcade is a place to play video games. ("오락실")' },
+    { book:'daisy', type:'내용', q:'What did Miss Daisy draw in the hallway?',
+      options:['A giant thermometer', 'A huge soccer ball', 'A picture of a bonbon', 'A picture of a gorilla'],
+      answer:0, explain:'She drew a giant thermometer. ("커다란 온도계 그림") The line went up to "One million."' },
+
+    /* ---------- Day 13 ---------- */
+    { book:'macky', type:'단어', q:'A.J. called Emily "a crybaby." What is a crybaby?',
+      options:['A kid who laughs a lot', 'A kid who sings well', 'A kid who cries a lot', 'A kid who runs fast'],
+      answer:2, explain:'A crybaby is a kid who cries a lot. ("울보") Emily cried easily.' },
+    { book:'macky', type:'내용', q:'Who was working as a salesman in a big TV store during the Presidents\' Day holiday?',
+      options:['Mr. Macky', 'Mr. Klutz', 'Mrs. Roopy', 'Dr. Carbles'],
+      answer:0, explain:'Mr. Macky sold TVs on weekends and holidays. ("주말과 공휴일에 TV를 팔았어요") His name tag said HOWARD MACKY.' },
+    { book:'cup', type:'단어', q:'What does a "goalkeeper" do?',
+      options:['Scores goals', 'Makes sure players follow the rules', 'Leads the team as a coach', 'Stands in front of the goal and stops the ball'],
+      answer:3, explain:'A goalkeeper stands in front of the goal and stops the ball. ("골문을 지키는 골키퍼")' },
+    { book:'daisy', type:'단어', q:'The kids said "She might be an impostor." What is an impostor?',
+      options:['A very kind person', 'A person who pretends to be someone else', 'A person who sings well', 'A person who is very tall'],
+      answer:1, explain:'An impostor is a person who pretends to be someone else. ("다른 사람인 척하는 사람")' },
+    { book:'daisy', type:'내용', q:'Boomer Wiggins, the football player who visited Miss Daisy\'s class, was a quarterback for which team?',
+      options:['Yankees', 'Lakers', 'Tigers', 'Chargers'],
+      answer:3, explain:'Boomer Wiggins was a quarterback for the Chargers. ("A.J.가 가장 좋아하는 팀, Chargers의 쿼터백이었어요")' },
+
+    /* ---------- Day 14 ---------- */
+    { book:'macky', type:'단어', q:'Andrea called A.J. a "dumbhead." What does "dumbhead" mean?',
+      options:['A kind word for a smart person', 'Another word for a teacher', 'An unkind word for someone silly or stupid', 'A friendly way to say hello'],
+      answer:2, explain:'Dumbhead is an unkind word for someone silly or stupid. ("놀릴 때 쓰는 \'멍청이\'") It is not a nice word, so be careful!' },
+    { book:'macky', type:'내용', q:'Which president did Andrea choose for her report?',
+      options:['John F. Kennedy', 'Abraham Lincoln', 'George Washington', 'Herbert Hoover'],
+      answer:0, explain:'Andrea dressed as John F. Kennedy. ("존 F. 케네디로 분장하고 발표했어요")' },
+    { book:'cup', type:'내용', q:'Who wrote Cup Run?',
+      options:['Dan Gutman', 'Martin Waddell', 'Roald Dahl', 'Dr. Seuss'],
+      answer:1, explain:'Cup Run is by Martin Waddell. ("Martin Waddell이 쓰고 Russell Ayto가 그린 책이에요")' },
+    { book:'daisy', type:'단어', q:'Andrea wants to be a veterinarian. What is a veterinarian?',
+      options:['An animal doctor', 'A person who does not eat meat', 'A soldier from a war', 'A kid who wants to be a singer'],
+      answer:0, explain:'A veterinarian is an animal doctor. ("동물 의사") Do not mix it up with vegetarian!' },
+    { book:'daisy', type:'내용', q:'At the end, what did A.J. guess about Miss Daisy\'s secret?',
+      options:['She was really a soccer player.', 'She was really the principal.', 'She was really from another country.', 'She could really read but pretended she could not.'],
+      answer:3, explain:'A.J. saw her eyes move and guessed she could really read. ("읽을 줄 알면서 모르는 척한 것 같다고 짐작했어요")' },
+  ];
+
+  const QUIZ_KEY   = 'family-coupon-dashboard.quiz.v1';
   const STORE_KEY  = 'family-coupon-dashboard.v1';
   const TIMER_KEY  = 'family-coupon-dashboard.timer.v1';
   const DAY_MS = 86400000;
+
+  /* ---------- 시즌: 2027 새해 디데이 · 35일 크리스마스 트리 ---------- */
+  const NY_DAY       = '2027-01-01';
+  const TREE_START   = '2026-11-21';
+  const TREE_END     = '2026-12-25';
+  const TREE_TOTAL   = 35;
+
+  const ORN_COLORS = ['#FF6B8A','#FFC24B','#5FB8FF','#7ED9A8','#C79BFF','#FF9F68','#FF7FC8'];
+  const fx = function(v){ return Math.round(v * 100) / 100; };
 
   /* ===================== 도우미 ===================== */
   const $ = (sel, root) => (root || document).querySelector(sel);
@@ -468,9 +961,13 @@
     tabs: $('#tabs'), todayLabel: $('#todayLabel'), soundBtn: $('#soundBtn'),
     streakCard: $('#streakCard'), taskCard: $('#taskCard'), couponCard: $('#couponCard'),
     missionCard: $('#missionCard'), timerCard: $('#timerCard'), settingsWrap: $('#settingsWrap'),
+    listenCard: $('#listenCard'),
     highfive: $('#highfiveOverlay'), highfiveContent: $('#highfiveContent'),
     breakOverlay: $('#breakOverlay'), breakContent: $('#breakContent'),
-    toast: $('#toast'), storageNote: $('#storageNote')
+    toast: $('#toast'), storageNote: $('#storageNote'),
+    viewTabs: $('#viewTabs'), vtabHome: $('#vtabHome'), vtabQuiz: $('#vtabQuiz'),
+    homeView: $('#homeView'), quizView: $('#quizView'), quizCard: $('#quizCard'),
+    newyear: $('#newyearBanner'), treeCard: $('#treeCard'), sheetNote: $('#sheetNote'), footerNote: $('#footerNote')
   };
 
   function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
@@ -479,6 +976,16 @@
   function dateStr(d){ return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate()); }
   function todayStr(){ return dateStr(new Date()); }
   function yesterdayStr(){ return dateStr(new Date(Date.now() - DAY_MS)); }
+
+  /* 두 날짜(YYYY-MM-DD) 사이의 일수 — 오늘 기준 남은 날 */
+  function daysUntil(iso){
+    const now = new Date();
+    const parts = String(iso).split('-').map(Number);
+    if (parts.length !== 3 || parts.some(function(n){ return !isFinite(n); })) return 0;
+    const from = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const to = Date.UTC(parts[0], parts[1] - 1, parts[2]);
+    return Math.round((to - from) / DAY_MS);
+  }
 
   function koreanDate(d){
     const days = ['일','월','화','수','목','금','토'];
@@ -510,7 +1017,7 @@
   let storageOK = true;
 
   function defaultKid(day){
-    return { streak:0, best:0, totalDone:0, lastDone:null, date:day, tasks:{}, coupons:[] };
+    return { streak:0, best:0, totalDone:0, lastDone:null, date:day, tasks:{}, coupons:[], listen:{} };
   }
 
   function defaultState(){
@@ -518,7 +1025,7 @@
     const kids = {};
     KIDS.forEach(function(k){ kids[k.id] = defaultKid(t); });
     return {
-      v: 1,
+      v: 2,
       active: 'kid1',
       kids: kids,
       missions: BASE_MISSIONS.map(function(text, i){ return { id:'base' + i, text:text, custom:false }; }),
@@ -527,6 +1034,8 @@
       preset: null
     };
   }
+
+  let needsMigrateSave = false;
 
   function loadState(){
     const base = defaultState();
@@ -555,11 +1064,37 @@
       s.kids[k.id] = kid;
     });
 
+    /* --- 마이그레이션(v1 → v2) ---
+       v1은 할 일이 7개였어요. 이제 영어책·한글책 2개만 쓰므로
+       예전에 저장된 체크 중 사라진 항목은 정리하고, 두 항목의 체크는 그대로 살립니다.
+       흘려듣기 기록은 kid.listen 에 날짜별(YYYY-MM-DD) 분 수로 쌓입니다. */
+    const TASK_IDS = TASKS.map(function(t){ return t.id; });
+    KIDS.forEach(function(k){
+      const kid = s.kids[k.id];
+      const keptTasks = {};
+      TASK_IDS.forEach(function(id){ if (kid.tasks[id]) keptTasks[id] = true; });
+      kid.tasks = keptTasks;
+
+      const src = (kid.listen && typeof kid.listen === 'object' && !Array.isArray(kid.listen)) ? kid.listen : {};
+      const keptListen = {};
+      Object.keys(src).forEach(function(d){
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+        const v = Math.round(Number(src[d]));
+        if (isFinite(v) && v > 0) keptListen[d] = Math.min(LISTEN_MAX, v);
+      });
+      kid.listen = keptListen;
+    });
+    s.v = 2;
+    if (Number(saved.v) !== 2) needsMigrateSave = true;
+
     if (!s.kids[s.active]) s.active = 'kid1';
     return s;
   }
 
   let state = loadState();
+
+  /* 예전 저장본(v1: 할 일 7개)을 새 구성으로 바꿨다면 그 모습으로 다시 저장해 둡니다. */
+  if (needsMigrateSave) { needsMigrateSave = false; save(); }
 
   function save(){
     try {
@@ -567,6 +1102,212 @@
     } catch (e) {
       if (storageOK) { storageOK = false; toast('이 브라우저에 저장이 안 돼요. 탭을 닫으면 사라져요!'); }
     }
+  }
+
+  /* ===================== 구글 시트 연결 (선택) =====================
+     부모 설정에서 Apps Script 웹 앱 주소를 넣으면 오늘의 체크·흘려듣기 분을 시트에 쌓고,
+     새로 고칠 때 시트 기록을 다시 불러와 다른 기기와 같은 기록을 볼 수 있어요.
+     주소가 비어 있으면 이 블록은 아무 것도 하지 않고 localStorage만으로 동작합니다. */
+  var SHEET_KEY = 'family-coupon-dashboard.sheet.v1';
+
+  var sheetCfg = loadSheetCfg();
+  var sheetStatus = { kind:'', text:'' };
+  var sheetTotals = {};
+
+  function loadSheetCfg(){
+    try {
+      var raw = localStorage.getItem(SHEET_KEY);
+      if (!raw) return { url:'' };
+      var o = JSON.parse(raw);
+      return { url: String((o && o.url) || '').trim() };
+    } catch (e) { return { url:'' }; }
+  }
+
+  function saveSheetCfg(){
+    try { localStorage.setItem(SHEET_KEY, JSON.stringify({ url: sheetCfg.url })); } catch (e) {}
+  }
+
+  function sheetOn(){ return !!(sheetCfg && /^https?:\/\//.test(String(sheetCfg.url || ''))); }
+
+  function timeHHMM(d){ return pad2(d.getHours()) + ':' + pad2(d.getMinutes()); }
+
+  function renderSheetNote(){
+    if (!el.sheetNote) return;
+    if (!sheetStatus.text) { el.sheetNote.hidden = true; el.sheetNote.textContent = ''; return; }
+    el.sheetNote.hidden = false;
+    el.sheetNote.className = 'sheet-note' + (sheetStatus.kind ? ' ' + sheetStatus.kind : '');
+    el.sheetNote.innerHTML = '<span class="dot"></span><span>' + esc(sheetStatus.text) + '</span>';
+  }
+
+  function setSheetStatus(kind, text){
+    sheetStatus = { kind: kind || '', text: text || '' };
+    renderSheetNote();
+    var box = $('#sheetStatus');
+    if (box) {
+      box.className = 'sheet-status' + (sheetStatus.kind ? ' ' + sheetStatus.kind : '');
+      box.textContent = sheetStatus.text || '아직 연결하지 않았어요.';
+    }
+  }
+
+  function kidSheetName(kidId){
+    var k = KIDS.filter(function(x){ return x.id === kidId; })[0];
+    return k ? k.name : kidId;
+  }
+
+  function kidIdByName(name){
+    var k = KIDS.filter(function(x){ return x.name === name; })[0];
+    return k ? k.id : null;
+  }
+
+  /* 오늘 하루치 기록 본문 */
+  function sheetRow(kidId){
+    var kid = state.kids[kidId];
+    return {
+      action: 'upsert',
+      date: todayStr(),
+      kid: kidSheetName(kidId),
+      englishBook: !!kid.tasks.engbook,
+      koreanBook: !!kid.tasks.kobook,
+      listeningMin: listenToday(kid)
+    };
+  }
+
+  /* CORS 회피: Content-Type을 text/plain으로 보내야 preflight(OPTIONS)가 생기지 않아요. */
+  function sheetPost(body){
+    return fetch(sheetCfg.url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(body),
+      redirect: 'follow'
+    }).then(function(res){
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function(text){
+      var out = null;
+      try { out = JSON.parse(text); } catch (e) {}
+      if (!out || out.ok !== true) throw new Error((out && out.error) || '시트 응답을 읽지 못했어요');
+      return out;
+    });
+  }
+
+  function sheetPush(kidId){
+    if (!sheetOn()) return;
+    var body;
+    try { body = sheetRow(kidId); } catch (e) { return; }
+    var name = kidSheetName(kidId);
+    setSheetStatus('busy', '시트에 저장하는 중…');
+    sheetPost(body).then(function(out){
+      if (out && out.totals) sheetTotals = out.totals;
+      setSheetStatus('ok', name + ' 시트 저장됨 ✓ ' + timeHHMM(new Date()));
+    }).catch(function(err){
+      setSheetStatus('err', '시트 저장 실패 · ' + (err && err.message ? err.message : '연결을 확인해 주세요'));
+    });
+  }
+
+  function sheetLoad(silent, prefix){
+    if (!sheetOn()) {
+      if (!silent) toast('부모 설정에서 구글 시트 주소를 먼저 넣어 주세요');
+      return;
+    }
+    var url = sheetCfg.url + (sheetCfg.url.indexOf('?') >= 0 ? '&' : '?') + 'action=list&t=' + Date.now();
+    setSheetStatus('busy', '시트에서 불러오는 중…');
+
+    function handleOut(out){
+      if (!out || out.ok !== true) throw new Error((out && out.error) || '시트 응답을 읽지 못했어요');
+      if (out.totals && typeof out.totals === 'object') sheetTotals = out.totals;
+      var n = applySheetRows(Array.isArray(out.rows) ? out.rows : []);
+      setSheetStatus('ok', (prefix ? prefix + ' · ' : '') + '시트에서 ' + n + '건 불러옴 ✓ ' + timeHHMM(new Date()));
+      if (!silent) toast('☁️ 시트에서 ' + n + '건 불러왔어요');
+    }
+
+    function failLoad(err){
+      setSheetStatus('err', '시트 불러오기 실패 · ' + (err && err.message ? err.message : '연결을 확인해 주세요'));
+      if (!silent) toast('시트에서 불러오지 못했어요');
+    }
+
+    fetch(url, { method:'GET', redirect:'follow' }).then(function(res){
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    }).then(function(text){
+      var out = null;
+      try { out = JSON.parse(text); } catch (e) {}
+      handleOut(out);
+    }).catch(function(){
+      /* GET 응답이 브라우저에서 막히면 POST(text/plain)로 한 번 더 시도합니다. */
+      if (!sheetOn()) return;
+      sheetPost({ action:'list' }).then(handleOut).catch(failLoad);
+    });
+  }
+
+  /* 시트 기록을 이 기기에 합칩니다.
+     · 흘려듣기(분): 시트에 있는 날짜의 값으로 맞춥니다(0이면 지워요).
+     · 오늘 체크: 시트에서 한 것으로 적힌 항목만 켭니다(이 기기에서 방금 한 체크는 지우지 않아요). */
+  function applySheetRows(rows){
+    var t = todayStr();
+    var changed = false;
+    var applied = 0;
+    rows.forEach(function(r){
+      if (!r || !r.date) return;
+      var raw = String(r.kid || '').trim();
+      var kidId = kidIdByName(raw) || (state.kids[raw] ? raw : null);
+      if (!kidId) return;
+      var kid = state.kids[kidId];
+      if (!kid.listen || typeof kid.listen !== 'object' || Array.isArray(kid.listen)) kid.listen = {};
+      var d = String(r.date).slice(0, 10);
+      var v = Math.max(0, Math.min(LISTEN_MAX, Math.round(Number(r.listeningMin) || 0)));
+      var before = Math.round(Number(kid.listen[d]) || 0);
+      if (before !== v) {
+        if (v > 0) kid.listen[d] = v;
+        else delete kid.listen[d];
+        changed = true;
+      }
+      if (d === t) {
+        if (r.englishBook && !kid.tasks.engbook) { kid.tasks.engbook = true; changed = true; }
+        if (r.koreanBook && !kid.tasks.kobook) { kid.tasks.kobook = true; changed = true; }
+      }
+      applied++;
+    });
+    if (changed) { save(); renderAll(); }
+    return applied;
+  }
+
+  function sheetUnlink(){
+    if (!confirm('구글 시트 연결을 끊을까요? 시트에 쌓인 기록은 그대로 남아요.')) return;
+    sheetCfg.url = '';
+    saveSheetCfg();
+    sheetTotals = {};
+    setSheetStatus('', '');
+    renderAll();
+    toast('시트 연결을 끊었어요. 기록은 이 기기에만 저장돼요.');
+  }
+
+  function sheetSaveAndTest(){
+    var input = $('#sheetUrl');
+    var url = input ? String(input.value || '').trim() : '';
+    if (!url) { toast('Apps Script 웹 앱 주소를 넣어 주세요'); return; }
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/[^\/?#]+\/(exec|dev)/.test(url)) {
+      setSheetStatus('err', '주소 모양을 확인해 주세요 · https://script.google.com/macros/s/…/exec');
+      toast('웹 앱 주소(…/exec)를 붙여 넣어 주세요');
+      return;
+    }
+    sheetCfg.url = url;
+    saveSheetCfg();
+    renderAll();
+    setSheetStatus('busy', '연결 확인 중…');
+    sheetPost({ action:'ping' }).then(function(out){
+      setSheetStatus('ok', '연결됨 ✓ · 시트 “' + (out.sheet || '독서기록') + '” ' + (Number(out.rows) || 0) + '줄');
+      toast('☁️ 구글 시트에 연결했어요');
+      sheetLoad(true, '연결됨 ✓');
+    }).catch(function(err){
+      setSheetStatus('err', '연결 실패 · ' + (err && err.message ? err.message : '') + ' · 주소와 “모든 사용자” 공개 설정을 확인해 주세요');
+      toast('시트에 연결하지 못했어요');
+    });
+  }
+
+  /* 기록을 바꾼 뒤: 이 기기에 저장하고, 시트가 연결돼 있으면 바로 올립니다. */
+  function saveAndSync(kidId){
+    save();
+    if (sheetOn()) sheetPush(kidId);
   }
 
   /* ===================== 날짜 넘어감 / 스트릭 정리 ===================== */
@@ -721,7 +1462,7 @@
 
     const subLine = (kid.best > 0 || kid.totalDone > 0)
       ? '최고 기록 ' + kid.best + '일 · 지금까지 ' + kid.totalDone + '일 성공'
-      : '오늘 7개를 다 하면 1일째 시작이에요';
+      : '오늘 할 일 ' + TASKS.length + '개를 다 하면 1일째 시작이에요';
 
     const cycleNote = streak > 15 ? '<span class="badge">' + cycle + '번째 사이클</span>' : '';
 
@@ -737,6 +1478,596 @@
         nm.m.emoji + ' ' + nm.m.title + '</span></div>';
   }
 
+  /* ===================== 렌더: 새해 디데이 ===================== */
+  function renderNewYear(){
+    if (!el.newyear) return;
+    const d = daysUntil(NY_DAY);
+    let big, title, sub, gold = false;
+    if (d > 0) {
+      big = 'D-' + d;
+      title = '2027년 1월 1일까지';
+      sub = d + '일 남았어요';
+    } else if (d === 0) {
+      big = 'D-DAY';
+      title = '새해가 밝았어요! 🎉';
+      sub = '2027년 1월 1일 · 새해 복 많이 받으세요';
+      gold = true;
+    } else {
+      big = 'D+' + (-d);
+      title = '2027년이 시작됐어요';
+      sub = '새해에도 좋은 일만 가득하길!';
+      gold = true;
+    }
+
+    el.newyear.innerHTML =
+      '<div class="ny-inner">' +
+        '<div class="ny-art" aria-hidden="true">' + (d === 0 ? '🎉' : '⛄') + '</div>' +
+        '<div class="ny-main">' +
+          '<div class="ny-kicker">🎊 2027 새해 D-Day</div>' +
+          '<div class="ny-row">' +
+            '<div class="ny-dday' + (gold ? ' gold' : '') + '">' + big + '</div>' +
+            '<div class="ny-text"><div class="ny-title">' + title + '</div>' +
+              '<div class="ny-sub">' + sub + '</div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="ny-flakes" aria-hidden="true">' +
+          '<span style="left:4%;top:10%;animation-delay:0s">❄</span>' +
+          '<span style="right:9%;top:14%;animation-delay:.9s">✦</span>' +
+          '<span style="right:26%;bottom:16%;animation-delay:1.7s">❄</span>' +
+        '</div>' +
+      '</div>';
+  }
+
+  /* ===================== 렌더: 35일 크리스마스 트리 ===================== */
+  /* 일러스트 트리: 5단 스캘럽 가지 · 금빛 가랜드 · 흩뿌린 오너먼트 34개 + 꼭대기 별 */
+  /* 하나의 원뿔 실루엣 위에 5단 스커트를 얹는다 (옆으로 삐져나오는 모서리 없음) */
+  function coneW(y){
+    const p = Math.min(1, Math.max(0, (y - 64) / (336 - 64)));
+    return 121 * Math.pow(p, 0.72);
+  }
+  const TREE_TIERS = [
+    { top:200, bot:336, lobes:7 },
+    { top:160, bot:288, lobes:6 },
+    { top:125, bot:240, lobes:6 },
+    { top: 95, bot:194, lobes:5 },
+    { top: 64, bot:148, lobes:4 }
+  ];
+  TREE_TIERS.forEach(function(t){
+    t.hw = coneW(t.bot) + 4;
+    t.wTop = coneW(t.top) * 0.94;
+  });
+  const TREE_CX = 160;
+
+  function treeHwAt(y){
+    if (y <= 64 || y >= 338) return 0;
+    return coneW(y) * 0.96;
+  }
+
+  function treeRng(a){
+    return function(){
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function hexShade(hex, amt){
+    const n = parseInt(hex.slice(1), 16);
+    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    if (amt >= 0){ r += (255 - r) * amt; g += (255 - g) * amt; b += (255 - b) * amt; }
+    else { r *= (1 + amt); g *= (1 + amt); b *= (1 + amt); }
+    return '#' + [r, g, b].map(function(v){
+      const s = Math.max(0, Math.min(255, Math.round(v))).toString(16);
+      return s.length < 2 ? '0' + s : s;
+    }).join('');
+  }
+
+  /* 34개: 유리 방울 9 · 전구 알 8 · 지팡이사탕 5 · 리본 4 · 선물 3 · 별 3 · 방울 2 (자리마다 섞이게) */
+  const TREE_KINDS = [
+    'ribbon','ball','bulb','gift','candy','bulb','ribbon','bulb','ball','bulb',
+    'star','bell','gift','star','ball','ribbon','candy','ball','ball','bell',
+    'ribbon','ball','star','candy','candy','bulb','bulb','ball','gift','ball',
+    'ball','bulb','candy','bulb'
+  ];
+
+  /* 오너먼트 34개 — 격자·줄세우기 없이 나뭇가지 안에 유기적으로 흩뿌린다 */
+  const TREE_ORN = (function(){
+    const rnd = treeRng(20261225);
+    const list = [];
+    const sizeOf = { ball:9.2, bulb:7.9, candy:8.3, ribbon:8.2, gift:8.4, star:7.7, bell:7.9 };
+
+    function candidate(){
+      const x = TREE_CX + (rnd() * 2 - 1) * 122;
+      const half = Math.abs(x - TREE_CX);
+      let y = 0, tries = 0;
+      do { y = 104 + rnd() * 214; tries++; } while (treeHwAt(y) * 0.84 < half + 7 && tries < 30);
+      if (treeHwAt(y) * 0.84 < half + 7) return null;
+      return { x: x, y: y };
+    }
+
+    while (list.length < 34){
+      let best = null, bestGap = -1;
+      for (let k = 0; k < 24; k++){
+        const c = candidate();
+        if (!c) continue;
+        let gap = 1e9;
+        for (let j = 0; j < list.length; j++){
+          const o = list[j];
+          const dx = o.x - c.x, dy = (o.y - c.y) * 1.15;
+          const d2 = Math.sqrt(dx * dx + dy * dy) - (o.r + 9.4);
+          if (d2 < gap) gap = d2;
+        }
+        if (gap > bestGap){ bestGap = gap; best = c; }
+      }
+      if (!best) break;
+      const n = list.length;
+      const kind = TREE_KINDS[n % TREE_KINDS.length];
+      list.push({
+        x: best.x, y: best.y,
+        r: (sizeOf[kind] || 8) + (rnd() - 0.5) * 1.4,
+        kind: kind,
+        gi: (n * 3) % ORN_COLORS.length,
+        color: ORN_COLORS[(n * 3) % ORN_COLORS.length],
+        tilt: (rnd() - 0.5) * 24,
+        hang: rnd() > 0.4
+      });
+    }
+
+    /* 켜지는 순서: 아래에서 차오르되 높이가 조금씩 섞여 여기저기 불이 켜지는 느낌 */
+    const ranked = list.map(function(o, i){ return { i: i, k: o.y + (rnd() - 0.5) * 46 }; });
+    ranked.sort(function(a, b){ return b.k - a.k; });
+    ranked.forEach(function(r, rank){ list[r.i].order = rank; });
+    return list;
+  })();
+
+  function ornShape(kind, s, gi, tilt){
+    const rot = ' transform="rotate(' + fx(tilt || 0) + ')"';
+    if (kind === 'gift'){
+      return '<g' + rot + '>' +
+        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 2) + '" height="' + fx(s * 1.5) + '" rx="' + fx(s * 0.24) + '" fill="currentColor"/>' +
+        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 2) + '" height="' + fx(s * 0.42) + '" rx="' + fx(s * 0.22) + '" fill="#FFFFFF" opacity=".16"/>' +
+        '<rect x="' + fx(-s * 0.17) + '" y="' + fx(-s * 0.66) + '" width="' + fx(s * 0.34) + '" height="' + fx(s * 1.5) + '" fill="#FFF3D0" opacity=".9"/>' +
+        '<rect x="' + fx(-s) + '" y="' + fx(-s * 0.12) + '" width="' + fx(s * 2) + '" height="' + fx(s * 0.3) + '" fill="#FFF3D0" opacity=".9"/>' +
+        '<path d="M0 ' + fx(-s * 0.66) + ' C ' + fx(-s * 0.94) + ' ' + fx(-s * 1.2) + ' ' + fx(-s * 0.06) + ' ' + fx(-s * 1.16) + ' 0 ' + fx(-s * 0.66) + ' Z" fill="#FFF3D0" opacity=".92"/>' +
+        '<path d="M0 ' + fx(-s * 0.66) + ' C ' + fx(s * 0.94) + ' ' + fx(-s * 1.2) + ' ' + fx(s * 0.06) + ' ' + fx(-s * 1.16) + ' 0 ' + fx(-s * 0.66) + ' Z" fill="#FFF3D0" opacity=".92"/>' +
+      '</g>';
+    }
+    if (kind === 'bulb'){
+      return '<g' + rot + '>' +
+        '<circle cy="' + fx(-s * 0.04) + '" r="' + fx(s * 0.64) + '" fill="currentColor"/>' +
+        '<circle cy="' + fx(-s * 0.04) + '" r="' + fx(s * 0.64) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width=".8"/>' +
+        '<ellipse cx="' + fx(-s * 0.23) + '" cy="' + fx(-s * 0.28) + '" rx="' + fx(s * 0.19) + '" ry="' + fx(s * 0.14) + '" fill="#FFFFFF" opacity=".62"/>' +
+        '<rect x="' + fx(-s * 0.24) + '" y="' + fx(s * 0.5) + '" width="' + fx(s * 0.48) + '" height="' + fx(s * 0.3) + '" rx="' + fx(s * 0.07) + '" fill="#C99A55"/>' +
+        '<path d="M' + fx(-s * 0.24) + ' ' + fx(s * 0.62) + ' h' + fx(s * 0.48) + '" stroke="#8E6633" stroke-opacity=".55" stroke-width=".8"/>' +
+      '</g>';
+    }
+    if (kind === 'candy'){
+      const cane = 'M' + fx(-s * 0.42) + ' ' + fx(s * 0.92) + ' V' + fx(-s * 0.06) +
+        ' A' + fx(s * 0.42) + ' ' + fx(s * 0.42) + ' 0 0 1 ' + fx(s * 0.42) + ' ' + fx(-s * 0.06);
+      return '<g' + rot + '>' +
+        '<path d="' + cane + '" fill="none" stroke="currentColor" stroke-width="' + fx(s * 0.46) + '" stroke-linecap="round"/>' +
+        '<path d="' + cane + '" fill="none" stroke="#FFFFFF" stroke-opacity=".88" stroke-width="' + fx(s * 0.13) + '" stroke-dasharray="' + fx(s * 0.22) + ' ' + fx(s * 0.3) + '"/>' +
+      '</g>';
+    }
+    if (kind === 'ribbon'){
+      return '<g' + rot + '>' +
+        '<path d="M' + fx(-s * 0.18) + ' ' + fx(s * 0.04) + ' L' + fx(-s * 0.5) + ' ' + fx(s * 0.95) + ' L' + fx(-s * 0.06) + ' ' + fx(s * 0.7) + ' Z" fill="currentColor" opacity=".92"/>' +
+        '<path d="M' + fx(s * 0.18) + ' ' + fx(s * 0.04) + ' L' + fx(s * 0.5) + ' ' + fx(s * 0.95) + ' L' + fx(s * 0.06) + ' ' + fx(s * 0.7) + ' Z" fill="currentColor" opacity=".92"/>' +
+        '<path d="M0 0 C ' + fx(-s * 1.06) + ' ' + fx(-s * 0.7) + ' ' + fx(-s * 0.98) + ' ' + fx(s * 0.3) + ' ' + fx(-s * 0.08) + ' ' + fx(s * 0.1) + ' Z" fill="currentColor"/>' +
+        '<path d="M0 0 C ' + fx(s * 1.06) + ' ' + fx(-s * 0.7) + ' ' + fx(s * 0.98) + ' ' + fx(s * 0.3) + ' ' + fx(s * 0.08) + ' ' + fx(s * 0.1) + ' Z" fill="currentColor"/>' +
+        '<circle r="' + fx(s * 0.23) + '" fill="#FFF6DA" opacity=".95"/>' +
+      '</g>';
+    }
+    if (kind === 'star'){
+      return '<g' + rot + '>' +
+        '<path d="' + starPath(0, 0, s * 1.16, s * 0.48) + '" fill="currentColor"/>' +
+        '<path d="' + starPath(0, 0, s * 0.52, s * 0.22) + '" fill="#FFFFFF" opacity=".5"/>' +
+      '</g>';
+    }
+    if (kind === 'bell'){
+      return '<g' + rot + '>' +
+        '<path d="M' + fx(-s * 0.6) + ' ' + fx(s * 0.42) + ' C ' + fx(-s * 0.6) + ' ' + fx(-s * 0.5) + ' ' + fx(-s * 0.33) + ' ' + fx(-s * 0.84) + ' 0 ' + fx(-s * 0.84) +
+          ' C ' + fx(s * 0.33) + ' ' + fx(-s * 0.84) + ' ' + fx(s * 0.6) + ' ' + fx(-s * 0.5) + ' ' + fx(s * 0.6) + ' ' + fx(s * 0.42) + ' Z" fill="currentColor"/>' +
+        '<rect x="' + fx(-s * 0.7) + '" y="' + fx(s * 0.38) + '" width="' + fx(s * 1.4) + '" height="' + fx(s * 0.22) + '" rx="' + fx(s * 0.1) + '" fill="currentColor"/>' +
+        '<circle cy="' + fx(s * 0.76) + '" r="' + fx(s * 0.19) + '" fill="#E9C071"/>' +
+        '<path d="M' + fx(-s * 0.32) + ' ' + fx(s * 0.12) + ' C ' + fx(-s * 0.38) + ' ' + fx(-s * 0.28) + ' ' + fx(-s * 0.15) + ' ' + fx(-s * 0.58) + ' 0 ' + fx(-s * 0.64) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="' + fx(s * 0.15) + '" stroke-linecap="round"/>' +
+      '</g>';
+    }
+    return '<g>' +
+      '<circle r="' + fx(s) + '" fill="url(#orn' + gi + ')"/>' +
+      '<circle r="' + fx(s) + '" fill="none" stroke="#FFFFFF" stroke-opacity=".28" stroke-width=".9"/>' +
+      '<ellipse cx="' + fx(-s * 0.3) + '" cy="' + fx(-s * 0.34) + '" rx="' + fx(s * 0.29) + '" ry="' + fx(s * 0.18) + '" fill="#FFFFFF" opacity=".8" transform="rotate(-32 ' + fx(-s * 0.3) + ' ' + fx(-s * 0.34) + ')"/>' +
+      '<rect x="' + fx(-s * 0.18) + '" y="' + fx(-s * 1.08) + '" width="' + fx(s * 0.36) + '" height="' + fx(s * 0.2) + '" rx=".6" fill="#E8C57A"/>' +
+    '</g>';
+  }
+
+  function starPath(cx, cy, R, r){
+    let d = '';
+    for (let i = 0; i < 10; i++){
+      const rad = (i % 2 === 0) ? R : r;
+      const a = (-Math.PI / 2) + (i * Math.PI / 5);
+      d += (i ? 'L' : 'M') + fx(cx + Math.cos(a) * rad) + ' ' + fx(cy + Math.sin(a) * rad);
+    }
+    return d + 'Z';
+  }
+
+  function lobeEdges(t){
+    const n = t.lobes;
+    const w = [];
+    let acc = 0;
+    for (let i = 0; i < n; i++){
+      const v = 1 + (((i * 13 + t.lobes * 7) % 7) - 3) * 0.11;
+      w.push(v); acc += v;
+    }
+    const out = [0];
+    let sum = 0;
+    for (let i = 0; i < n; i++){ sum += w[i]; out.push(sum / acc); }
+    return out;
+  }
+
+  function lobeDroop(t, i){
+    const n = t.lobes;
+    const base = 18 + ((i * 7 + t.lobes * 5) % 4) * 2.4;
+    return base * (0.42 + 0.58 * Math.sin(Math.PI * (i + 0.5) / n));
+  }
+
+  function hemD(t){
+    const n = t.lobes, span = 2 * t.hw, y0 = t.bot, base = t.bot;
+    const e = lobeEdges(t);
+    let d = 'M' + fx(TREE_CX - t.hw) + ' ' + fx(y0);
+    for (let i = 0; i < n; i++){
+      const x1 = TREE_CX - t.hw + span * e[i], x2 = TREE_CX - t.hw + span * e[i + 1];
+      const w = x2 - x1, droop = lobeDroop(t, i);
+      d += ' Q' + fx(x1 + w * 0.26) + ' ' + fx(base + droop * 0.68) + ' ' + fx((x1 + x2) / 2) + ' ' + fx(base + droop);
+      d += ' Q' + fx(x2 - w * 0.26) + ' ' + fx(base + droop * 0.68) + ' ' + fx(x2) + ' ' + fx(y0);
+    }
+    return d;
+  }
+
+  function qp(p0, p1, p2, u){
+    const a = (1 - u) * (1 - u), b = 2 * (1 - u) * u, c = u * u;
+    return [a * p0[0] + b * p1[0] + c * p2[0], a * p0[1] + b * p1[1] + c * p2[1]];
+  }
+
+  function hemPoints(t){
+    const n = t.lobes, span = 2 * t.hw, y0 = t.bot, base = t.bot, e = lobeEdges(t);
+    const pts = [[TREE_CX - t.hw, y0]];
+    for (let i = 0; i < n; i++){
+      const x1 = TREE_CX - t.hw + span * e[i], x2 = TREE_CX - t.hw + span * e[i + 1];
+      const w = x2 - x1, droop = lobeDroop(t, i);
+      const c1 = [x1 + w * 0.26, base + droop * 0.68], mid = [(x1 + x2) / 2, base + droop], c2 = [x2 - w * 0.26, base + droop * 0.68];
+      for (let s2 = 1; s2 <= 5; s2++){
+        const u = s2 / 5;
+        pts.push(qp([x1, y0], c1, mid, u));
+        pts.push(qp(mid, c2, [x2, y0], u));
+      }
+    }
+    return pts;
+  }
+
+  function needleD(t, off, len){
+    const pts = hemPoints(t);
+    const o = off || 0, L = len || 4.2;
+    let d = '';
+    for (let i = 2 + o; i < pts.length - 1; i += 3){
+      const p = pts[i];
+      const dx = ((i % 5) - 2) * 0.9;
+      d += 'M' + fx(p[0]) + ' ' + fx(p[1]) + 'l' + fx(dx) + ' ' + fx(L + (i % 3) * 0.9) + ' ';
+    }
+    return d;
+  }
+
+  function tuftD(t, light){
+    const pts = hemPoints(t), n = t.lobes;
+    let d = '';
+    for (let i = 0; i < n; i++){
+      const idx = 1 + i * 10 + (light ? 3 : 4);
+      const p = pts[idx];
+      if (!p) continue;
+      for (let k = -1; k <= 1; k++){
+        const len = 4.6 - Math.abs(k) * 1.1;
+        d += 'M' + fx(p[0] + k * 1.7) + ' ' + fx(p[1] - 1.2) + 'l' + fx(k * 1.6 + (light ? 0.8 : -0.8)) + ' ' + fx(len) + ' ';
+      }
+    }
+    return d;
+  }
+
+  function tierD(t){
+    const h = t.bot - t.top;
+    let d = 'M' + fx(TREE_CX - t.wTop) + ' ' + fx(t.top);
+    d += ' C' + fx(TREE_CX - t.wTop - (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
+         ' ' + fx(TREE_CX - t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
+         ' ' + fx(TREE_CX - t.hw) + ' ' + fx(t.bot);
+    d += hemD(t).replace(/^M[^Q]*/, '');
+    d += ' C' + fx(TREE_CX + t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
+         ' ' + fx(TREE_CX + t.wTop + (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
+         ' ' + fx(TREE_CX + t.wTop) + ' ' + fx(t.top);
+    return d + ' Z';
+  }
+
+  function sideD(t){
+    const h = t.bot - t.top;
+    return 'M' + fx(TREE_CX - t.wTop) + ' ' + fx(t.top) +
+      ' C' + fx(TREE_CX - t.wTop - (t.hw - t.wTop) * 0.5) + ' ' + fx(t.top + h * 0.55) +
+      ' ' + fx(TREE_CX - t.hw * 0.97) + ' ' + fx(t.bot - h * 0.16) +
+      ' ' + fx(TREE_CX - t.hw) + ' ' + fx(t.bot);
+  }
+
+  function smoothD(pts){
+    if (!pts.length) return '';
+    let d = 'M' + fx(pts[0][0]) + ' ' + fx(pts[0][1]);
+    for (let i = 0; i < pts.length - 1; i++){
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || pts[i + 1];
+      d += ' C' + fx(p1[0] + (p2[0] - p0[0]) / 6) + ' ' + fx(p1[1] + (p2[1] - p0[1]) / 6) +
+           ' ' + fx(p2[0] - (p3[0] - p1[0]) / 6) + ' ' + fx(p2[1] - (p3[1] - p1[1]) / 6) +
+           ' ' + fx(p2[0]) + ' ' + fx(p2[1]);
+    }
+    return d;
+  }
+
+  /* 트리 몸통을 S자로 감아 내려오는 금빛 가랜드 */
+  function garlandD(){
+    const pts = [];
+    const N = 54;
+    for (let i = 0; i <= N; i++){
+      const t = i / N;
+      const y = 100 + t * 216;
+      const hw = treeHwAt(y);
+      const a = -Math.PI * 0.5 + t * Math.PI * 2.9;
+      pts.push([TREE_CX + Math.cos(a) * hw * 0.78, y + Math.sin(a) * 2.6]);
+    }
+    return smoothD(pts);
+  }
+
+  function treeSvg(lit){
+    const litN = Math.min(TREE_TOTAL, Math.max(0, Math.round(Number(lit) || 0)));
+    const bodyLit = Math.min(TREE_TOTAL - 1, litN);
+    const starOn = litN >= TREE_TOTAL;
+
+    const tierDs = TREE_TIERS.map(function(t){ return tierD(t); });
+
+    /* ---------- defs ---------- */
+    let ballGrads = '';
+    ORN_COLORS.forEach(function(c, i){
+      ballGrads += '<radialGradient id="orn' + i + '" cx="34%" cy="26%" r="82%">' +
+        '<stop offset="0%" stop-color="' + hexShade(c, .58) + '"/>' +
+        '<stop offset="44%" stop-color="' + hexShade(c, .06) + '"/>' +
+        '<stop offset="100%" stop-color="' + hexShade(c, -.44) + '"/>' +
+      '</radialGradient>';
+    });
+
+    const tierTones = [
+      ['#2A8862', '#0E4A33'],
+      ['#3CA57C', '#1A6A4E'],
+      ['#2C8E67', '#114F39'],
+      ['#43AC84', '#1D7253'],
+      ['#4DBA90', '#26805F']
+    ];
+    let tierGrads = '';
+    TREE_TIERS.forEach(function(t, i){
+      tierGrads += '<linearGradient id="tg' + i + '" gradientUnits="userSpaceOnUse" x1="0" y1="' + t.top + '" x2="0" y2="' + (t.bot + 10) + '">' +
+        '<stop offset="0%" stop-color="' + hexShade(tierTones[i][0], .1) + '"/>' +
+        '<stop offset="62%" stop-color="' + tierTones[i][1] + '"/>' +
+        '<stop offset="100%" stop-color="' + hexShade(tierTones[i][1], -.2) + '"/>' +
+      '</linearGradient>';
+    });
+
+    const defs = '<defs>' + tierGrads + ballGrads +
+      '<linearGradient id="tierShade" gradientUnits="userSpaceOnUse" x1="70" y1="0" x2="292" y2="0">' +
+        '<stop offset="0%" stop-color="#08281D" stop-opacity="0"/>' +
+        '<stop offset="58%" stop-color="#08281D" stop-opacity=".10"/>' +
+        '<stop offset="100%" stop-color="#06201A" stop-opacity=".34"/>' +
+      '</linearGradient>' +
+      '<linearGradient id="tierLight" gradientUnits="userSpaceOnUse" x1="34" y1="0" x2="190" y2="0">' +
+        '<stop offset="0%" stop-color="#C8FFDF" stop-opacity=".22"/>' +
+        '<stop offset="46%" stop-color="#C8FFDF" stop-opacity=".04"/>' +
+        '<stop offset="100%" stop-color="#C8FFDF" stop-opacity="0"/>' +
+      '</linearGradient>' +
+      '<radialGradient id="floorWarm" cx="50%" cy="50%" r="50%">' +
+        '<stop offset="0%" stop-color="#FFD9A0" stop-opacity=".5"/>' +
+        '<stop offset="60%" stop-color="#FFC27A" stop-opacity=".16"/>' +
+        '<stop offset="100%" stop-color="#FFC27A" stop-opacity="0"/>' +
+      '</radialGradient>' +
+      '<linearGradient id="snowSnow" gradientUnits="userSpaceOnUse" x1="0" y1="336" x2="0" y2="366">' +
+        '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".92"/>' +
+        '<stop offset="100%" stop-color="#D9E8FF" stop-opacity=".55"/>' +
+      '</linearGradient>' +
+      '<linearGradient id="woodPot" gradientUnits="userSpaceOnUse" x1="138" y1="0" x2="182" y2="0">' +
+        '<stop offset="0%" stop-color="#B98551"/>' +
+        '<stop offset="52%" stop-color="#9C6A3C"/>' +
+        '<stop offset="100%" stop-color="#774C29"/>' +
+      '</linearGradient>' +
+      '<radialGradient id="starGlow" cx="50%" cy="50%" r="50%">' +
+        '<stop offset="0%" stop-color="#FFF6CF" stop-opacity=".95"/>' +
+        '<stop offset="52%" stop-color="#FFDF8A" stop-opacity=".4"/>' +
+        '<stop offset="100%" stop-color="#FFDF8A" stop-opacity="0"/>' +
+      '</radialGradient>' +
+      '<linearGradient id="starShade" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".55"/>' +
+        '<stop offset="48%" stop-color="#FFF0B8" stop-opacity=".05"/>' +
+        '<stop offset="100%" stop-color="#C97B12" stop-opacity=".45"/>' +
+      '</linearGradient>' +
+      '<filter id="warmGlow" x="-40%" y="-40%" width="180%" height="180%">' +
+        '<feGaussianBlur stdDeviation="3.4"/>' +
+      '</filter>' +
+      '<filter id="softBlur" x="-25%" y="-60%" width="150%" height="240%">' +
+        '<feGaussianBlur stdDeviation="4.4"/>' +
+      '</filter>' +
+      '<filter id="thinBlur" x="-25%" y="-60%" width="150%" height="240%">' +
+        '<feGaussianBlur stdDeviation="1.1"/>' +
+      '</filter>' +
+      '<clipPath id="treeClip">' + tierDs.map(function(d){ return '<path d="' + d + '"/>'; }).join('') + '</clipPath>' +
+      '<radialGradient id="treeLit" cx="50%" cy="50%" r="50%">' +
+        '<stop offset="0%" stop-color="#EAFFF2" stop-opacity=".30"/>' +
+        '<stop offset="55%" stop-color="#CFFFE4" stop-opacity=".10"/>' +
+        '<stop offset="100%" stop-color="#CFFFE4" stop-opacity="0"/>' +
+      '</radialGradient>' +
+      '<linearGradient id="treeBase" gradientUnits="userSpaceOnUse" x1="0" y1="120" x2="0" y2="350">' +
+        '<stop offset="0%" stop-color="#04241B" stop-opacity="0"/>' +
+        '<stop offset="62%" stop-color="#04241B" stop-opacity=".12"/>' +
+        '<stop offset="100%" stop-color="#04241B" stop-opacity=".32"/>' +
+      '</linearGradient>' +
+      '<radialGradient id="treeWarm" cx="50%" cy="50%" r="50%">' +
+        '<stop offset="0%" stop-color="#FFDFA2" stop-opacity=".16"/>' +
+        '<stop offset="55%" stop-color="#FFC98A" stop-opacity=".06"/>' +
+        '<stop offset="100%" stop-color="#FFC98A" stop-opacity="0"/>' +
+      '</radialGradient>' +
+      '<radialGradient id="treeAura" cx="50%" cy="50%" r="50%">' +
+        '<stop offset="0%" stop-color="#9BF2C8" stop-opacity=".22"/>' +
+        '<stop offset="62%" stop-color="#6CD9A8" stop-opacity=".07"/>' +
+        '<stop offset="100%" stop-color="#6CD9A8" stop-opacity="0"/>' +
+      '</radialGradient>' +
+    '</defs>';
+
+    /* ---------- 밤하늘 ---------- */
+    let sky = '';
+    [[38,54,1.3,.45],[68,30,1,.32],[96,72,1.1,.4],[128,24,1,.28],[196,28,1.1,.34],[226,58,1.2,.42],[262,30,1,.28],[290,68,1.3,.46],[312,108,1,.26],[22,106,1.1,.3],[302,164,1,.22],[18,176,1.1,.28],[306,232,1,.24],[16,258,1,.22],[304,282,.9,.2],[26,314,1,.18],[292,326,.9,.18],[62,14,1,.26],[250,14,1,.24],[176,16,.9,.2],[142,54,.9,.3]].forEach(function(p){
+      sky += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="#FFFFFF" opacity="' + p[3] + '"/>';
+    });
+    [[80,44,4.2],[248,92,3.2],[300,206,3.6],[46,240,3.2]].forEach(function(p){
+      sky += '<path d="M' + p[0] + ' ' + (p[1] - p[2]) + ' V' + (p[1] + p[2]) + ' M' + (p[0] - p[2]) + ' ' + p[1] + ' H' + (p[0] + p[2]) +
+        '" stroke="#FFFFFF" stroke-opacity=".5" stroke-width=".9" stroke-linecap="round"/>';
+    });
+
+    /* ---------- 눈 언덕 · 바닥 빛 ---------- */
+    const ground =
+      '<ellipse cx="160" cy="352" rx="140" ry="28" fill="url(#floorWarm)"/>' +
+      '<ellipse cx="160" cy="214" rx="152" ry="176" fill="url(#treeAura)"/>' +
+      '<path d="M34 348 C 58 332, 108 330, 138 338 C 150 341, 170 341, 184 338 C 216 330, 264 332, 288 348 C 290 360, 274 368, 250 368 L 72 368 C 46 368, 32 360, 34 348 Z" fill="url(#snowSnow)" opacity=".9"/>';
+
+    /* ---------- 나무: 아래 단부터 겹쳐 올린다 ---------- */
+    let tiers = '';
+    TREE_TIERS.forEach(function(t, i){
+      const d = tierDs[i];
+      tiers += '<g>' +
+        '<path d="' + d + '" fill="url(#tg' + i + ')"/>' +
+        '<path d="' + d + '" fill="url(#tierLight)"/>' +
+        '<path d="' + d + '" fill="url(#tierShade)"/>' +
+        '<path d="' + hemD(t) + '" fill="none" stroke="#04241B" stroke-opacity=".26" stroke-width="9" stroke-linecap="round" filter="url(#softBlur)" transform="translate(0 3.5)"/>' +
+        '<path d="' + tuftD(t, false) + '" fill="none" stroke="#07331F" stroke-opacity=".2" stroke-width="1.05" stroke-linecap="round"/>' +
+        '<path d="' + tuftD(t, true) + '" fill="none" stroke="#86E7B8" stroke-opacity=".16" stroke-width=".95" stroke-linecap="round"/>' +
+        '<path d="' + sideD(t) + '" fill="none" stroke="#D9FFEC" stroke-opacity=".14" stroke-width="1.6"/>' +
+      '</g>';
+
+    });
+
+    const treeLighting = '<g clip-path="url(#treeClip)">' +
+      '<ellipse cx="112" cy="150" rx="150" ry="180" fill="url(#treeLit)"/>' +
+      '<ellipse cx="160" cy="220" rx="120" ry="130" fill="url(#treeWarm)"/>' +
+      '<rect x="0" y="120" width="320" height="230" fill="url(#treeBase)"/>' +
+    '</g>';
+
+    /* ---------- 금빛 가랜드 ---------- */
+    const gd = garlandD();
+    const garland =
+      '<g>' +
+        '<path d="' + gd + '" fill="none" stroke="#FFE3A6" stroke-opacity=".85" stroke-width="5.2" stroke-linecap="round" stroke-dasharray=".1 19" filter="url(#warmGlow)"/>' +
+        '<path d="' + gd + '" fill="none" stroke="#C79A4E" stroke-opacity=".65" stroke-width="1.3"/>' +
+        '<path d="' + gd + '" fill="none" stroke="#FFE9B4" stroke-width="3.6" stroke-linecap="round" stroke-dasharray=".1 19"/>' +
+      '</g>';
+
+    /* ---------- 오너먼트 ---------- */
+    let orns = '';
+    TREE_ORN.forEach(function(o, i){
+      const on = (o.order + 1) <= bodyLit;
+      orns += '<g class="orn' + (on ? ' on' : '') + '" transform="translate(' + fx(o.x) + ' ' + fx(o.y) + ')"' +
+        ' style="color:' + (on ? o.color : '#8B81A6') + ';animation-delay:' + fx((i % 9) * 0.19) + 's">' +
+        (o.hang ? '<line x1="0" y1="' + fx(-o.r - 5.5) + '" x2="0" y2="' + fx(-o.r - 0.4) + '" stroke="' + (on ? '#FFE7B0' : '#9A90B4') + '" stroke-opacity=".5" stroke-width="1"/>' : '') +
+        '<ellipse cx="' + fx(o.r * 0.22) + '" cy="' + fx(o.r * 0.92) + '" rx="' + fx(o.r * 0.7) + '" ry="' + fx(o.r * 0.26) + '" fill="#032018" opacity=".2"/>' +
+        ornShape(o.kind, o.r, o.gi, o.tilt) +
+        '</g>';
+    });
+
+    /* ---------- 화분 · 선물 ---------- */
+    const pot =
+      '<g>' +
+        '<path d="M136 345 H184 L178 371 Q160 376 142 371 Z" fill="url(#woodPot)"/>' +
+        '<rect x="132" y="336" width="56" height="12" rx="5" fill="url(#woodPot)"/>' +
+        '<path d="M132 338 Q160 334 188 338" fill="none" stroke="#FFF6E4" stroke-opacity=".6" stroke-width="2.6" stroke-linecap="round"/>' +
+        '<path d="M141 352 V366 M160 350 V368 M179 352 V366" stroke="#5E3A1F" stroke-opacity=".3" stroke-width="1.1"/>' +
+        '<path d="M137 344 H183" stroke="#5E3A1F" stroke-opacity=".35" stroke-width="1.4"/>' +
+      '</g>';
+
+    const gifts =
+      '<g transform="translate(102 352)">' +
+        '<rect x="-15" y="-14" width="30" height="24" rx="3" fill="#E0576F"/>' +
+        '<rect x="-15" y="-14" width="30" height="7" rx="3" fill="#FFFFFF" opacity=".14"/>' +
+        '<rect x="-3.4" y="-14" width="6.8" height="24" fill="#FFE7A8"/>' +
+        '<rect x="-15" y="-5" width="30" height="5.6" fill="#FFE7A8" opacity=".92"/>' +
+        '<path d="M0 -14 C -9 -25, -17 -19, -3 -14 Z" fill="#F7C75A"/>' +
+        '<path d="M0 -14 C 9 -25, 17 -19, 3 -14 Z" fill="#F7C75A"/>' +
+      '</g>' +
+      '<g transform="translate(222 354)">' +
+        '<rect x="-12" y="-11" width="24" height="20" rx="3" fill="#5FA8E0"/>' +
+        '<rect x="-12" y="-11" width="24" height="6" rx="3" fill="#FFFFFF" opacity=".16"/>' +
+        '<rect x="-3" y="-11" width="6" height="20" fill="#EAF6FF"/>' +
+        '<rect x="-12" y="-3.6" width="24" height="4.8" fill="#EAF6FF" opacity=".9"/>' +
+        '<path d="M0 -11 C -7 -20, -14 -15, -2.6 -11 Z" fill="#EAF6FF"/>' +
+        '<path d="M0 -11 C 7 -20, 14 -15, 2.6 -11 Z" fill="#EAF6FF"/>' +
+      '</g>' +
+      '<g transform="translate(126 364)">' +
+        '<rect x="-9" y="-8" width="18" height="15" rx="2.6" fill="#C79BFF"/>' +
+        '<rect x="-2.4" y="-8" width="4.8" height="15" fill="#FFF3D0" opacity=".9"/>' +
+        '<rect x="-9" y="-2.6" width="18" height="3.8" fill="#FFF3D0" opacity=".85"/>' +
+      '</g>';
+
+    /* ---------- 꼭대기 별 ---------- */
+    const starG =
+      '<g class="tree-star' + (starOn ? ' on' : '') + '">' +
+        (starOn ? '<circle cx="160" cy="42" r="36" fill="url(#starGlow)"/>' : '') +
+        (starOn ? '<path d="M160 4 V22 M160 62 V80 M126 42 H142 M178 42 H194" stroke="#FFF1C4" stroke-opacity=".45" stroke-width="1.2" stroke-linecap="round"/>' : '') +
+        '<path d="' + starPath(160, 42, 20.5, 8.6) + '" fill="' + (starOn ? '#FFD75E' : '#6E6289') + '" stroke="' + (starOn ? '#FFF0C0' : '#5B5177') + '" stroke-width="1.5" stroke-linejoin="round"/>' +
+        (starOn ? '<path d="' + starPath(160, 42, 20.5, 8.6) + '" fill="url(#starShade)"/>' : '') +
+        (starOn ? '<path d="M160 30.5 L163.4 40.4 L160 38.2 L156.6 40.4 Z" fill="#FFFFFF" opacity=".85"/>' : '') +
+      '</g>';
+
+    /* ---------- 반짝임(완성 시) ---------- */
+    let sparks = '';
+    [[86,116,7],[238,150,6],[62,254,6],[264,292,5],[110,52,5],[196,220,5],[150,286,4]].forEach(function(s, i){
+      sparks += '<path class="tree-spark" d="' + starPath(s[0], s[1], s[2], s[2] * 0.42) +
+        '" fill="#FFF3C4" style="animation-delay:' + fx(i * 0.34) + 's"/>';
+    });
+
+    return '<svg class="tree-svg" viewBox="0 0 320 380" role="img" aria-label="크리스마스 트리, 35개 중 ' + litN + '개 오너먼트 켜짐">' +
+      defs + sky + ground + tiers + treeLighting + garland + orns + pot + gifts + sparks + starG +
+    '</svg>';
+  }
+
+  function renderTree(){
+    if (!el.treeCard) return;
+    const k = curKid();
+    const kid = kidState(k.id);
+    const lit = Math.min(TREE_TOTAL, Math.max(0, Math.round(Number(kid.streak) || 0)));
+    const pct = Math.round((lit / TREE_TOTAL) * 100);
+    const left = TREE_TOTAL - lit;
+    const today = todayStr();
+    const toXmas = daysUntil(TREE_END);
+    const toStart = daysUntil(TREE_START);
+    const complete = lit >= TREE_TOTAL;
+
+    let note;
+    if (complete) {
+      note = '🎉 35일을 모두 채웠어요! 트리가 반짝반짝해요.';
+    } else if (today < TREE_START) {
+      note = '11/21(토)~12/25(금) 35일 챌린지 · 시작까지 ' + Math.max(0, toStart) +
+        '일. 부모 설정의 연속 일수로 오너먼트를 미리 켜 볼 수 있어요.';
+    } else if (today > TREE_END) {
+      note = '11/21(토)~12/25(금) 35일 챌린지가 끝났어요. 내년 겨울에 다시!';
+    } else {
+      note = '11/21(토)~12/25(금) 35일 챌린지 · 크리스마스까지 ' + Math.max(0, toXmas) + '일';
+    }
+
+    el.treeCard.innerHTML =
+      '<div class="card-head"><h2>🎄 크리스마스 트리</h2><span class="badge">' + lit + ' / ' + TREE_TOTAL + '</span></div>' +
+      '<div class="tree-stage' + (complete ? ' done' : '') + '">' + treeSvg(lit) + '</div>' +
+      '<div class="tree-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="tree-legend"><span>' + k.emoji + ' ' + k.name + '</span><span>오너먼트 ' + lit + '개' +
+        (left > 0 ? ' · ' + left + '개 남았어요' : ' · 완성!') + '</span></div>' +
+      (complete ? '<div class="tree-done">🎄 크리스마스 트리 완성! ⭐</div>' : '') +
+      '<p class="tree-note">' + note + '</p>';
+  }
+
   /* ===================== 렌더: 오늘의 할 일 ===================== */
   let justChecked = null;
 
@@ -748,8 +2079,7 @@
 
     const rows = TASKS.map(function(t){
       const on = !!kid.tasks[t.id];
-      const stamp = on ? '<span class="stamp' + (justChecked === t.id ? ' pop' : '') + '">' +
-        (justChecked === t.id ? '쾅!' : '완료') + '</span>' : '';
+      const stamp = on ? '<span class="stamp' + (justChecked === t.id ? ' soft' : '') + '">완료</span>' : '';
       return '<div class="task' + (on ? ' done' : '') + '">' +
         '<div class="t-emoji">' + t.emoji + '</div>' +
         '<div class="t-label">' + t.label + '</div>' + stamp +
@@ -766,7 +2096,156 @@
       '<div class="card-head"><h2>📋 오늘의 할 일</h2><span class="badge">' + n + ' / ' + TASKS.length + '</span></div>' +
       '<div class="task-list">' + rows + '</div>' +
       '<div class="task-foot"><span class="dots">' + dots + '</span>' +
-        '<span>' + (complete ? '오늘 7개 완료! 정말 대단해요 🎉' : (TASKS.length - n) + '개 남았어요') + '</span></div>';
+        '<span>' + (complete ? '오늘 ' + TASKS.length + '개 완료! 정말 대단해요 🎉' : (TASKS.length - n) + '개 남았어요') + '</span></div>';
+  }
+
+  /* ===================== 렌더: 흘려듣기 (분) ===================== */
+  let listenBump = false;
+
+  function fmtMin(m){
+    const v = Math.max(0, Math.round(Number(m) || 0));
+    if (v < 60) return v + '분';
+    const h = Math.floor(v / 60);
+    const r = v % 60;
+    return h + '시간' + (r ? ' ' + r + '분' : '');
+  }
+
+  function listenMap(kid){
+    return (kid.listen && typeof kid.listen === 'object' && !Array.isArray(kid.listen)) ? kid.listen : {};
+  }
+
+  function listenToday(kid){
+    const v = Math.round(Number(listenMap(kid)[todayStr()]));
+    return isFinite(v) && v > 0 ? v : 0;
+  }
+
+  function listenSum(kid, sinceStr){
+    const map = listenMap(kid);
+    let sum = 0;
+    Object.keys(map).forEach(function(d){
+      if (sinceStr && d < sinceStr) return;
+      const v = Math.round(Number(map[d]));
+      if (isFinite(v) && v > 0) sum += v;
+    });
+    return sum;
+  }
+
+  function listenWeekStart(){ return dateStr(new Date(Date.now() - 6 * DAY_MS)); }
+
+  function shortDay(d){
+    const p = String(d).split('-');
+    if (p.length !== 3) return d;
+    return Number(p[1]) + '/' + Number(p[2]);
+  }
+
+  function renderListen(){
+    if (!el.listenCard) return;
+    const k = curKid();
+    const kid = kidState(k.id);
+    const map = listenMap(kid);
+    const t = todayStr();
+    const today = listenToday(kid);
+    const week = listenSum(kid, listenWeekStart());
+    const total = Math.max(listenSum(kid, null), Math.round(Number(sheetTotals[k.name]) || 0));
+
+    const recent = Object.keys(map)
+      .filter(function(d){ const v = Math.round(Number(map[d])); return isFinite(v) && v > 0; })
+      .sort()
+      .reverse()
+      .slice(0, 5)
+      .map(function(d){
+        const isToday = d === t;
+        return '<span class="l-chip' + (isToday ? ' today' : '') + '">' +
+          (isToday ? '오늘' : shortDay(d)) + ' ' + Math.round(Number(map[d])) + '분</span>';
+      }).join('');
+
+    const quick = LISTEN_QUICK.map(function(m){
+      return '<button class="l-quick" data-action="listen-add" data-min="' + m + '">+' + m + '분</button>';
+    }).join('');
+
+    el.listenCard.innerHTML =
+      '<div class="card-head"><h2>🎧 흘려듣기</h2><span class="badge">누적 ' + fmtMin(total) + '</span></div>' +
+      '<div class="listen-hero">' +
+        '<div class="listen-min' + (listenBump ? ' bump' : '') + '">' +
+          '<b>' + today + '</b><span class="u">분</span>' +
+        '</div>' +
+        '<div class="listen-sub"><b>' + k.emoji + ' ' + k.name + ' 오늘</b><br>' +
+          '<span class="listen-week">이번 주 ' + fmtMin(week) + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="listen-quick">' + quick + '</div>' +
+      '<div class="listen-set">' +
+        '<span class="l-lab">직접 입력</span>' +
+        '<input type="number" id="listenMinutes" min="0" max="' + LISTEN_MAX + '" step="1" inputmode="numeric" ' +
+          'value="' + (today > 0 ? today : '') + '" placeholder="몇 분" aria-label="오늘 흘려듣기 분">' +
+        '<span class="u">분</span>' +
+        '<button class="btn tiny primary" data-action="listen-set">저장</button>' +
+      '</div>' +
+      (recent
+        ? '<div class="listen-recent"><span class="l-lab">최근</span>' + recent + '</div>'
+        : '<p class="listen-note">오늘 몇 분 흘려들었는지 위 버튼을 누르거나 직접 입력해 두면, 여기에 날짜별로 쌓여요.</p>') +
+      '<div class="listen-tools">' +
+        '<button class="l-link" data-action="listen-add" data-min="-10">−10분</button>' +
+        '<button class="l-link" data-action="listen-clear">오늘 기록 지우기</button>' +
+      '</div>';
+
+    listenBump = false;
+  }
+
+  /* ===================== 동작: 흘려듣기 (분) ===================== */
+  function ensureListenMap(kid){
+    if (!kid.listen || typeof kid.listen !== 'object' || Array.isArray(kid.listen)) kid.listen = {};
+    return kid.listen;
+  }
+
+  /* 빠른 버튼(+10/+20/+30/−10): 오늘 분 수에 더하거나 뻘니다. */
+  function listenAdd(delta){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const map = ensureListenMap(kid);
+    const t = todayStr();
+    const before = Math.round(Number(map[t]) || 0);
+    const next = Math.max(0, Math.min(LISTEN_MAX, before + (Number(delta) || 0)));
+    if (next === before) {
+      if (before === 0) toast('오늘은 아직 0분이에요. 직접 입력해도 좋아요!');
+      return;
+    }
+    map[t] = next;
+    listenBump = true;
+    saveAndSync(k.id);
+    renderListen();
+    playTick();
+  }
+
+  /* 직접 입력 + 저장: 오늘 분 수를 입력한 값으로 맞춥니다. */
+  function listenSet(val){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const raw = String(val == null ? '' : val).trim();
+    if (!raw) { toast('몇 분인지 먼저 적어 주세요'); return; }
+    const map = ensureListenMap(kid);
+    const t = todayStr();
+    const v = Math.max(0, Math.min(LISTEN_MAX, Math.round(Number(raw) || 0)));
+    if (v > 0) map[t] = v;
+    else delete map[t];
+    saveAndSync(k.id);
+    renderListen();
+    playTick();
+    toast('🎧 오늘 흘려듣기 ' + fmtMin(v) + ' 저장!');
+  }
+
+  function listenClear(){
+    const k = curKid();
+    const kid = kidState(k.id);
+    const t = todayStr();
+    const cur = listenToday(kid);
+    if (!cur) { toast('오늘 기록이 아직 없어요'); return; }
+    if (!confirm(k.name + ' 오늘 흘려듣기 ' + cur + '분 기록을 지울까요?')) return;
+    ensureListenMap(kid);
+    delete kid.listen[t];
+    saveAndSync(k.id);
+    renderListen();
+    toast('오늘 흘려듣기 기록을 지웠어요');
   }
 
   /* ===================== 렌더: 쿠폰함 ===================== */
@@ -838,6 +2317,284 @@
       '<div class="add-row"><input type="text" id="missionInput" maxlength="40" placeholder="우리 가족만의 미션을 추가해요" aria-label="새 미션">' +
         '<button class="btn tiny" data-action="add-mission">추가</button></div>' +
       (customCount ? '<p class="set-help" style="margin-top:8px">직접 추가한 미션 ' + customCount + '개는 아래 부모 설정에서 지울 수 있어요.</p>' : '');
+  }
+
+  /* ===================== 영어 퀴즈: 날짜별 출제 ===================== */
+  let quiz = loadQuiz();
+  let quizView = 'today';
+
+  function emptyQuizSlot(setIndex){
+    const answers = [];
+    for (let i = 0; i < QUIZ_PER_DAY; i++) answers.push(null);
+    return { set: setIndex, answers: answers, graded: false, score: 0 };
+  }
+
+  function validQuizSlot(slot){
+    if (!slot || typeof slot !== 'object') return null;
+    const set = Number(slot.set);
+    if (!isFinite(set) || set < 0 || set >= QUIZ_DAYS) return null;
+    const from = Array.isArray(slot.answers) ? slot.answers : [];
+    const answers = [];
+    for (let i = 0; i < QUIZ_PER_DAY; i++) {
+      const a = from[i];
+      const n = Number(a);
+      answers.push((a === null || a === undefined || a === '' || isNaN(n) || n < 0 || n > 3) ? null : Math.floor(n));
+    }
+    const complete = answers.every(function(a){ return a !== null; });
+    const graded = !!slot.graded && complete;
+    const score = graded ? Math.max(0, Math.min(QUIZ_PER_DAY, Math.round(Number(slot.score) || 0))) : 0;
+    return { set: Math.floor(set), answers: answers, graded: graded, score: score };
+  }
+
+  function quizDayNumber(d){
+    return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / DAY_MS);
+  }
+
+  function todaySetIndex(){
+    const n = quizDayNumber(new Date());
+    return ((n % QUIZ_DAYS) + QUIZ_DAYS) % QUIZ_DAYS;
+  }
+
+  function quizQuestions(setIndex){
+    const start = setIndex * QUIZ_PER_DAY;
+    return QUIZ_BANK.slice(start, start + QUIZ_PER_DAY);
+  }
+
+  function loadQuiz(){
+    const base = { v:1, kids:{} };
+    KIDS.forEach(function(k){ base.kids[k.id] = null; });
+    let saved = null;
+    try {
+      const raw = localStorage.getItem(QUIZ_KEY);
+      if (raw) saved = JSON.parse(raw);
+    } catch (e) { return base; }
+    if (!saved || typeof saved !== 'object' || !saved.kids || typeof saved.kids !== 'object') return base;
+    KIDS.forEach(function(k){
+      const one = saved.kids[k.id];
+      if (one && typeof one === 'object') base.kids[k.id] = one;
+    });
+    return base;
+  }
+
+  function saveQuiz(){
+    try { localStorage.setItem(QUIZ_KEY, JSON.stringify(quiz)); } catch (e) {}
+  }
+
+  function resetQuizKid(kidId){
+    quiz.kids[kidId] = { date: todayStr(), today: emptyQuizSlot(todaySetIndex()), practice: null };
+    return quiz.kids[kidId];
+  }
+
+  function ensureQuiz(){
+    const t = todayStr();
+    if (!quiz || !quiz.kids || typeof quiz.kids !== 'object') quiz = { v:1, kids:{} };
+    let changed = false;
+    KIDS.forEach(function(k){
+      const from = quiz.kids[k.id];
+      if (!from || typeof from !== 'object' || from.date !== t) {
+        resetQuizKid(k.id);
+        changed = true;
+        return;
+      }
+      const fixed = {
+        date: t,
+        today: validQuizSlot(from.today) || emptyQuizSlot(todaySetIndex()),
+        practice: from.practice ? validQuizSlot(from.practice) : null
+      };
+      if (JSON.stringify(fixed) !== JSON.stringify(from)) { quiz.kids[k.id] = fixed; changed = true; }
+    });
+    if (changed) saveQuiz();
+    return quiz.kids[state.active];
+  }
+
+  function quizShowingPractice(){
+    const kq = quiz.kids[state.active];
+    return quizView === 'practice' && !!(kq && kq.practice);
+  }
+
+  function currentQuizSlot(){
+    const kq = ensureQuiz();
+    if (!kq) return null;
+    return quizShowingPractice() ? kq.practice : kq.today;
+  }
+
+  function renderQuiz(){
+    if (!el.quizCard) return;
+    const kq = ensureQuiz();
+    const k = curKid();
+    if (!kq) { el.quizCard.innerHTML = ''; return; }
+
+    const practice = quizShowingPractice();
+    const slot = practice ? kq.practice : kq.today;
+    const qs = quizQuestions(slot.set);
+    const answered = slot.answers.filter(function(a){ return a !== null; }).length;
+
+    const bookKeys = [];
+    qs.forEach(function(q){ if (bookKeys.indexOf(q.book) < 0) bookKeys.push(q.book); });
+    const books = bookKeys.map(function(b){
+      const meta = QUIZ_BOOKS[b] || { label:b, emoji:'📘' };
+      return '<span class="book">' + meta.emoji + ' ' + esc(meta.label) + '</span>';
+    }).join('');
+
+    const head = '<div class="card-head"><h2>' + (practice ? '📚 연습 영어 퀴즈' : '📚 오늘의 영어 퀴즈') + '</h2>' +
+      '<span class="badge">' + k.emoji + ' ' + esc(k.name) + '</span></div>';
+
+    const meta = '<div class="quiz-meta">' + books +
+      '<span class="muted">' + (practice ? '연습 세트' : '오늘의 세트') + ' ' + (slot.set + 1) + ' / ' + QUIZ_DAYS + '</span>' +
+      (practice && kq.today.graded ? '<span class="muted">· 오늘 퀴즈 ' + kq.today.score + '/' + QUIZ_PER_DAY + '</span>' : '') +
+      '</div>';
+
+    const marks = ['①', '②', '③', '④'];
+    const items = qs.map(function(q, qi){
+      const picked = slot.answers[qi];
+      const opts = q.options.map(function(text, oi){
+        let cls = 'q-opt';
+        if (!slot.graded) {
+          if (picked === oi) cls += ' sel';
+        } else if (oi === q.answer) {
+          cls += ' ok mark';
+        } else if (picked === oi) {
+          cls += ' no mark';
+        }
+        return '<button type="button" class="' + cls + '" data-action="quiz-pick" data-q="' + qi + '" data-o="' + oi + '"' +
+          (slot.graded ? ' disabled' : '') + ' aria-pressed="' + (picked === oi) + '">' +
+          '<span class="k">' + marks[oi] + '</span><span class="t">' + esc(text) + '</span></button>';
+      }).join('');
+
+      let explain = '';
+      if (slot.graded) {
+        explain = '<div class="q-explain"><b>정답 ' + (q.answer + 1) + '번</b> · ' + esc(q.explain) + '</div>';
+      }
+
+      const bm = QUIZ_BOOKS[q.book] || { label:q.book, emoji:'📘' };
+      return '<div class="q-item">' +
+        '<div class="q-head"><span class="q-no">' + (qi + 1) + '</span>' +
+          '<span class="q-chip book">' + bm.emoji + ' ' + esc(bm.label) + '</span>' +
+          '<span class="q-chip ' + (q.type === '단어' ? 'word' : 'read') + '">' + esc(q.type) + '</span>' +
+        '</div>' +
+        '<p class="q-text">' + esc(q.q) + '</p>' + opts + explain +
+      '</div>';
+    }).join('');
+
+    let scoreHtml = '';
+    if (slot.graded) {
+      let msg;
+      if (slot.score === QUIZ_PER_DAY) msg = '🎉 만점! 오늘 퀴즈를 완벽하게 풀었어요!';
+      else if (slot.score === QUIZ_PER_DAY - 1) msg = '💜 아주 잘했어요! 하나만 더 맞히면 만점!';
+      else if (slot.score === 3) msg = '👏 좋아요! 해설을 읽고 다시 도전해 봐요.';
+      else msg = '💪 괜찮아요! 해설을 읽으면 다음엔 더 잘할 수 있어요.';
+      scoreHtml = '<div class="quiz-score"><span class="num"><b>' + slot.score + '</b> / ' + QUIZ_PER_DAY + '점</span>' +
+        '<span class="msg">' + msg + '</span></div>';
+    }
+
+    let actions;
+    if (!slot.graded) {
+      actions = '<button class="btn primary" data-action="quiz-grade"' + (answered === QUIZ_PER_DAY ? '' : ' disabled') + '>' +
+        '📝 채점하기 (' + answered + '/' + QUIZ_PER_DAY + ')</button>';
+    } else {
+      actions = '<button class="btn primary" data-action="quiz-retry">🔁 다시 풀기</button>';
+    }
+    actions += practice
+      ? '<button class="btn" data-action="quiz-today">📅 오늘 퀴즈로</button>'
+      : '<button class="btn" data-action="quiz-practice">🔄 연습 문제 더 풀기</button>';
+
+    const hint = slot.graded
+      ? '점수와 해설은 이 기기에 저장돼요. 날짜가 바뀌면 새 5문제가 나와요.'
+      : '5문제를 모두 고르면 채점 버튼이 켜져요.';
+
+    el.quizCard.innerHTML = head + meta + items + scoreHtml +
+      '<div class="quiz-actions">' + actions + '</div>' +
+      '<p class="quiz-hint">' + hint + '</p>';
+  }
+
+  function pickQuizAnswer(qi, oi){
+    const slot = currentQuizSlot();
+    if (!slot || slot.graded) return;
+    if (!(qi >= 0 && qi < QUIZ_PER_DAY) || !(oi >= 0 && oi < 4)) return;
+    slot.answers[qi] = oi;
+    saveQuiz();
+    renderQuiz();
+  }
+
+  function gradeQuizNow(){
+    const slot = currentQuizSlot();
+    if (!slot || slot.graded) return;
+    if (slot.answers.some(function(a){ return a === null; })) { toast('5문제를 모두 골라 주세요 🙂'); return; }
+    const qs = quizQuestions(slot.set);
+    let score = 0;
+    for (let i = 0; i < qs.length; i++) { if (slot.answers[i] === qs[i].answer) score++; }
+    slot.graded = true;
+    slot.score = score;
+    saveQuiz();
+    renderQuiz();
+    if (score === QUIZ_PER_DAY) {
+      playChime();
+      confetti(document.body);
+      buzz([90, 60, 90, 60, 200]);
+      toast('🎉 만점! 5 / 5점이에요!');
+    } else if (score >= 3) {
+      playStamp();
+      toast('👏 ' + score + ' / 5점! 해설도 읽어 봐요');
+    } else {
+      toast('💪 ' + score + ' / 5점! 해설을 보면 다음엔 더 잘할 수 있어요');
+    }
+  }
+
+  function retryQuiz(){
+    const slot = currentQuizSlot();
+    if (!slot) return;
+    slot.answers = emptyQuizSlot(slot.set).answers;
+    slot.graded = false;
+    slot.score = 0;
+    saveQuiz();
+    renderQuiz();
+    toast('다시 풀어 볼까요? 화이팅! 💜');
+  }
+
+  function startPracticeQuiz(){
+    const kq = ensureQuiz();
+    if (!kq) return;
+    if (kq.practice && !kq.practice.graded) {
+      quizView = 'practice';
+      renderQuiz();
+      return;
+    }
+    const todaySet = kq.today.set;
+    let next = ((kq.practice ? kq.practice.set : todaySet) + 1) % QUIZ_DAYS;
+    let guard = 0;
+    while (next === todaySet && guard < QUIZ_DAYS) { next = (next + 1) % QUIZ_DAYS; guard++; }
+    kq.practice = emptyQuizSlot(next);
+    quizView = 'practice';
+    saveQuiz();
+    renderQuiz();
+    toast('🔄 다른 날의 5문제를 준비했어요');
+  }
+
+  function backToTodayQuiz(){
+    quizView = 'today';
+    renderQuiz();
+  }
+
+  /* ===================== 렌더: 화면 전환 ===================== */
+  let view = 'home';
+
+  function setView(v){
+    view = (v === 'quiz') ? 'quiz' : 'home';
+    if (view === 'quiz') { try { if (window && window.scrollTo) window.scrollTo(0, 0); } catch (e) {} }
+    renderView();
+  }
+
+  function renderView(){
+    if (el.homeView) el.homeView.hidden = (view !== 'home');
+    if (el.quizView) el.quizView.hidden = (view !== 'quiz');
+    if (el.vtabHome) {
+      el.vtabHome.classList.toggle('active', view === 'home');
+      el.vtabHome.setAttribute('aria-pressed', String(view === 'home'));
+    }
+    if (el.vtabQuiz) {
+      el.vtabQuiz.classList.toggle('active', view === 'quiz');
+      el.vtabQuiz.setAttribute('aria-pressed', String(view === 'quiz'));
+    }
   }
 
   /* ===================== 타이머 ===================== */
@@ -1022,10 +2779,13 @@
         return '<div class="reward">🎁 새 쿠폰! ' + r.emoji + ' ' + r.title + '</div>';
       }).join('');
     }
+    if (kid && kid.streak === TREE_TOTAL) {
+      rewardHtml += '<div class="reward">🎄 크리스마스 트리 완성! 꼭대기 별이 빛나고 있어요 ⭐</div>';
+    }
 
     el.highfiveContent.innerHTML =
       '<span class="hero">🙌</span>' +
-      '<h2>' + k.emoji + ' ' + k.name + ', 7개 다 했어요!</h2>' +
+      '<h2>' + k.emoji + ' ' + k.name + ', ' + TASKS.length + '개 다 했어요!</h2>' +
       '<p>🔥 <b>' + streak + '일 연속 성공</b>' + (kid && kid.best >= streak ? ' · 최고 기록이에요!' : '') + '<br>' +
       (rewards && rewards.length ? '쿠폰함에 새 쿠폰이 들어왔어요 💜' : '오늘도 정말 잘했어요!') + '</p>' +
       rewardHtml +
@@ -1084,7 +2844,7 @@
           '<select id="grant-' + k.id + '" aria-label="' + k.name + ' 쿠폰 종류">' + options + '</select>' +
           '<button class="btn tiny" data-action="grant-coupon" data-kid="' + k.id + '">지급</button>' +
         '</div>' +
-        '<p class="set-help">연속 일수를 직접 바꾸면 그 값부터 이어서 계산돼요. (예: 6으로 바꾸고 오늘 7개를 다 하면 7일째 쿠폰이 나옵니다)</p>' +
+        '<p class="set-help">연속 일수를 직접 바꾸면 그 값부터 이어서 계산돼요. (예: 6으로 바꾸고 오늘 할 일을 다 하면 7일째 쿠폰이 나옵니다)</p>' +
       '</div>';
     }).join('');
 
@@ -1112,12 +2872,29 @@
           '<h3>내가 추가한 가족 미션</h3>' + customHtml +
         '</div>' +
         '<div class="set-group">' +
+          '<h3>🔗 구글 시트 연결 <span class="muted" style="font-weight:700">(선택)</span></h3>' +
+          '<div class="set-line">' +
+            '<input type="url" class="sheet-url" id="sheetUrl" inputmode="url" autocomplete="off" spellcheck="false" ' +
+              'placeholder="https://script.google.com/macros/s/.../exec" value="' + esc(sheetCfg.url) + '" aria-label="구글 시트 Apps Script URL">' +
+          '</div>' +
+          '<div class="set-line">' +
+            '<button class="btn tiny primary" data-action="sheet-save">저장 & 연결 테스트</button>' +
+            '<button class="btn tiny" data-action="sheet-load">시트에서 불러오기</button>' +
+            (sheetCfg.url ? '<button class="btn tiny" data-action="sheet-unlink">연결 해제</button>' : '') +
+          '</div>' +
+          '<p class="sheet-status' + (sheetStatus.kind ? ' ' + sheetStatus.kind : '') + '" id="sheetStatus">' +
+            esc(sheetStatus.text || (sheetCfg.url ? '연결된 주소로 시트에 저장돼요.' : '아직 연결하지 않았어요. 비워 두면 이 기기에만 저장돼요.')) + '</p>' +
+          '<p class="set-help">주소를 넣으면 영어책·한글책 체크와 흘려듣기 분이 그때마다 시트에 한 줄로 쌓이고, 새로 고칠 때 시트 기록을 다시 불러와 다른 가족 폰과 같은 기록을 봐요. 붙여 넣을 Apps Script 코드는 노션 “🎫 가족 쿠폰 대시보드” 페이지 아래에 있어요.</p>' +
+        '</div>' +
+        '<div class="set-group">' +
           '<h3>데이터</h3>' +
           '<div class="set-line">' +
             '<button class="btn tiny danger" data-action="reset-all">모든 기록 초기화</button>' +
             '<button class="btn tiny" data-action="reset-timer">타이머 끄기</button>' +
           '</div>' +
-          '<p class="set-help">기록은 이 기기의 브라우저에만 저장돼요. 다른 기기와 자동으로 맞춰지지 않아요.</p>' +
+          '<p class="set-help">' + (sheetOn()
+            ? '이 기기 브라우저에 저장하고, 같은 내용을 구글 시트에도 쌓아요. 다른 기기에서도 불러올 수 있어요.'
+            : '기록은 이 기기의 브라우저에만 저장돼요. 다른 기기와 자동으로 맞춰지지 않아요.') + '</p>' +
         '</div>' +
       '</details>';
   }
@@ -1129,13 +2906,24 @@
     el.soundBtn.classList.toggle('off', !state.settings.sound);
     el.soundBtn.setAttribute('aria-pressed', String(state.settings.sound));
     el.storageNote.textContent = storageOK ? '' : '(이 브라우저는 저장이 제한돼 있어요)';
+    if (el.footerNote) {
+      el.footerNote.textContent = sheetOn()
+        ? '이 파일 하나로 열리고, 기록은 이 기기와 구글 시트에 함께 저장됩니다 ☁️🔒'
+        : '외부 연결 없이 이 파일만으로 열려요 · 기록은 이 기기 브라우저에만 저장됩니다 🔒';
+    }
     renderTabs();
     renderStreak();
+    renderNewYear();
+    renderTree();
     renderTasks();
+    renderListen();
     renderCoupons();
     renderMission();
     renderTimer();
     renderSettings();
+    renderQuiz();
+    renderView();
+    renderSheetNote();
   }
 
   /* ===================== 동작 ===================== */
@@ -1149,7 +2937,7 @@
 
     if (was) {
       justChecked = null;
-      save(); renderAll();
+      saveAndSync(k.id); renderAll();
       return;
     }
 
@@ -1161,7 +2949,7 @@
       if (kid.streak > kid.best) kid.best = kid.streak;
       const rewards = awardCoupons(kid, kid.streak);
       justChecked = taskId;
-      save();
+      saveAndSync(k.id);
       renderAll();
       playStamp();
       setTimeout(function(){ showHighFive(k.id, kid.streak, rewards); }, 260);
@@ -1169,9 +2957,9 @@
     }
 
     justChecked = taskId;
-    save(); renderAll();
+    saveAndSync(k.id); renderAll();
     playTick();
-    setTimeout(function(){ justChecked = null; }, 900);
+    setTimeout(function(){ justChecked = null; }, 700);
   }
 
   function useCouponConfirm(id){
@@ -1293,11 +3081,15 @@
   }
 
   function resetAll(){
-    if (!confirm('모든 기록(체크·연속 일수·쿠폰·미션)을 지울까요? 되돌릴 수 없어요.')) return;
+    if (!confirm('모든 기록(체크·흘려듣기·연속 일수·쿠폰·미션)을 지울까요? 되돌릴 수 없어요.')) return;
     if (!confirm('정말 지울까요? 한 번 더 확인해 주세요!')) return;
     state = defaultState();
     save();
     resetTimer(true);
+    quiz = { v:1, kids:{} };
+    try { localStorage.removeItem(QUIZ_KEY); } catch (e) {}
+    ensureQuiz(); quizView = 'today';
+    sheetTotals = {};
     renderAll();
     toast('모든 기록을 초기화했어요');
   }
@@ -1318,9 +3110,24 @@
 
     switch (action) {
       case 'tab':
-        state.active = kidId; pendingUse = null; justChecked = null;
+        state.active = kidId; pendingUse = null; justChecked = null; quizView = 'today';
         save(); renderAll();
         break;
+      case 'view': setView(target.dataset.view); break;
+      case 'quiz-pick': pickQuizAnswer(Number(target.dataset.q), Number(target.dataset.o)); break;
+      case 'quiz-grade': gradeQuizNow(); break;
+      case 'quiz-retry': retryQuiz(); break;
+      case 'quiz-practice': startPracticeQuiz(); break;
+      case 'quiz-today': backToTodayQuiz(); break;
+      case 'listen-add': listenAdd(Number(target.dataset.min) || 0); break;
+      case 'listen-set':
+        var listenInput = $('#listenMinutes');
+        listenSet(listenInput ? listenInput.value : 0);
+        break;
+      case 'listen-clear': listenClear(); break;
+      case 'sheet-save': sheetSaveAndTest(); break;
+      case 'sheet-load': sheetLoad(false); break;
+      case 'sheet-unlink': sheetUnlink(); break;
       case 'toggle-task': toggleTask(target.dataset.task); break;
       case 'use-coupon': useCouponConfirm(target.dataset.id); break;
       case 'confirm-use': confirmUse(target.dataset.id); break;
@@ -1354,7 +3161,12 @@
   });
 
   document.addEventListener('keydown', function(e){
-    if (e.key === 'Enter' && e.target && e.target.id === 'missionInput') { addMission(); }
+    if (e.key !== 'Enter' || !e.target) return;
+    if (e.target.id === 'missionInput') addMission();
+    else if (e.target.id === 'listenMinutes' || e.target.id === 'sheetUrl') {
+      if (e.target.id === 'sheetUrl') sheetSaveAndTest();
+      else listenSet(e.target.value);
+    }
   });
 
   document.addEventListener('visibilitychange', function(){
@@ -1368,6 +3180,9 @@
   /* ===================== 시작 ===================== */
   normalizeDay();
   renderAll();
+
+  /* 시트가 연결돼 있으면 새로 열 때마다 시트 기록을 다시 받아 옵니다. */
+  if (sheetOn()) sheetLoad(true);
 
   if (timer.status === 'running' && timerLeft() <= 0) {
     finishTimer();
